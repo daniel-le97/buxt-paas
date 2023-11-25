@@ -1,1 +1,0 @@
-{"repoURL":"https://github.com/daniel-le97/alpine","buildCommand":"bun run build","startCommand":"bun run start","installCommand":"bun i","buildPack":"nixpacks"}
