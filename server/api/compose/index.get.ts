@@ -2,9 +2,9 @@
 
 export default defineEventHandler(async (event) => {
   let data = []
-  const yamls = (await useStorage('db').getKeys('compose'))
+  const yamls = await useDbStorage('compose').getKeys()
   for await (const yaml of yamls){
-    data.push({name: yaml, data: await useStorage('db').getItem(`compose:${yaml}`)})
+    data.push({name: yaml, data: await useDbStorage('compose').getItem(yaml)})
   }
   console.log( data);
   

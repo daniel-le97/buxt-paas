@@ -9,10 +9,11 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   // console.log(body);
   // console.log(event);
+  const db = useDbStorage('compose')
 
-  const db = useStorage('db')
+  // const db = useStorage('db')
   
-  if(await db.hasItem('compose:' + id)){
-    await db.setItem('compose:' + id, body)
+  if(await db.hasItem(id)){
+    await db.setItem(id, body)
   }
 })

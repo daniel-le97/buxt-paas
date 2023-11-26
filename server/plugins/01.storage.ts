@@ -7,7 +7,7 @@ export default defineNitroPlugin((nitroApp) => {
 
     // Dynamically pass in credentials from runtime configuration, or other sources
     const driver = overlay({
-      layers: [memory(), fs({ base: "./data" })],
+      layers: [memory(), fs({ base: "./data"})],
     })
   
     // Mount driver

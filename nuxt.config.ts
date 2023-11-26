@@ -18,21 +18,10 @@ export default defineNuxtConfig({
     componentIslands:true
    },
    nitro: {
-    // preset: './runtime/bun',
      experimental:{
        asyncContext: true,
        openAPI: true,
-     },
-    //  storage: {
-    //   db: {
-    //     driver: 'fs',
-    //     base: './.data/db'
-    //   },
-    //   compose: {
-    //     driver: 'fs',
-    //     base: './.data/compose'
-    //   }
-    // }
+     }
    },
   
 })

@@ -1,4 +1,4 @@
 export default defineEventHandler(async (event) => {
-  const yamls = (await useStorage('db').getKeys('compose'))
+  const yamls = await useDbStorage('compose').getKeys()
   return yamls
 })
