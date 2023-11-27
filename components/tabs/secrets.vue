@@ -1,7 +1,3 @@
-<script lang="ts" setup>
-
-</script>
-
 <template>
   <div>
     <div class="w-full">
@@ -74,5 +70,3 @@
     </div>
   </div>
 </template>
-
-<style></style>

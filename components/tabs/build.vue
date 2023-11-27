@@ -100,9 +100,7 @@ onBeforeMount(() => {
       </div>
 
       <div class="p-2 bg-zinc-700 rounded-md">
-        <!-- <div v-for="data in hello">
-        </div> -->
-        <pre id="pre-build" class="scrollable-pre"> {{ buildData }}</pre>
+        <pre v-if="buildData" id="pre-build" class="scrollable-pre"> {{ buildData }}</pre>
       </div>
     </div>
   </section>
