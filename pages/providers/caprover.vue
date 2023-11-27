@@ -17,6 +17,8 @@ whenever(shift_a, () => {
   router.push('/applications')
   console.log('Shift+A has been pressed')
 })
+
+const getUrl = (path: string) => `/logos/${path}`
 </script>
 
 <template>
@@ -48,11 +50,11 @@ whenever(shift_a, () => {
         </template>
       </div>
 
-      <img
-        :src="`/api/providers/caprover/images/${template.logoUrl}`"
+      <NuxtImg
+        :src="getUrl(template.logoUrl)"
         height="5vh"
         class="w-16 absolute -top-10 -left-6 border bg-white"
-      >
+      />
     </div>
   </div>
 </template>
