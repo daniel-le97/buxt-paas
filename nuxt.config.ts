@@ -1,7 +1,19 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@nuxtjs/tailwindcss', '@vueuse/nuxt'],
+  devtools: {
+    enabled: true,
+
+    timeline: {
+      enabled: true,
+    },
+  },
+  modules: [
+    '@nuxt/ui',
+    '@nuxtjs/tailwindcss',
+    '@vueuse/nuxt',
+    "@nuxt/image",
+    'nuxt-monaco-editor',
+  ],
 
   runtimeConfig:{
     redis:{

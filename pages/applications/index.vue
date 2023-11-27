@@ -156,7 +156,7 @@ const tabIndex = useTabIndex();
                     <div v-if=" item.key === 'configuration' " class="space-y-3">
                         <TabsConfiguration />
                     </div>
-                    <div v-if=" item.key === 'application' " class="space-y-3">
+                    <div v-if=" item.key === 'application' " class="space-y-3 ">
                         <Server />
                     </div>
 

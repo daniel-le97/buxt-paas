@@ -1,16 +1,13 @@
 <template>
-  <div v-for="stuff in data">
-    <UContainer >
-      <div>
-        <div>{{ stuff.name }}</div>
-        <UButton type="button" @click="() => save(stuff)">save</UButton>
-      </div>
-      <UTextarea v-if="stuff.data" autoresize resize  v-model="(stuff.data as string)" :rows="stuff.data.toString().split('\n').length" class="w-full p-2 h-80 pb-2" ></UTextarea>
-    </UContainer>
-  </div>
+  <ClientOnly >
+    <MyMonacoEditor :value="value" language="typescript" class="monaco"/>
+  </ClientOnly>
+
 </template>
 
 <script lang="ts" setup>
+
+const value = ref('const world = "hello-world"')
 
 async function save(data:any){
   await useFetch('/api/compose/' + data.name, {
@@ -19,11 +16,13 @@ async function save(data:any){
   })
 }
 
-  const {data} = useFetch('/api/compose')
+  const {data} = await useFetch('/api/compose')
  
 </script>
 
 <style>
-
+.monaco{
+  min-height: 50vh;
+}
 </style>
 

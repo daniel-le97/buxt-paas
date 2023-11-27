@@ -1,6 +1,10 @@
 import io from 'socket.io-client'
+// @ts-ignore
+import VueMasonry from 'vue-masonry-css'
+export default defineNuxtPlugin((nuxtApp)=>{
 
-export default defineNuxtPlugin(()=>{
+    nuxtApp.vueApp.use(VueMasonry)
+
     const config = useRuntimeConfig().public
     const socket = io(`${config.host}:${config.socketUrl}`, {
         autoConnect: false,

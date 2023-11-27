@@ -11,19 +11,24 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxt/image": "latest",
     "@nuxtjs/tailwindcss": "^6.10.0",
+    "fetchgit": "^1.0.0",
     "nuxt": "^3.8.2",
+    "nuxt-monaco-editor": "latest",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
     "@nuxt/ui": "^2.10.0",
+    "@types/js-yaml": "^4.0.9",
     "@vueuse/nuxt": "^10.6.1",
     "blessed": "^0.1.81",
     "bun-types": "^1.0.13",
     "js-yaml": "^4.1.0",
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2",
+    "vue-masonry-css": "^1.0.3",
     "zod": "^3.22.4"
   }
 }
