@@ -9,6 +9,11 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'image not found',
       })
   }
-  return db.getItem(id)
+  const item = await db.getItemRaw(id)
+
   
+
+  setHeaders(event, {'Content-type': 'image/png', 'Content-Length': item.length})
+
+  return item
 })

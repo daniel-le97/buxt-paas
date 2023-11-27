@@ -9,12 +9,13 @@
       <ULink to="/applications" active-class="text-primary" :inactive-class=" inactive ">
         applications
       </ULink>
-      <!-- <ULink to="/one" active-class="text-primary" :inactive-class=" inactive ">
-        one
-      </ULink>
-       -->
-      <!-- <NuxtLink href="/login" class="nav-item " active-color="orange">Login</NuxtLink> -->
-      <!-- <span class=" h-1 bg-white w-4"></span> -->
+      <UDropdown :items="items" :popper="{ placement: 'bottom-start' , arrow: false}">
+    <UButton color="white" label="Providers" trailing-icon="i-heroicons-chevron-down-20-solid"  />
+  </UDropdown>
+      <!-- <ULink to="/providers" active-class="text-primary" :inactive-class=" inactive ">
+        providers
+      </ULink> -->
+
     </div>
     <UDivider
     :label="router.name == 'index' ? 'home' : router.name"
@@ -26,6 +27,24 @@
 
 <script lang="ts" setup>
 const router = useRoute()
+
+const items = [
+   [{
+    label: 'Caprover',
+    to: '/providers/caprover',
+    icon: 'i-heroicons-pencil-square-20-solid',
+    shortcuts: ['e'],
+    click: () => {
+      console.log('Edit')
+    }
+    
+  }, {
+    label: 'Portainer',
+    to: '/providers/portainer',
+    icon: 'i-heroicons-document-duplicate-20-solid',
+    shortcuts: ['d'],
+  }]
+]
 // const router = useRouter().getRoutes().map( route => { to: route.path} );
 
 const inactive = "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
