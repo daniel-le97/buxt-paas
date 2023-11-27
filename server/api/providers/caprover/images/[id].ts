@@ -4,7 +4,11 @@ export default defineEventHandler(async (event) => {
   const db = useDbStorage('templates:caprover:logos')
   const hasItem = await db.hasItem(id)
   if (!hasItem) {
-    throw createError({})
+    throw createError({
+        statusCode: 404,
+        statusMessage: 'image not found',
+      })
   }
+  return db.getItem(id)
   
 })
