@@ -1,58 +1,54 @@
 <script setup lang="ts">
-import { z } from 'zod';
-import type { FormSubmitEvent } from '#ui/types';
+import { z } from 'zod'
+import type { FormSubmitEvent } from '#ui/types'
 
-const schema = z.object( {
-  repoURL: z.string().min( 1 ),
+const schema = z.object({
+  repoURL: z.string().min(1),
   installCommand: z.string().nullable(),
   buildCommand: z.string().nullable(),
   startCommand: z.string().nullable(),
-  buildPack: z.string().min( 1, 'Must be at least 8 characters' )
-} );
+  buildPack: z.string().min(1, 'Must be at least 8 characters'),
+})
 
-type Schema = z.output<typeof schema>;
+type Schema = z.output<typeof schema>
 
-const state = reactive( {
+const state = reactive({
   repoURL: 'https://github.com/daniel-le97/astro-portfolio',
   buildCommand: 'bun run build',
   startCommand: 'bun run start',
   installCommand: 'bun i',
-  buildPack: 'nixpacks'
-} );
+  buildPack: 'nixpacks',
+})
 
 const options = [
   { label: 'nixpacks', value: 'nixpacks' },
   { label: 'Option 2', value: 'option-2' },
-  { label: 'Option 3', value: 'option-3' }
-];
+  { label: 'Option 3', value: 'option-3' },
+]
 
-async function onSubmit ( event: FormSubmitEvent<Schema> ) {
+async function onSubmit(event: FormSubmitEvent<Schema>) {
   // Do something with data
-  console.log( event.data );
+  console.log(event.data)
 
   const res = await $fetch('/api/repo', {
-    method: "POST",
-    body: event.data
+    method: 'POST',
+    body: event.data,
   })
   if (res) {
     const id = useActiveId()
     id.value = res
     changeIndex(1)
-    
   }
-  
 }
 
-const changeIndex = (number?:number) => {
-  const index = useTabIndex();
-  index.value = number ?? index.value + 1;
-
-};
+function changeIndex(number?: number) {
+  const index = useTabIndex()
+  index.value = number ?? index.value + 1
+}
 </script>
 
 <template>
   <div>
-
     <UForm :schema=" schema " :state=" state " class="space-y-4" @submit=" onSubmit ">
       <UFormGroup label="repo URL" name="repoURL">
         <UInput v-model=" state.repoURL " type="url" />
@@ -61,13 +57,13 @@ const changeIndex = (number?:number) => {
       <div class="flex space-x-4">
         <div class="w-1/2">
           <UFormGroup label="install command" name="installCommand">
-            <UInput v-model=" state.installCommand " placeholder="npm install" type='text' />
+            <UInput v-model=" state.installCommand " placeholder="npm install" type="text" />
           </UFormGroup>
           <UFormGroup label="build command" name="buildCommand">
-            <UInput v-model=" state.buildCommand " placeholder="npm run build" type='text' />
+            <UInput v-model=" state.buildCommand " placeholder="npm run build" type="text" />
           </UFormGroup>
           <UFormGroup label="start command" name="startCommand">
-            <UInput v-model=" state.startCommand " placeholder="npm run serve" type='text' />
+            <UInput v-model=" state.startCommand " placeholder="npm run serve" type="text" />
           </UFormGroup>
         </div>
         <div class="w-1/2">
@@ -83,4 +79,3 @@ const changeIndex = (number?:number) => {
     </UForm>
   </div>
 </template>
-

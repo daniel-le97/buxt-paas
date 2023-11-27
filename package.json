@@ -1,23 +1,15 @@
 {
   "name": "nuxt-app",
-  "private": true,
   "type": "module",
+  "private": true,
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "devDependencies": {
-    "@nuxt/devtools": "latest",
-    "@nuxt/image": "latest",
-    "@nuxtjs/tailwindcss": "^6.10.0",
-    "fetchgit": "^1.0.0",
-    "nuxt": "^3.8.2",
-    "nuxt-monaco-editor": "latest",
-    "vue": "^3.3.8",
-    "vue-router": "^4.2.5"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@nuxt/ui": "^2.10.0",
@@ -31,5 +23,17 @@
     "socket.io-client": "^4.7.2",
     "vue-masonry-css": "^1.0.3",
     "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.1.0",
+    "@nuxt/devtools": "latest",
+    "@nuxt/image": "latest",
+    "@nuxtjs/tailwindcss": "^6.10.0",
+    "eslint": "^8.54.0",
+    "fetchgit": "^1.0.0",
+    "nuxt": "^3.8.2",
+    "nuxt-monaco-editor": "latest",
+    "vue": "^3.3.8",
+    "vue-router": "^4.2.5"
   }
 }

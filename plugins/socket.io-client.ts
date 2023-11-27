@@ -1,23 +1,24 @@
 import io from 'socket.io-client'
-// @ts-ignore
+
+// @ts-expect-error
 import VueMasonry from 'vue-masonry-css'
-export default defineNuxtPlugin((nuxtApp)=>{
 
-    nuxtApp.vueApp.use(VueMasonry)
+export default defineNuxtPlugin((nuxtApp) => {
+  nuxtApp.vueApp.use(VueMasonry)
 
-    const config = useRuntimeConfig().public
-    const socket = io(`${config.host}:${config.socketUrl}`, {
-        autoConnect: false,
-    })
+  const config = useRuntimeConfig().public
+  const socket = io(`${config.host}:${config.socketUrl}`, {
+    autoConnect: false,
+  })
 
-    // socket.on('connected', (data) => {
-    //     console.log({data});
-        
-    // })
+  // socket.on('connected', (data) => {
+  //     console.log({data});
 
-    return {
-        provide: {
-            io: socket
-        }
-    }
+  // })
+
+  return {
+    provide: {
+      io: socket,
+    },
+  }
 })

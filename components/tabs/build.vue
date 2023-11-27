@@ -1,6 +1,65 @@
+<script lang="ts" setup>
+const buildData = ref('')
+
+const eventSource = ref<EventSource | null>(null)
+// const close = () => {
+//   const id = useActiveId()
+//   id.value = ''
+//   eventSource.value?.close()
+// }
+onMounted(() => {
+  const id = useActiveId()
+  if (!id.value)
+    return
+
+  eventSource.value = new EventSource(`http://localhost:3000/api/build/${id.value}`)
+
+  eventSource.value.addEventListener('message', (event: { data: any }) => {
+    const data = event.data
+    console.log(data)
+
+    // Parse the data if needed
+    try {
+      const parsedData = JSON.parse(data)
+      console.log('Parsed Data:', parsedData)
+      buildData.value += `${parsedData.data}\n`
+      const element = document.getElementById('pre-build')
+      if (element) {
+        // console.log('found element');
+
+        element.scrollTop = element.scrollHeight
+      }
+      // Do something with parsedData
+    }
+    catch (error) {
+      console.error('Error parsing JSON:', error)
+    }
+  })
+
+  eventSource.value.addEventListener('error', () => {
+    id.value = ''
+    eventSource.value?.close()
+    // console.error('EventSource error:', errorEvent)
+    // Handle errors if needed
+  })
+
+  eventSource.value.addEventListener('close', () => {
+    id.value = ''
+    eventSource.value?.close()
+    // console.log('EventSource connection closed')
+
+    // Handle the connection close if needed
+  })
+})
+
+onBeforeMount(() => {
+  if (eventSource.value)
+    eventSource.value.close()
+})
+</script>
+
 <template>
   <section>
-
     <!-- <div class="w-full ">
       <form class="">
         <div class="mb-4">
@@ -43,76 +102,11 @@
       <div class="p-2 bg-zinc-700 rounded-md">
         <!-- <div v-for="data in hello">
         </div> -->
-        <pre class="scrollable-pre" id="pre-build"> {{ buildData }}</pre>
+        <pre id="pre-build" class="scrollable-pre"> {{ buildData }}</pre>
       </div>
     </div>
   </section>
 </template>
-
-<script lang="ts" setup>
-
-const buildData = ref('')
-
-const eventSource = ref<EventSource | null>( null );
-// const close = () => {
-//   const id = useActiveId()
-//   id.value = ''
-//   eventSource.value?.close()
-// }
-onMounted( () => {
-  const id = useActiveId()
-  if (!id.value) {
-    return
-  }
-  eventSource.value = new EventSource( 'http://localhost:3000/api/build/' + id.value );
-
-  eventSource.value.addEventListener( 'message', ( event: { data: any; } ) => {
-    const data = event.data;
-    console.log( data );
-
-    // Parse the data if needed
-    try
-    {
-      const parsedData = JSON.parse( data );
-      console.log( 'Parsed Data:', parsedData );
-      buildData.value += `${ parsedData.data }\n`;
-      const element = document.getElementById('pre-build');
-      if (element) {
-        // console.log('found element');
-        
-        element.scrollTop = element.scrollHeight
-      }
-      // Do something with parsedData
-    }
-    catch ( error )
-    {
-      console.error( 'Error parsing JSON:', error );
-    }
-  } );
-
-  eventSource.value.addEventListener( 'error', () => {
-    id.value = ''
-    eventSource.value?.close();
-    // console.error('EventSource error:', errorEvent)
-    // Handle errors if needed
-  } );
-
-  eventSource.value.addEventListener( 'close', () => {
-    id.value = ''
-    eventSource.value?.close();
-    // console.log('EventSource connection closed')
-
-    // Handle the connection close if needed
-  } );
-} );
-
-onBeforeMount( () => {
-  if ( eventSource.value )
-  {
-    eventSource.value.close();
-  }
-} );
-</script>
 
 <style>
 .scrollable-pre {
@@ -122,4 +116,3 @@ onBeforeMount( () => {
   padding: 10px; /* Optional: add padding for better appearance */
 }
 </style>
-

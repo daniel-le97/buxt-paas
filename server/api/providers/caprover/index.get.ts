@@ -1,17 +1,15 @@
-import * as yaml from 'js-yaml'
-
 interface OneClickAppsList {
-  oneClickApps:{
-    name:string
-    displayName:string
-    description:string
-    isOfficial:boolean
+  oneClickApps: {
+    name: string
+    displayName: string
+    description: string
+    isOfficial: boolean
     logoUrl: string
-    showFullDescription:boolean
+    showFullDescription: boolean
   }[]
 }
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (_event) => {
   const db = useDbStorage('templates')
   const caproverRaw = await db.getItem('caprover:list') as OneClickAppsList
-  return caproverRaw.oneClickApps.map(app => ({...app, showFullDescription: false}))
+  return caproverRaw.oneClickApps.map(app => ({ ...app, showFullDescription: false }))
 })

@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+
+</script>
+
 <template>
   <div>
     <div class="w-full">
@@ -9,17 +13,21 @@
                 <label class="block dark:text-white text-gray-700 text-3xl font-bold mb-2" for="name">
                   Name
                 </label>
-                <input id="name"
+                <input
+                  id="name"
                   class="h-12 shadow appearance-none border rounded w-full py-2 px-3 dark:text-white text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  type="text" placeholder="Enter name">
+                  type="text" placeholder="Enter name"
+                >
               </div>
               <div>
                 <label class="block dark:text-white text-gray-700 text-3xl font-bold mb-2" for="value">
                   Value
                 </label>
-                <input id="value"
+                <input
+                  id="value"
                   class="h-12 shadow appearance-none border rounded w-full py-2 px-3 dark:text-white text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  type="text" placeholder="Enter value">
+                  type="text" placeholder="Enter value"
+                >
               </div>
               <div class="flex items-center">
                 <label class="block dark:text-white text-gray-700 text-3xl font-bold mb-2" for="build-time">
@@ -57,17 +65,14 @@
         <button class="bg-amber-400 p-2 rounded-md px-4">
           Add
         </button>
-        <textarea id="enc-file"
+        <textarea
+          id="enc-file"
           class="h-24 shadow appearance-none border rounded w-full py-2 px-3 dark:text-white text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2"
-          placeholder="Enter Past.encFile" />
+          placeholder="Enter Past.encFile"
+        />
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup>
-
-</script>
-
 <style></style>
-

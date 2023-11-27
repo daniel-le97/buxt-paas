@@ -7,34 +7,34 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
-  
+
   modules: [
     '@nuxt/ui',
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
-    "@nuxt/image",
+    '@nuxt/image',
     'nuxt-monaco-editor',
   ],
 
-  runtimeConfig:{
-    redis:{
-      url: process.env.NUXT_REDIS_URL
+  runtimeConfig: {
+    redis: {
+      url: process.env.NUXT_REDIS_URL,
     },
-    public:{
+    public: {
       socketUrl: 3001,
-      host: 'localhost'
-    }
-   },
-   experimental: {
+      host: 'localhost',
+    },
+  },
+  experimental: {
     typedPages: true,
     viewTransition: true,
-    componentIslands:true
-   },
-   nitro: {
-     experimental:{
-       asyncContext: true,
-       openAPI: true,
-     }
-   },
-  
+    componentIslands: true,
+  },
+  nitro: {
+    experimental: {
+      asyncContext: true,
+      openAPI: true,
+    },
+  },
+
 })

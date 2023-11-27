@@ -1,63 +1,62 @@
-
 interface CaproverOneClickAppVariable {
-    id: string;
-    label: string;
-    defaultValue?: string;
-    description?: string;
-    validRegex?: RegExp;
+  id: string
+  label: string
+  defaultValue?: string
+  description?: string
+  validRegex?: RegExp
+}
+
+interface CaproverOneClickAppInstructions {
+  start?: string
+  end?: string
+}
+
+interface CaproverOneClickAppConfig {
+  caproverOneClickApp: {
+    variables: CaproverOneClickAppVariable[]
+    instructions: CaproverOneClickAppInstructions
+    displayName: string
+    isOfficial: boolean
+    description: string
+    documentation: string
   }
-  
-  interface CaproverOneClickAppInstructions {
-    start?: string;
-    end?: string;
+}
+
+interface CaproverDockerComposeConfig {
+  captainVersion: number
+  services: {
+    [serviceName: string]: {
+      depends_on?: string[]
+      image: string
+      restart: string
+      environment: {
+        WAIT_HOSTS: string
+        Caprover_MONGODB: string
+        Caprover_USERNAME: string
+        Caprover_PASSWORD: string
+        Caprover_ALLOW_ORIGIN: string
+      }
+      caproverExtra: {
+        containerHttpPort: string
+      }
+    }
   }
-  
-  interface CaproverOneClickAppConfig {
-    caproverOneClickApp: {
-      variables: CaproverOneClickAppVariable[];
-      instructions: CaproverOneClickAppInstructions;
-      displayName: string;
-      isOfficial: boolean;
-      description: string;
-      documentation: string;
-    };
+  caproverOneClickApp?: {
+    variables: {
+      [variableId: string]: string
+    }
+    instructions: {
+      start: string
+      end: string
+    }
+    displayName: string
+    isOfficial: boolean
+    description: string
+    documentation: string
   }
-  
-  interface CaproverDockerComposeConfig {
-    captainVersion: number;
-    services: {
-      [serviceName: string]: {
-        depends_on?: string[];
-        image: string;
-        restart: string;
-        environment: {
-          WAIT_HOSTS: string;
-          Caprover_MONGODB: string;
-          Caprover_USERNAME: string;
-          Caprover_PASSWORD: string;
-          Caprover_ALLOW_ORIGIN: string;
-        };
-        caproverExtra: {
-          containerHttpPort: string;
-        };
-      };
-    };
-    caproverOneClickApp?: {
-      variables: {
-        [variableId: string]: string;
-      };
-      instructions: {
-        start: string;
-        end: string;
-      };
-      displayName: string;
-      isOfficial: boolean;
-      description: string;
-      documentation: string;
-    };
-  }
-  
-  // Example Usage:
+}
+
+// Example Usage:
 //   const exampleCaproverConfig: CaproverOneClickAppConfig = {
 //     caproverOneClickApp: {
 //       variables: [
@@ -80,7 +79,7 @@ interface CaproverOneClickAppVariable {
 //       documentation: 'https://hub.docker.com/r/electerious/Caprover',
 //     },
 //   };
-  
+
 //   // Example Usage with Docker Compose Config:
 //   const exampleDockerComposeConfig: CaproverDockerComposeConfig = {
 //     captainVersion: 4,
@@ -127,4 +126,3 @@ interface CaproverOneClickAppVariable {
 //       documentation: 'https://hub.docker.com/r/electerious/Caprover',
 //     },
 //   };
-  

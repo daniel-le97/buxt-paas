@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import { z } from 'zod';
-import type { FormSubmitEvent } from '#ui/types';
+import { z } from 'zod'
+import type { FormSubmitEvent } from '#ui/types'
 
-const schema = z.object( {
-  email: z.string().email( 'Invalid email' ),
-  password: z.string().min( 8, 'Must be at least 8 characters' )
-} );
+const schema = z.object({
+  email: z.string().email('Invalid email'),
+  password: z.string().min(8, 'Must be at least 8 characters'),
+})
 
-type Schema = z.output<typeof schema>;
+type Schema = z.output<typeof schema>
 
-const state = reactive( {
+const state = reactive({
   repoURL: undefined,
   type: undefined,
   buildCommand: undefined,
   startCommand: undefined,
-  installCommand: undefined
-} );
+  installCommand: undefined,
+})
 
-async function onSubmit ( event: FormSubmitEvent<Schema> ) {
+async function onSubmit(event: FormSubmitEvent<Schema>) {
   // Do something with data
-  console.log( event.data );
+  console.log(event.data)
 }
 </script>
 
@@ -30,7 +30,7 @@ async function onSubmit ( event: FormSubmitEvent<Schema> ) {
     </UFormGroup>
 
     <UFormGroup label="install command" name="install command">
-      <UInput v-model=" state.installCommand " type='text'/>
+      <UInput v-model=" state.installCommand " type="text" />
     </UFormGroup>
 
     <UButton type="submit">
@@ -38,4 +38,3 @@ async function onSubmit ( event: FormSubmitEvent<Schema> ) {
     </UButton>
   </UForm>
 </template>
-

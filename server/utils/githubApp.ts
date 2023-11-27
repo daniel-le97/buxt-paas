@@ -1,7 +1,7 @@
+import fs from 'node:fs'
+import http from 'node:http'
 import dotenv from 'dotenv'
-import fs from 'fs'
-import http from 'http'
-import { Octokit, App } from 'octokit'
+import { App, Octokit } from 'octokit'
 import { createNodeMiddleware } from '@octokit/webhooks'
 
 // Load environment variables from .env file
@@ -20,13 +20,13 @@ const app = new App({
   appId,
   privateKey,
   webhooks: {
-    secret
+    secret,
   },
   ...(enterpriseHostname && {
     Octokit: Octokit.defaults({
-      baseUrl: `https://${enterpriseHostname}/api/v3`
-    })
-  })
+      baseUrl: `https://${enterpriseHostname}/api/v3`,
+    }),
+  }),
 })
 
 // Optional: Get & log the authenticated app's name
@@ -43,14 +43,14 @@ app.webhooks.on('pull_request.opened', async ({ octokit, payload }) => {
       owner: payload.repository.owner.login,
       repo: payload.repository.name,
       issue_number: payload.pull_request.number,
-      body: messageForNewPRs
+      body: messageForNewPRs,
     })
-  } catch (error) {
-    if (error.response) {
+  }
+  catch (error) {
+    if (error.response)
       console.error(`Error! Status: ${error.response.status}. Message: ${error.response.data.message}`)
-    } else {
+    else
       console.error(error)
-    }
   }
 })
 
@@ -59,7 +59,8 @@ app.webhooks.onError((error) => {
   if (error.name === 'AggregateError') {
     // Log Secret verification errors
     console.log(`Error processing request: ${error.event}`)
-  } else {
+  }
+  else {
     console.log(error)
   }
 })

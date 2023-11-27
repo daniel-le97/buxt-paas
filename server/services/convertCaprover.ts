@@ -1,5 +1,3 @@
-
-export const caproverConverter = (app:string) => {
-    
+export function caproverConverter(app: string) {
 
 }

@@ -1,4 +1,4 @@
-export const useIo = () => {
-  const {$io} = useNuxtApp()
+export function useIo() {
+  const { $io } = useNuxtApp()
   return $io
 }

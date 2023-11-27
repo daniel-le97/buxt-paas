@@ -1,12 +1,12 @@
 export default defineEventHandler(async (event) => {
   const storage = useDbStorage('db')
   const keys = await storage.getKeys()
-  let data: {name:string, data: any}[] = []
+  const data: { name: string, data: any }[] = []
 
-  for await (const name of keys) {
-    data.push({name, data: await storage.getItem(name)})
-  }
-  console.log(data);
-  
- return data
+  for await (const name of keys)
+    data.push({ name, data: await storage.getItem(name) })
+
+  console.log(data)
+
+  return data
 })
