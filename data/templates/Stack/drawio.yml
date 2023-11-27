@@ -1,4 +1,4 @@
-#This compose file adds draw.io to your stack
+# This compose file adds draw.io to your stack
 version: '3.5'
 services:
   drawio:

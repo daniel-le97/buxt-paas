@@ -1,4 +1,4 @@
-version: "2"
+version: '2'
 
 services:
   db:
@@ -24,7 +24,7 @@ services:
     # env_file:
     #   - ./db.env
     ports:
-      - 8282:80 #changed from default 8080
+      - 8282:80 # changed from default 8080
 
 volumes:
   db:

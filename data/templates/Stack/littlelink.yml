@@ -1,10 +1,10 @@
 ---
-version: "2.0"
+version: '2.0'
 services:
   littlelink-server:
     image: ghcr.io/techno-tim/littlelink-server:latest
     # dockerhub is also supported timothystewart6/littlelink-server
-    #image: timothystewart6/littlelink-server:latest
+    # image: timothystewart6/littlelink-server:latest
     container_name: littlelink-server
     environment:
       - META_TITLE=PUTYOURNAMEHERE
@@ -70,4 +70,3 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-

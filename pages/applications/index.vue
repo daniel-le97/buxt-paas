@@ -26,10 +26,6 @@ const tabItems = ref([
   },
 ])
 
-// const index = useState('tab-index', () => 0)
-// const hello = useState( 'sse', () => '' );
-// const repo = useState( 'repo', () => 'https://github.com/daniel-le97/nuxt-elysia' );
-
 async function doTheThing() {
   // Ensure EventSource is not initialized multiple times
 
@@ -112,10 +108,7 @@ const tabIndex = useTabIndex()
           icon="i-heroicons-arrow-path-solid" size="sm" color="red" variant="solid" label="Force Redeploy"
           :trailing=" false "
         />
-        <UButton
-          icon="i-heroicons-pause" size="sm" color="amber" variant="solid" label="Stop"
-          :trailing=" false "
-        />
+        <UButton icon="i-heroicons-pause" size="sm" color="amber" variant="solid" label="Stop" :trailing=" false " />
         <UButton
           icon="i-heroicons-arrow-up-right" size="sm" color="primary" variant="solid" label="Open"
           :trailing=" false "
@@ -126,7 +119,10 @@ const tabIndex = useTabIndex()
     </div>
 
     <UTabs
-      v-model=" tabIndex " orientation="vertical" :items=" tabItems " :ui=" {
+      v-model=" tabIndex "
+      orientation="vertical"
+      :items=" tabItems "
+      :ui="{
         wrapper: 'flex items-start gap-4 min-h-screen',
         list: {
           width: 'w-64',
@@ -136,28 +132,10 @@ const tabIndex = useTabIndex()
             background: ' dark:bg-emerald-600',
           },
         },
-      } "
+      }"
     >
-      <!-- <template #default=" { item, selected } ">
-        <div class="flex items-center justify-start gap-2 relative truncate ">
-          <UIcon :name=" item.icon " class="w-4 h-4 flex-shrink-0" />
-
-          <span class="truncate"> {{ item.label }}</span>
-
-          <span v-if=" selected " class="absolute -right-4 w-2 h-2 rounded-full bg-primary-500 dark:bg-primary-400" />
-        </div>
-      </template> -->
-
       <template #item=" { item } ">
         <UCard class="dark:bg-zinc-900   ring-0">
-          <!-- <template #header>
-            <p class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
-              {{ item.label }}
-            </p>
-            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-              {{ item.description }}
-            </p>
-          </template> -->
           <div v-if=" item.key === 'build' " class="space-y-3">
             <TabsBuild />
           </div>
@@ -165,9 +143,8 @@ const tabIndex = useTabIndex()
             <TabsConfiguration />
           </div>
           <div v-if=" item.key === 'application' " class="space-y-3 ">
-            <Server />
+            <!-- <Server /> -->
           </div>
-
           <div v-if=" item.key === 'secrets' " class="space-y-3">
             <TabsSecrets />
           </div>

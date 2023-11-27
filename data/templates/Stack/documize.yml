@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 services:
   documize-db:
@@ -11,9 +11,9 @@ services:
       POSTGRES_PASSWORD: hsk3Acndky8cdTNx3
       POSTGRES_DB: documize
     volumes:
-       - /portainer/Files/AppData/Config/documize/db-data:/var/lib/postgresql/data
+      - /portainer/Files/AppData/Config/documize/db-data:/var/lib/postgresql/data
     networks:
-       - documizenet
+      - documizenet
 
   documize-app:
     image: debian:latest

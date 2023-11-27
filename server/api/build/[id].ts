@@ -1,5 +1,3 @@
-/* eslint-disable node/prefer-global/buffer */
-
 import { z } from 'zod'
 
 const schema = z.object({

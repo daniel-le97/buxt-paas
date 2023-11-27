@@ -1,5 +1,5 @@
 ---
-version: "3"
+version: '3'
 services:
   db_recipes:
     image: postgres
@@ -7,7 +7,7 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-  
+
   recipes:
     image: vabene1111/recipes
     container_name: tandoor

@@ -1,4 +1,4 @@
-version: "3.9"
+version: '3.9'
 services:
   flowise-db:
     image: postgres
@@ -9,7 +9,7 @@ services:
     security_opt:
       - no-new-privileges:true
     healthcheck:
-      test: ["CMD", "pg_isready", "-q", "-d", "flowise", "-U", "flowiseuser"]
+      test: [CMD, pg_isready, -q, -d, flowise, -U, flowiseuser]
       timeout: 45s
       interval: 10s
       retries: 10

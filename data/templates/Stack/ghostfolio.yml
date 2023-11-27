@@ -4,7 +4,7 @@ services:
     image: ghostfolio/ghostfolio:latest
     environment:
       DATABASE_URL: postgresql://user:password@postgres:5432/ghostfolio-db?sslmode=prefer
-      REDIS_HOST: 'redis'
+      REDIS_HOST: redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
       ACCESS_TOKEN_SALT: bvnbvnbcdfbdrf
       ALPHA_VANTAGE_API_KEY:

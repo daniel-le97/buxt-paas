@@ -35,8 +35,8 @@ services:
     env_file:
       - .env
     ports:
-      - "0.0.0.0:${AUTHENTIK_PORT_HTTP:-9000}:9000"
-      - "0.0.0.0:${AUTHENTIK_PORT_HTTPS:-9443}:9443"
+      - '0.0.0.0:${AUTHENTIK_PORT_HTTP:-9000}:9000'
+      - '0.0.0.0:${AUTHENTIK_PORT_HTTPS:-9443}:9443'
   worker:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2021.12.5}
     restart: unless-stopped
@@ -62,12 +62,12 @@ services:
     env_file:
       - .env
   geoipupdate:
-    image: "maxmindinc/geoipupdate:latest"
+    image: 'maxmindinc/geoipupdate:latest'
     volumes:
-      - "geoip:/usr/share/GeoIP"
+      - 'geoip:/usr/share/GeoIP'
     environment:
-      GEOIPUPDATE_EDITION_IDS: "GeoLite2-City"
-      GEOIPUPDATE_FREQUENCY: "8"
+      GEOIPUPDATE_EDITION_IDS: GeoLite2-City
+      GEOIPUPDATE_FREQUENCY: '8'
     env_file:
       - .env
 

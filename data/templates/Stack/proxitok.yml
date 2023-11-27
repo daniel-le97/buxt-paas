@@ -1,4 +1,4 @@
-version: "3.9"
+version: '3.9'
 services:
   proxitok-redis:
     image: redis
@@ -12,7 +12,7 @@ services:
     read_only: true
     user: 1026:100
     healthcheck:
-      test: ["CMD-SHELL", "redis-cli ping || exit 1"]
+      test: [CMD-SHELL, 'redis-cli ping || exit 1']
     restart: on-failure:5
 
   proxitok-signer:

@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 services:
   tooljet-plugins:
@@ -53,7 +53,7 @@ services:
   tooljet-postgrest:
     image: postgrest/postgrest:v10.1.1.20221215
     ports:
-      - "7001:3000"
+      - '7001:3000'
     env_file:
       - /portainer/Files/AppData/Config/tooljet/server/.env
     depends_on:

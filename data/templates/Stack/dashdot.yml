@@ -19,4 +19,3 @@ services:
       DASHDOT_RAM_LABEL_LIST: 'brand,size,type,frequency'
       DASHDOT_NETWORK_LABEL_LIST: 'type,speed_up,speed_down,interface_speed'
       DASHDOT_GPU_LABEL_LIST: 'brand, model, memory'
-      

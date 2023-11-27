@@ -1,4 +1,4 @@
-version: "3.9"
+version: '3.9'
 
 services:
   ihatemoney:
@@ -29,4 +29,4 @@ services:
       - PUID=0
       - PGID=0
     ports:
-      - "82303:8000"
+      - '82303:8000'

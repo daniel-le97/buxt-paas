@@ -7,15 +7,15 @@ services:
     container_name: poste
     restart: always
     ports:
-      - "82:80"
-      - "445:443"
-      - "25:25"
-      - "110:110"
-      - "143:143"
-      - "587:587"
-      - "993:993"
-      - "995:995"
-      - "4190:4190"
+      - '82:80'
+      - '445:443'
+      - '25:25'
+      - '110:110'
+      - '143:143'
+      - '587:587'
+      - '993:993'
+      - '995:995'
+      - '4190:4190'
     environment:
       - TZ=Europe/Athens
       - h=mail.[some-domain].com # enter the email server hosting address

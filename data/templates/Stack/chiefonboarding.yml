@@ -5,7 +5,7 @@ services:
     restart: always
     image: postgres:latest
     expose:
-      - "5432"
+      - '5432'
     volumes:
       - /portainer/Files/AppData/Config/chiefonboarding/pgdata:/var/lib/postgresql/data/
     environment:
@@ -21,7 +21,7 @@ services:
       dockerfile: ./Dockerfile-dev
       context: ./back/
     ports:
-      - "127.0.0.1:8111:8000"
+      - '127.0.0.1:8111:8000'
     environment:
       - DEBUG=True
       - SECRET_KEY=somethingsupersecret

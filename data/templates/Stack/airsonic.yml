@@ -1,5 +1,5 @@
 ---
-version: "3.0"
+version: '3.0'
 services:
   airsonic:
     image: lscr.io/linuxserver/airsonic
@@ -13,7 +13,7 @@ services:
       - /portainer/multimedia/music/:/music
       - /portainer/multimedia/music/playlists:/playlists
       - /portainer/multimedia/podcasts:/podcasts
-      - /portainer/multimedia/music/othermedia:/media #optional
+      - /portainer/multimedia/music/othermedia:/media # optional
     ports:
       - 4040:4040
     restart: unless-stopped

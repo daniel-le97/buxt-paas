@@ -10,13 +10,13 @@ services:
     mem_limit: 300m
     memswap_limit: 0
     ports:
-      - "3080:3080"
-      - "3023:3023"
-      - "3025:3025"
+      - '3080:3080'
+      - '3023:3023'
+      - '3025:3025'
     environment:
       DEBUG: 1
       CONTAINERHOME: /root/go/src/github.com/gravitational/teleport
-    #env_file: ./teleportenv.file
+    # env_file: ./teleportenv.file
     volumes:
       - /portainer/Files/AppData/teleport/one/data/one:/var/lib/teleport
       - /portainer/Files/AppData/Config/teleport/one:/root/go/src/github.com/gravitational/teleport
@@ -37,7 +37,7 @@ services:
     environment:
       DEBUG: 1
       CONTAINERHOME: /root/go/src/github.com/gravitational/teleport
-    #env_file: ./teleportenv.file
+    # env_file: ./teleportenv.file
     mem_limit: 300m
     volumes:
       - /portainer/Files/AppData/teleport/one-node/data/one-node:/var/lib/teleport
@@ -56,7 +56,7 @@ services:
     environment:
       DEBUG: 1
       CONTAINERHOME: /root/go/src/github.com/gravitational/teleport
-    #env_file: ./teleportenv.file
+    # env_file: ./teleportenv.file
     mem_limit: 300m
     volumes:
       - /portainer/Files/AppData/teleport/one-sshd/pam.d/ssh:/etc/pam.d/ssh
@@ -75,12 +75,12 @@ services:
     command: ${CONTAINERHOME}/build/teleport start -d -c ${CONTAINERHOME}/docker/one-proxy.yaml
     mem_limit: 300m
     ports:
-      - "4080:3080"
-      - "4023:3023"
+      - '4080:3080'
+      - '4023:3023'
     environment:
       DEBUG: 1
       CONTAINERHOME: /root/go/src/github.com/gravitational/teleport
-    #env_file: ./teleportenv.file
+    # env_file: ./teleportenv.file
     volumes:
       - /portainer/Files/AppData/teleport/one-proxy:/var/lib/teleport
       - /portainer/Files/AppData/Config/teleport/one-proxy:/root/go/src/github.com/gravitational/teleport
@@ -101,7 +101,7 @@ services:
     environment:
       DEBUG: 1
       CONTAINERHOME: /root/go/src/github.com/gravitational/teleport
-    #env_file: ./teleportenv.file
+    # env_file: ./teleportenv.file
     volumes:
       - /portainer/Files/AppData/teleport/two/auth:/var/lib/teleport
       - /portainer/Files/AppData/Config/teleport/two:/root/go/src/github.com/gravitational/teleport
@@ -120,10 +120,10 @@ services:
     environment:
       DEBUG: 1
       CONTAINERHOME: /root/go/src/github.com/gravitational/teleport
-    #env_file: ./teleportenv.file
+    # env_file: ./teleportenv.file
     ports:
-      - "5080:5080"
-      - "5023:5023"
+      - '5080:5080'
+      - '5023:5023'
     volumes:
       - /portainer/Files/AppData/teleport/two-proxy/data:/var/lib/teleport
       - /portainer/Files/AppData/Config/teleport/two-proxy:/root/go/src/github.com/gravitational/teleport
@@ -142,7 +142,7 @@ services:
     environment:
       DEBUG: 1
       CONTAINERHOME: /root/go/src/github.com/gravitational/teleport
-    #env_file: ./teleportenv.file
+    # env_file: ./teleportenv.file
     volumes:
       - /portainer/Files/AppData/teleport/two-node/data:/var/lib/teleport
       - /portainer/Files/AppData/Config/teleport/two-node:/root/go/src/github.com/gravitational/teleport
@@ -156,9 +156,9 @@ networks:
     ipam:
       driver: default
       config:
-      - subnet: 172.10.1.0/16
-        ip_range: 172.10.1.0/24
-        gateway: 172.10.1.254
+        - subnet: 172.10.1.0/16
+          ip_range: 172.10.1.0/24
+          gateway: 172.10.1.254
 
 volumes:
   certs:

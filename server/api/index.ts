@@ -1,4 +1,3 @@
-/* eslint-disable node/prefer-global/buffer */
 import { useSSE } from '../utils/useSSE'
 
 export default defineEventHandler(async (event) => {

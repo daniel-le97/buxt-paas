@@ -16,7 +16,7 @@ services:
       - ALLOW_REGISTRATION=True
       - ALLOW_GUEST_USERS=True
       - ALLOW_UPLOAD_VIDEOS=Tru
-      # Users won't be able to contribute to exercises if their account age is 
+      # Users won't be able to contribute to exercises if their account age is
       # lower than this amount in days.
       - MIN_ACCOUNT_AGE_TO_TRUST=21
       # Note that setting these to true will always perform a sync during startup,
@@ -84,7 +84,7 @@ services:
       #  source: /path/to/wger/sourcecode
       #  target: /home/wger/src/
     ports:
-      - "8000"
+      - '8000'
     healthcheck:
       test: wget --no-verbose --tries=1 --spider http://localhost:8000
       interval: 10s
@@ -102,7 +102,7 @@ services:
       - /portainer/Files/AppData/Config/wger/static:/wger/static:ro
       - /portainer/Files/AppData/Config/wger/media:/wger/media:ro
     ports:
-      - "680:80"
+      - '680:80'
     healthcheck:
       test: service nginx status
       interval: 10s

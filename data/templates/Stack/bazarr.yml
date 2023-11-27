@@ -1,4 +1,4 @@
-version: "2.1"
+version: '2.1'
 services:
   bazarr:
     image: lscr.io/linuxserver/bazarr:latest
@@ -9,8 +9,8 @@ services:
       - TZ=Europe/Athens
     volumes:
       - /portainer/Files/AppData/Config/bazarr/config:/config
-      - /portainer/Movies:/movies #optional
-      - /portainer/TV:/tv #optional
+      - /portainer/Movies:/movies # optional
+      - /portainer/TV:/tv # optional
     ports:
       - 6767:6767
     restart: unless-stopped

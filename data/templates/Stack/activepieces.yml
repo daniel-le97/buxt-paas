@@ -4,21 +4,21 @@ services:
     image: activepieces/activepieces:0.12.2
     container_name: activepieces
     restart: unless-stopped
-    ## Enable the following line if you already use AP_EXECUTION_MODE with SANDBOXED or old activepieces, checking the breaking change documentation for more info.
-    ## privileged: true
+    # # Enable the following line if you already use AP_EXECUTION_MODE with SANDBOXED or old activepieces, checking the breaking change documentation for more info.
+    # # privileged: true
     ports:
       - 38080:80
     depends_on:
       - ap-postgres
       - ap-redis
     environment:
-    ## It's advisable to consult the documentation and use the tools/deploy.sh to generate the passwords, keys, instead of manually filling them.
+      # # It's advisable to consult the documentation and use the tools/deploy.sh to generate the passwords, keys, instead of manually filling them.
       - AP_ENGINE_EXECUTABLE_PATH=dist/packages/engine/main.js
-     ## Random Long Password (Optional for community edition)
+      # # Random Long Password (Optional for community edition)
       - AP_API_KEY=superduperlongranDOMpwd
-     ## 256 bit encryption key, 32 hex character
-      - AP_ENCRYPTION_KEY= 
-      ## JWT Secret
+      # # 256 bit encryption key, 32 hex character
+      - AP_ENCRYPTION_KEY=
+      # # JWT Secret
       - AP_JWT_SECRET=JWT2square_changeme
       - AP_ENVIRONMENT=prod
       - AP_FRONTEND_URL=http://localhost:38080

@@ -7,7 +7,7 @@ services:
     ports:
       - 8010:80
     restart: unless-stopped
-    
+
   tabby-db:
     image: linuxserver/mariadb
     container_name: tabby-db

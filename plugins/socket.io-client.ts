@@ -4,7 +4,6 @@ import io from 'socket.io-client'
 // import VueMasonry from 'vue-masonry-css'
 
 export default defineNuxtPlugin((nuxtApp) => {
-
   // nuxtApp.hook('')
   // nuxtApp.vueApp.use(VueMasonry)
 

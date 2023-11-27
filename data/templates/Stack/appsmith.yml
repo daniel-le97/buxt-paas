@@ -1,20 +1,20 @@
-version: "3"
+version: '3'
 
 services:
   appsmith:
     image: index.docker.io/appsmith/appsmith-ce
     container_name: appsmith
     ports:
-      - "1810:80"
-      - "1443:443"
+      - '1810:80'
+      - '1443:443'
     volumes:
       - /portainer/Files/AppData/Config/appsmith:/appsmith-stacks
     restart: unless-stopped
     # Uncomment the lines below to enable auto-update
-    #labels:
+    # labels:
     #  com.centurylinklabs.watchtower.enable: "true"
 
-  #auto_update:
+  # auto_update:
   #  image: containrrr/watchtower
   #  volumes:
   #    - /var/run/docker.sock:/var/run/docker.sock

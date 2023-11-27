@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
     '@nuxt/image',
-    'nuxt-monaco-editor',
+    // 'nuxt-monaco-editor',
   ],
 
   runtimeConfig: {
@@ -31,6 +31,7 @@ export default defineNuxtConfig({
     componentIslands: true,
   },
   nitro: {
+    preset: './runtime/bun',
     experimental: {
       asyncContext: true,
       openAPI: true,

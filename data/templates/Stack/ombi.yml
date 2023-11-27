@@ -1,5 +1,5 @@
 ---
-version: "3.7"
+version: '3.7'
 services:
   ombi:
     image: lscr.io/linuxserver/ombi:latest
@@ -8,7 +8,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Athens
-      - BASE_URL=/ombi #optional
+      - BASE_URL=/ombi # optional
     volumes:
       - /portainer/Files/AppData/Config/ombi:/config
     ports:

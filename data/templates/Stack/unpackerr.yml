@@ -1,4 +1,4 @@
-version: "3.7"
+version: '3.7'
 services:
 
   unpackerr:
@@ -10,7 +10,7 @@ services:
       - /portainer/Files/AppData/Downloads:/downloads
     restart: always
     # Get the user:group correct so unpackerr can read and write to your files.
-    #user: ${PUID}:${PGID}
+    # user: ${PUID}:${PGID}
     user: 1000:1000
     # What you see below are defaults for this compose. You only need to modify things specific to your environment.
     environment:

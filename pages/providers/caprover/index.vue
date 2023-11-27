@@ -50,11 +50,11 @@ const getUrl = (path: string) => `/logos/${path}`
         </template>
       </div>
 
-      <NuxtImg
+      <img
         :src="getUrl(template.logoUrl)"
         height="5vh"
         class="w-16 absolute -top-10 -left-6 border bg-white"
-      />
+      >
     </div>
   </div>
 </template>

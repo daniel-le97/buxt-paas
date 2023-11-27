@@ -1,4 +1,4 @@
-version: "3.9"
+version: '3.9'
 services:
   moodle-db:
     image: linuxserver/mariadb
@@ -38,11 +38,11 @@ services:
       - MOODLE_USERNAME=marius
       - MOODLE_PASSWORD=mariushosting
       - MOODLE_SITE_NAME=Learn With Marius
-     #- MOODLE_SMTP_HOST=SMTPhost
-     #- MOODLE_SMTP_PORT=SMTPport
-     #- MOODLE_SMTP_USER=SMTPaccountuser
-     #- MOODLE_SMTP_PASSWORD=SMTPaccountpassword
-     #- MOODLE_SMTP_PROTOCOL=SMTPprotocol
+      # - MOODLE_SMTP_HOST=SMTPhost
+      # - MOODLE_SMTP_PORT=SMTPport
+      # - MOODLE_SMTP_USER=SMTPaccountuser
+      # - MOODLE_SMTP_PASSWORD=SMTPaccountpassword
+      # - MOODLE_SMTP_PROTOCOL=SMTPprotocol
     volumes:
       - /portainer/Files/AppData/Config/moodle/data1:/bitnami/moodle
       - /portainer/Files/AppData/Config/moodle/data2:/bitnami/moodledata

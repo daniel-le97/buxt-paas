@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 services:
   excalidraw:
@@ -8,7 +8,7 @@ services:
         - NODE_ENV=development
     container_name: excalidraw
     ports:
-      - "3111:80"
+      - '3111:80'
     restart: on-failure
     stdin_open: true
     healthcheck:

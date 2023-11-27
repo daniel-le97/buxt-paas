@@ -19,11 +19,11 @@ services:
       - SYMFONY__ENV__DOMAIN_NAME=https://your-wallabag-url-instance.com
       - SYMFONY__ENV__SERVER_NAME="Your wallabag instance"
     ports:
-      - "1180"
+      - '1180'
     volumes:
       - /portainer/Files/AppData/Config/wallabag/images:/var/www/wallabag/web/assets/images
     healthcheck:
-      test: ["CMD", "wget" ,"--no-verbose", "--tries=1", "--spider", "http://localhost"]
+      test: [CMD, wget, --no-verbose, --tries=1, --spider, 'http://localhost']
       interval: 1m
       timeout: 3s
     depends_on:
@@ -36,12 +36,12 @@ services:
     volumes:
       - /portainer/Files/AppData/Config/wallabag/data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      test: [CMD, mysqladmin, ping, -h, localhost]
       interval: 20s
       timeout: 3s
   wallabag-redis:
     image: redis:alpine
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: [CMD, redis-cli, ping]
       interval: 20s
       timeout: 3s

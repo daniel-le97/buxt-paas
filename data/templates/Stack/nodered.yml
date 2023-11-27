@@ -1,4 +1,4 @@
-version: "3.7"
+version: '3.7'
 
 services:
   node-red:
@@ -6,7 +6,7 @@ services:
     environment:
       - TZ=Europe/Athens
     ports:
-      - "1880:1880"
+      - '1880:1880'
     networks:
       - node-red-net
     volumes:

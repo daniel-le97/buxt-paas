@@ -1,5 +1,5 @@
 ---
-version: "2.1"
+version: '2.1'
 services:
   baserow:
     image: baserow/baserow:latest
@@ -9,10 +9,6 @@ services:
     volumes:
       - /portainer/Files/AppData/Config/baserow:/baserow/data
     ports:
-      - 280:80  #changed from default 80
+      - 280:80 # changed from default 80
       - 2443:443
     restart: unless-stopped
-
-
-
- 

@@ -1,11 +1,11 @@
-version: "3.7"
+version: '3.7'
 
 services:
   autobrr:
     container_name: autobrr
     image: ghcr.io/autobrr/autobrr:latest
     restart: unless-stopped
-    #logging:
+    # logging:
     #  driver: json-file
     #  options:
     #    max-file: ${DOCKERLOGGING_MAXFILE}

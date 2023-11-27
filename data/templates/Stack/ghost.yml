@@ -18,7 +18,7 @@ services:
       database__connection__database: ghost
       # this url value is just an example, and is likely wrong for your environment!
       url: http://localhost:8080
-      #NODE_ENV: development
+      # NODE_ENV: development
     volumes:
       - /portainer/Files/AppData/Config/ghost:/var/lib/ghost/content
 
