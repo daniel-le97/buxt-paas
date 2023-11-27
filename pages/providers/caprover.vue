@@ -48,13 +48,11 @@ whenever(shift_a, () => {
         </template>
       </div>
 
-      <!-- <NuxtImg
-        :src="`/logos/${template.logoUrl}`"
-
+      <img
+        :src="`/api/providers/caprover/images/${template.logoUrl}`"
         height="5vh"
         class="w-16 absolute -top-10 -left-6 border bg-white"
-
-      /> -->
+      >
     </div>
   </div>
 </template>

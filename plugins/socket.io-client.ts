@@ -1,10 +1,12 @@
 import io from 'socket.io-client'
 
-// @ts-expect-error
-import VueMasonry from 'vue-masonry-css'
+// // @ts-expect-error
+// import VueMasonry from 'vue-masonry-css'
 
 export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.use(VueMasonry)
+
+  // nuxtApp.hook('')
+  // nuxtApp.vueApp.use(VueMasonry)
 
   const config = useRuntimeConfig().public
   const socket = io(`${config.host}:${config.socketUrl}`, {

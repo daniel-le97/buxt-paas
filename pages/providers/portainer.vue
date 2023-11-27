@@ -51,7 +51,7 @@ whenever(shift_a, () => {
       <NuxtImg
         v-if="JSON.stringify(template.logo)"
         :src="template.logo"
-        :title="template.logo"
+        :label="template.logo"
         height="5vh"
         class="w-16 absolute -top-10 -left-6 border bg-white"
       />

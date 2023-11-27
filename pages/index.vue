@@ -21,7 +21,10 @@ whenever(shift_a, () => {
 
 <template>
   <div class="grid grid-cols-3 gap-12 items-center justify-center p-24">
-    <div v-for="template in templates" class="relative p-2 rounded-md bg-gray-900 h-full">
+    <div 
+    v-for="template in templates"
+    class="relative p-2 rounded-md bg-gray-900 h-full" 
+    :key="template.name">
       <div class="flex flex-row justify-between align-middle">
         <div class="text-xl font-bold px-2 pt-4">
           {{ template.name }}

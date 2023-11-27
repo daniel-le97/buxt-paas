@@ -1,7 +1,13 @@
+const cwd = process.cwd()
+
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
-  if (!id)
-    return
+  if (!id) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: 'image not found',
+    })
+  }
   const db = useDbStorage('templates:caprover:logos')
   const hasItem = await db.hasItem(id)
   if (!hasItem) {
@@ -10,9 +16,13 @@ export default defineEventHandler(async (event) => {
       statusMessage: 'image not found',
     })
   }
-  const item = await db.getItemRaw(id)
+  
+  const file = Bun.file(`${cwd}/data/templates/caprover/logos/${id}`)
+  
+  setResponseHeaders(event, { 'Content-type': 'image/png', 'Content-Length': file.size})
 
-  setHeaders(event, { 'Content-type': 'image/png', 'Content-Length': item.length })
-
-  return item
+  const arrayBuffer = await file.arrayBuffer()
+  const buffer = Buffer.from(arrayBuffer)
+  
+  return buffer
 })
