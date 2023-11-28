@@ -17,6 +17,18 @@ whenever(shift_a, () => {
   router.push('/applications')
   console.log('Shift+A has been pressed')
 })
+
+// function handleImgError(template: any) {
+//   templates.value = templates.value?.map((_template) => {
+//     const found = _template.name === template.name
+//     if (found)
+//       return { ..._template, logo: '/docker-compose.png' }
+
+//     return _template
+//   })
+
+//   // template.logo = '/docker-compose.png'
+// }
 </script>
 
 <template>
@@ -52,13 +64,12 @@ whenever(shift_a, () => {
         </template>
       </div>
 
-      <NuxtImg
-        v-if="JSON.stringify(template.logo)"
+      <img
         :src="template.logo"
         :title="template.logo"
         height="5vh"
         class="w-16 absolute -top-10 -left-6 border bg-white"
-      />
+      >
     </div>
   </div>
 </template>
