@@ -6,12 +6,12 @@ const items = [
     label: 'Caprover',
     to: '/providers/caprover',
     icon: 'i-heroicons-pencil-square-20-solid',
-    // shortcuts: ['e'],
+    shortcuts: ['e'],
   }, {
     label: 'Portainer',
     to: '/providers/portainer',
     icon: 'i-heroicons-document-duplicate-20-solid',
-    // shortcuts: ['d'],
+    shortcuts: ['d'],
   }],
 ]
 // const router = useRouter().getRoutes().map( route => { to: route.path} );
@@ -28,12 +28,15 @@ const inactive = 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hove
       <ULink to="/applications" active-class="text-primary" :inactive-class="inactive">
         applications
       </ULink>
-      <UDropdown :items="items" :popper="{ placement: 'bottom-start', arrow: false }">
+      <!-- <UDropdown :items="items" :popper="{ placement: 'bottom-start', arrow: false }">
         <UButton color="white" label="Providers" trailing-icon="i-heroicons-chevron-down-20-solid" />
-      </UDropdown>
-      <!-- <ULink to="/providers" active-class="text-primary" :inactive-class=" inactive ">
-        providers
-      </ULink> -->
+      </UDropdown> -->
+      <ULink to="/providers/portainer" active-class="text-primary" :inactive-class=" inactive ">
+        portainer
+      </ULink>
+      <ULink to="/providers/caprover" active-class="text-primary" :inactive-class=" inactive ">
+        caprover
+      </ULink>
     </div>
     <UDivider
       :label="router.name === 'index' ? 'home' : router.name"

@@ -119,7 +119,7 @@ const tabIndex = useTabIndex()
     </div>
 
     <UTabs
-      v-model=" tabIndex "
+      v-model=" tabIndex  "
       orientation="vertical"
       :items=" tabItems "
       :ui="{
