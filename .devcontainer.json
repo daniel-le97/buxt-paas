@@ -1,0 +1,8 @@
+// .devcontainer/devcontainer.json
+{
+  "name": "Nuxt.js Development",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "postCreateCommand": "bun install"
+}
