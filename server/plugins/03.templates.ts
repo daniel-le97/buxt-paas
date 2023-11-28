@@ -41,11 +41,11 @@ async function getFileNamesAndPaths(directory: string): Promise<FileInfo[]> {
 }
 
 export default defineNitroPlugin(async (nitroApp) => {
-  const cwd = process.cwd()
-  const files = await getFileNamesAndPaths(`${cwd}/public/logos`)
-  console.log(files);
-  const config = JSON.stringify({logos: files})
-  Bun.write('logos.json', config)
+  // const cwd = process.cwd()
+  // const files = await getFileNamesAndPaths(`${cwd}/public/logos`)
+  // console.log(files);
+  // const config = JSON.stringify({logos: files})
+  // Bun.write('logos.json', config)
   
 
   // nitroApp.hooks.

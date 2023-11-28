@@ -1,3 +1,5 @@
+import type { ITemplate } from '../../../../utils/types'
+
 function removeSpecialCharacters(inputString: string): string {
   // Use a regular expression to match all non-alphanumeric characters
   const regex = /[^a-zA-Z0-9]/g
@@ -9,10 +11,12 @@ function removeSpecialCharacters(inputString: string): string {
 }
 // const logos = read
 export default defineEventHandler(async (event) => {
-  const logos = (await useDbStorage('templates').getItem('logos.json') as { logos: { name: string, path: string, formatted:string }[] }).logos
+  const logos = (await useDbStorage('templates').getItem('logos.json') as { logos: { name: string, path: string, formatted: string }[] }).logos
   const templates = await useDbStorage('templates:portainer').getItem('template.json') as unknown as ITemplateFile
   const apps: ITemplate[] = []
 
+  // prefer caprover stacks over portainer
+  // const caproverApps = await $fetch('/api/providers/caprover') as ITemplate[]
 
   for await (const [number, template] of templates.templates.entries()) {
     const normalizeTemplateName = [template.name, template.title].filter(Boolean).map(item => removeSpecialCharacters(item))
@@ -28,7 +32,7 @@ export default defineEventHandler(async (event) => {
       const fallback = '/docker-compose.png'
 
       if (useLogo)
-      return `/logos/${useLogo.name}`
+        return `/logos/${useLogo.name}`
 
       if (`${logo}`.includes('data:'))
         return fallback
@@ -50,8 +54,7 @@ export default defineEventHandler(async (event) => {
 
     apps.push(portainerTemplate)
   }
-  console.log(apps);
-  
+  // console.log(apps);
 
   return apps
 })

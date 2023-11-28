@@ -1,14 +1,3 @@
-function generateName(): string {
-  function getRandomElement(array: string[]): string {
-    const randomIndex: number = Math.floor(Math.random() * array.length)
-    return array[randomIndex]
-  }
-  const generatedName: string = `${getRandomElement(verbs)}-${getRandomElement(adjectives)}-${getRandomElement(nouns)}`
-  return generatedName.toLowerCase()
-}
-
-export default generateName
-
 const adjectives = [
   'Mighty',
   'Brave',
@@ -398,3 +387,13 @@ const verbs = [
   'Expand',
   'Contract',
 ]
+function generateName(): string {
+  function getRandomElement(array: string[]): string {
+    const randomIndex: number = Math.floor(Math.random() * array.length)
+    return array[randomIndex]
+  }
+  const generatedName: string = `${getRandomElement(verbs)}-${getRandomElement(adjectives)}-${getRandomElement(nouns)}`
+  return generatedName.toLowerCase()
+}
+
+export default generateName
