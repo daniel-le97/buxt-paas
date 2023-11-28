@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: {
-    enabled: true,
+    enabled: false,
 
     timeline: {
       enabled: true,
@@ -31,7 +31,7 @@ export default defineNuxtConfig({
     componentIslands: true,
   },
   nitro: {
-    preset: './runtime/bun',
+    preset: './server/runtime/bun',
     experimental: {
       asyncContext: true,
       openAPI: true,

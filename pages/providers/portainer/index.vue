@@ -26,9 +26,9 @@ whenever(shift_a, () => {
         <div class="text-xl font-bold px-2 pt-4">
           {{ template.name }}
         </div>
-        <button class="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button" @click="getTemplate(template.index)">
+        <!-- <button class="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button" @click="getTemplate(template.index)">
           deploy
-        </button>
+        </button> -->
       </div>
       <UDivider class="mt-2" />
       <div class="p-2">

@@ -9,7 +9,7 @@ interface OneClickAppsList {
   }[]
 }
 export default defineEventHandler(async (_event) => {
-  const db = useDbStorage('templates')
-  const caproverRaw = await db.getItem('caprover:list') as OneClickAppsList
+  const db = useDbStorage('templates:caprover')
+  const caproverRaw = await db.getItem('list') as OneClickAppsList
   return caproverRaw.oneClickApps.map(app => ({ ...app, showFullDescription: false }))
 })

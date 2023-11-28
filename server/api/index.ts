@@ -1,4 +1,4 @@
-import { useSSE } from '../utils/useSSE'
+
 
 export default defineEventHandler(async (event) => {
   // const body = await readBody(event)

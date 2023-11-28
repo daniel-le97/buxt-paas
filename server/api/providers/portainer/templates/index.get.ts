@@ -1,8 +1,8 @@
-import type { template, templateFile } from '../../../../types/Service'
+
 
 export default defineEventHandler(async (event) => {
-  const templates = await useDbStorage('templates').getItem('template.json') as unknown as templateFile
-  const apps: template[] = []
+  const templates = await useDbStorage('templates:portainer').getItem('template.json') as unknown as ITemplateFile
+  const apps: ITemplate[] = []
 
   for await (const [number, template] of templates.templates.entries()) {
     const logo = (logo: any) => {
@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
 
       return logo
     }
-    const portainerTemplate: template = {
+    const portainerTemplate: ITemplate = {
       name: template.name ?? template.title ?? template.image,
       description: template.description,
       logo: logo(template.logo),
@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
       showFullDescription: false,
 
     }
-    console.log({ logo: portainerTemplate.logo ?? 'https://i0.wp.com/codeblog.dotsandbrackets.com/wp-content/uploads/2016/10/compose-logo.jpg?fit=622%2C678&ssl=1' })
+    // console.log({ logo: portainerTemplate.logo ?? 'https://i0.wp.com/codeblog.dotsandbrackets.com/wp-content/uploads/2016/10/compose-logo.jpg?fit=622%2C678&ssl=1' })
 
     apps.push(portainerTemplate)
   }

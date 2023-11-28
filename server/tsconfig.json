@@ -3,5 +3,6 @@
   "compilerOptions": {
     "types": ["bun-types"]
   },
-  "include": ["../runtime/"]
+  "exclude": ["../eslint.config.js"]
+  // "include": ["../runtime/"]
 }

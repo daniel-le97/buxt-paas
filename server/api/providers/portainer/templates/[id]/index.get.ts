@@ -1,5 +1,4 @@
 import { convertPortainerTemplatesToDockerCompose } from '../../../../../services/DockerComposeService'
-import type { templateFile } from '../../../../../types/Service'
 
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
@@ -7,8 +6,8 @@ export default defineEventHandler(async (event) => {
     return
 
   const parsedId = Number.parseInt(id)
-  const db = useDbStorage('templates')
-  const templatesFile = await db.getItem('template.json') as templateFile
+  const db = useDbStorage('templates:portainer')
+  const templatesFile = await db.getItem('template.json') as ITemplateFile
   const foundTemplate = templatesFile.templates[parsedId]
   let stackfile = foundTemplate?.repository?.stackfile
   stackfile = stackfile ? stackfile.split('/').slice(1).join(':') : `Stack:${foundTemplate.name}.yml`
