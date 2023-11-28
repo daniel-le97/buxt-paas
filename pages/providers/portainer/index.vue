@@ -21,14 +21,21 @@ whenever(shift_a, () => {
 
 <template>
   <div class="grid grid-cols-3 gap-12 items-center justify-center p-24">
-    <div v-for="template in templates" :key="template.name" class="relative p-2 rounded-md bg-gray-900 h-full">
-      <div class="flex flex-row justify-between align-middle">
-        <div class="text-xl font-bold px-2 pt-4">
+    <div v-for="template in templates" :key="template.name" class="group shadow-md hover:shadow-xl transition-all duration-150 ease-linear relative p-2 rounded-md dark:bg-gray-900 h-full">
+      <div class="flex items-center space-x-3">
+           <NuxtImg
+          v-if="JSON.stringify(template.logo)"
+          :src="template.logo"
+          :label="template.logo"
+          height="5vh"
+          class="w-16  "
+        />
+        <div class="text-xl font-bold font-serif">
           {{ template.name }}
         </div>
-        <!-- <button class="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button" @click="getTemplate(template.index)">
-          deploy
-        </button> -->
+        <span class="group-hover:translate-x-4 transition-transform duration-150 ease-linear">
+          <Icon  name="material-symbols:arrow-right-alt-rounded" :size="'25'" />
+      </span>
       </div>
       <UDivider class="mt-2" />
       <div class="p-2">
@@ -48,13 +55,7 @@ whenever(shift_a, () => {
         </template>
       </div>
 
-      <NuxtImg
-        v-if="JSON.stringify(template.logo)"
-        :src="template.logo"
-        :label="template.logo"
-        height="5vh"
-        class="w-16 absolute -top-10 -left-6 border bg-white"
-      />
+   
     </div>
   </div>
 </template>

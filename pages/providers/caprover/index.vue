@@ -20,14 +20,19 @@ const getUrl = (path: string) => `/logos/${path}`
 
 <template>
   <div class="grid grid-cols-3 gap-12 items-center justify-center p-24">
-    <div v-for="template in templates" :key="template.name" class="relative p-2 rounded-md bg-gray-900 h-full">
-      <div class="flex flex-row justify-between align-middle">
-        <div class="text-xl font-bold px-2 pt-4">
+    <div v-for="template in templates" :key="template.name" class="group shadow-md relative p-2 rounded-md dark:bg-gray-900 h-full hover:shadow-xl transition-all duration-150 ease-linear">
+      <div class="flex    items-center justify-center space-x-3">
+         <img
+          :src="getUrl(template.logoUrl)"
+          height="5vh"
+          class="w-16 "
+        >
+        <div class="text-xl font-bold ">
           {{ template.name }}
         </div>
-        <!-- <button class="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button" @click.prevent="">
-          deploy
-        </button> -->
+    <span class="group-hover:translate-x-4 transition-transform duration-150 ease-linear">
+        <Icon  name="material-symbols:arrow-right-alt-rounded" :size="'25'" />
+    </span>
       </div>
       <UDivider class="mt-2" />
       <div class="p-2">
@@ -47,11 +52,7 @@ const getUrl = (path: string) => `/logos/${path}`
         </template>
       </div>
 
-      <img
-        :src="getUrl(template.logoUrl)"
-        height="5vh"
-        class="w-16 absolute -top-10 -left-6 border bg-white"
-      >
+     
     </div>
   </div>
 </template>

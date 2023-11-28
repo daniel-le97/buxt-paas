@@ -1,30 +1,37 @@
 <script setup lang="ts">
 const tabItems = ref([
-  {
+   {
     key: 'configuration',
     label: 'Configuration',
     description: 'Configure your settings here.',
-    icon: 'uil:wrench',
+    icon: 'uil:wrench'
   },
   {
     key: 'build',
     label: 'Build',
     description: 'Start your Build here, Plug in a public repository and select build when ready.',
-    icon: 'uil:abacus',
+    icon: 'uil:abacus'
   },
+  {
+    key: 'password',
+    label: 'Password',
+    description: 'Change your password here. After saving, you\'ll be logged out.',
+    icon: 'uil:shield'
+  },
+ 
   {
     key: 'secrets',
     label: 'Secrets',
     description: 'Manage your secrets here.',
-    icon: 'uil:lock-alt',
+    icon: 'uil:lock-alt'
   },
   {
     key: 'application',
     label: 'Application',
     description: 'Manage your application settings here.',
-    icon: 'uil:book',
-  },
-])
+    icon: 'uil:book'
+  }
+]);
 
 async function doTheThing() {
   // Ensure EventSource is not initialized multiple times
@@ -90,7 +97,7 @@ const tabIndex = useTabIndex()
 </script>
 
 <template>
-  <main class="">
+  <main class=" px-5">
     <div class="flex items-center justify-between mb-20">
       <div class="flex items-center space-x-2 ">
         <h1 class="text-2xl font-bold">
@@ -129,11 +136,31 @@ const tabIndex = useTabIndex()
           background: 'dark:bg-zinc-800',
           padding: 'p-2',
           marker: {
-            background: ' dark:bg-emerald-600',
+            background: ' dark:bg-emerald-600 bg-emerald-400',
           },
         },
+      
       }"
+
+      
     >
+
+    <template #default="{ item, index, selected }">
+          <div class="flex items-center justify-between w-full gap-2 relative truncate ">
+            <Icon :name="item.icon" class="w-4 h-4 flex-shrink-0" />
+
+            <span class="truncate"> {{ item.label }}</span>
+
+        
+          </div>
+        </template>
+
+
+
+
+
+
+
       <template #item=" { item } ">
         <UCard class="dark:bg-zinc-900   ring-0">
           <div v-if=" item.key === 'build' " class="space-y-3">

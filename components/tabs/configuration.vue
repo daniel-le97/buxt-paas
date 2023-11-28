@@ -50,19 +50,19 @@ function changeIndex(number?: number) {
 <template>
   <div>
     <UForm :schema=" schema " :state=" state " class="space-y-4" @submit=" onSubmit ">
-      <UFormGroup label="repo URL" name="repoURL">
+      <UFormGroup label="Repo URL" name="repoURL">
         <UInput v-model=" state.repoURL " type="url" />
       </UFormGroup>
 
       <div class="flex space-x-4">
-        <div class="w-1/2">
-          <UFormGroup label="install command" name="installCommand">
+        <div class="w-1/2 flex flex-col space-y-3">
+          <UFormGroup label="Install command" name="installCommand" required>
             <UInput v-model=" state.installCommand " placeholder="npm install" type="text" />
           </UFormGroup>
-          <UFormGroup label="build command" name="buildCommand">
+          <UFormGroup label="Build command" name="buildCommand" required>
             <UInput v-model=" state.buildCommand " placeholder="npm run build" type="text" />
           </UFormGroup>
-          <UFormGroup label="start command" name="startCommand">
+          <UFormGroup label="Start command" name="startCommand" required>
             <UInput v-model=" state.startCommand " placeholder="npm run serve" type="text" />
           </UFormGroup>
         </div>
