@@ -15,6 +15,9 @@ export default defineNuxtConfig({
     '@nuxt/image',
     // 'nuxt-monaco-editor',
   ],
+  tailwindcss:{
+    'quiet': true,
+  },
 
   runtimeConfig: {
     redis: {
