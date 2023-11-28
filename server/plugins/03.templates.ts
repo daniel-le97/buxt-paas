@@ -4,7 +4,7 @@ import * as path from 'node:path'
 interface FileInfo {
   name: string
   path: string
-  formatted:string
+  formatted: string
 }
 
 function removeSpecialCharacters(inputString: string): string {
@@ -33,7 +33,7 @@ async function getFileNamesAndPaths(directory: string): Promise<FileInfo[]> {
 
     if (isFile) {
       // Append the file name and full path to the list
-      file_list.push({ name: file, path: full_path , formatted: removeSpecialCharacters(file.split('.')[0])})
+      file_list.push({ name: file, path: full_path, formatted: removeSpecialCharacters(file.split('.')[0]) })
     }
   }
 
@@ -46,7 +46,6 @@ export default defineNitroPlugin(async (nitroApp) => {
   // console.log(files);
   // const config = JSON.stringify({logos: files})
   // Bun.write('logos.json', config)
-  
 
   // nitroApp.hooks.
 

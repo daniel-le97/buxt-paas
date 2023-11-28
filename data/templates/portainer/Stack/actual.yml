@@ -8,4 +8,3 @@ services:
       - /portainer/Files/AppData/Config/actual:/data
     image: 'jlongster/actual-server:latest'
     restart: unless-stopped
-    

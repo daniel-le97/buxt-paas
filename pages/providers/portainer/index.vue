@@ -23,7 +23,7 @@ whenever(shift_a, () => {
   <div class="grid grid-cols-3 gap-12 items-center justify-center p-24">
     <div v-for="template in templates" :key="template.name" class="group shadow-md hover:shadow-xl transition-all duration-150 ease-linear relative p-2 rounded-md dark:bg-gray-900 h-full">
       <div class="flex items-center space-x-3">
-           <NuxtImg
+        <NuxtImg
           v-if="JSON.stringify(template.logo)"
           :src="template.logo"
           :label="template.logo"
@@ -34,8 +34,8 @@ whenever(shift_a, () => {
           {{ template.name }}
         </div>
         <span class="group-hover:translate-x-4 transition-transform duration-150 ease-linear">
-          <Icon  name="material-symbols:arrow-right-alt-rounded" :size="'25'" />
-      </span>
+          <Icon name="material-symbols:arrow-right-alt-rounded" size="25" />
+        </span>
       </div>
       <UDivider class="mt-2" />
       <div class="p-2">
@@ -54,8 +54,6 @@ whenever(shift_a, () => {
           {{ template?.description }}
         </template>
       </div>
-
-   
     </div>
   </div>
 </template>
