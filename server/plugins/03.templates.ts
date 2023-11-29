@@ -41,6 +41,11 @@ async function getFileNamesAndPaths(directory: string): Promise<FileInfo[]> {
 }
 
 export default defineNitroPlugin(async (nitroApp) => {
+
+
+  return {
+    dogs: 'hello'
+  }
   // const cwd = process.cwd()
   // const files = await getFileNamesAndPaths(`${cwd}/public/logos`)
   // console.log(files);
