@@ -12,10 +12,10 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@nuxt/ui": "^2.10.0",
+    "@nuxt/ui": "^2.11.0",
     "@types/js-yaml": "^4.0.9",
     "@vueuse/nuxt": "^10.6.1",
-    "bun-types": "^1.0.13",
+    "bun-types": "^1.0.14",
     "js-yaml": "^4.1.0",
     "monaco-editor": "^0.44.0",
     "socket.io": "^4.7.2",
@@ -24,15 +24,15 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.1.0",
+    "@antfu/eslint-config": "^2.1.1",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "latest",
-    "@nuxtjs/tailwindcss": "^6.10.0",
+    "@nuxtjs/tailwindcss": "^6.10.1",
     "eslint": "^8.54.0",
     "fetchgit": "^1.0.0",
     "nuxt": "^3.8.2",
     "nuxt-monaco-editor": "latest",
-    "vue": "^3.3.8",
+    "vue": "^3.3.9",
     "vue-router": "^4.2.5"
   }
 }

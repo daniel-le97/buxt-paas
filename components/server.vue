@@ -13,7 +13,7 @@ const { data } = await useFetch('/api/compose')
 
 <template>
   <ClientOnly>
-    <MyMonacoEditor :value="value" language="typescript" class="monaco" />
+    <LazyMyMonacoEditor :value="value" language="typescript" class="monaco" />
   </ClientOnly>
 </template>
 

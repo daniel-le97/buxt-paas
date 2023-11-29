@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     // 'nuxt-monaco-editor',
     '@nuxt/image',
-    'nuxt-monaco-editor',
+    // 'nuxt-monaco-editor',
   ],
 
   tailwindcss: {

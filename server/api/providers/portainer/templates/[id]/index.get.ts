@@ -1,4 +1,4 @@
-import { convertPortainerTemplatesToDockerCompose } from '../../../../../services/DockerComposeService'
+import { convertPortainerTemplatesToDockerCompose } from '~/server/services/DockerComposeService'
 
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
   const templatesFile = await db.getItem('template.json') as ITemplateFile
   const foundTemplate = templatesFile.templates[parsedId]
   let stackfile = foundTemplate?.repository?.stackfile
-  stackfile = stackfile ? stackfile.split('/').slice(1).join(':') : `Stack:${foundTemplate.name}.yml`
+  stackfile = stackfile ? stackfile.split('/').slice(1).join(':') : `Stack:${foundTemplate?.name ?? id}.yml`
   // console.log(stackfile);
 
   let response: string | null

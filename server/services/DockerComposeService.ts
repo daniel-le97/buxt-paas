@@ -7,8 +7,10 @@ export function convertPortainerTemplatesToDockerCompose(templates: PortainerTem
   }
   const defaultTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
   templates.forEach((template, index) => {
-    if (template.type)
-      dockerComposeConfig.version = template.type.toString()
+    console.log({template});
+    
+    // if (template.type)
+    //   dockerComposeConfig.version = String(template.type)
 
     const serviceName = `service${index + 1}`
     const service: DockerComposeService = {
