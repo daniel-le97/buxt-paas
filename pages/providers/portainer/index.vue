@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { data: templates } = await useFetch('/api/providers/portainer/templates')
 
-console.log(templates);
+console.log(templates)
 
 function toggleDescription(template: any) {
   template.showFullDescription = !template.showFullDescription
@@ -20,7 +20,7 @@ whenever(shift_a, () => {
 const getUrl = (path: string) => `/logos/${path}`
 
 function handleActiveTemplate(template: any) {
-  
+
 }
 </script>
 

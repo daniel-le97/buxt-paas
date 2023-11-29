@@ -7,8 +7,8 @@ export function convertPortainerTemplatesToDockerCompose(templates: PortainerTem
   }
   const defaultTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
   templates.forEach((template, index) => {
-    console.log({template});
-    
+    console.log({ template })
+
     // if (template.type)
     //   dockerComposeConfig.version = String(template.type)
 

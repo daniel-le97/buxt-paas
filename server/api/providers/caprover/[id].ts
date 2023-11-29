@@ -33,7 +33,6 @@ export default defineEventHandler(async (event) => {
     services: JSON.parse(template),
   }
 
-
   // console.log(caproverTemplate.caproverOneClickApp?.variables)
 
   return yaml.dump(newTemplate)

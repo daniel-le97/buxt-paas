@@ -1,6 +1,6 @@
 import { randomBytes } from 'node:crypto'
 
-export function generateSecret(length: number = 32){
+export function generateSecret(length: number = 32) {
   // Generate secure random bytes
   const bytes = randomBytes(length)
 

@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "clean": "bun --bun nuxi cleanup && bun i"
   },
   "dependencies": {
     "@nuxt/ui": "^2.11.0",

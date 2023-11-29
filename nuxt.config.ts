@@ -21,8 +21,8 @@ export default defineNuxtConfig({
     quiet: true,
   },
 
-  imports:{
-    dirs: ["./types"]
+  imports: {
+    dirs: ['./types'],
   },
   runtimeConfig: {
     redis: {
@@ -40,8 +40,8 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: './server/runtime/bun',
-    'imports' : {
-      'dirs': ["./types"]
+    imports: {
+      dirs: ['./types'],
     },
     experimental: {
       asyncContext: true,
