@@ -1,5 +1,4 @@
 import yaml from 'js-yaml'
-import type { DockerComposeConfig, DockerComposeService, PortainerTemplate } from '../types/Service'
 
 export function convertPortainerTemplatesToDockerCompose(templates: PortainerTemplate[]): string {
   const dockerComposeConfig: DockerComposeConfig = {
@@ -8,7 +7,8 @@ export function convertPortainerTemplatesToDockerCompose(templates: PortainerTem
   }
   const defaultTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
   templates.forEach((template, index) => {
-    template.type ? dockerComposeConfig.version = template.type.toString() : ''
+    if (template.type)
+      dockerComposeConfig.version = template.type.toString()
 
     const serviceName = `service${index + 1}`
     const service: DockerComposeService = {

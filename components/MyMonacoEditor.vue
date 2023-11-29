@@ -1,7 +1,7 @@
 <!-- this was taken from https://github.com/unjs/unstorage/blob/main/demo/Editor.vue -->
 <script>
 import { defineComponent } from 'vue'
-import * as monaco from 'monaco-editor'
+import * as monaco from 'monaco-editor/esm'
 
 export default defineComponent({
   props: {

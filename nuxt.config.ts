@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: {
-    enabled: false,
+    enabled: true,
 
     timeline: {
       enabled: true,
@@ -12,13 +12,18 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
-    '@nuxt/image',
     // 'nuxt-monaco-editor',
+    '@nuxt/image',
+    'nuxt-monaco-editor',
   ],
+
   tailwindcss: {
     quiet: true,
   },
 
+  imports:{
+    dirs: ["./types"]
+  },
   runtimeConfig: {
     redis: {
       url: process.env.NUXT_REDIS_URL,
@@ -35,6 +40,9 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: './server/runtime/bun',
+    'imports' : {
+      'dirs': ["./types"]
+    },
     experimental: {
       asyncContext: true,
       openAPI: true,
