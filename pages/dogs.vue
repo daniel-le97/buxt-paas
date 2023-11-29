@@ -1,78 +1,71 @@
-<script lang="ts" setup>
-import type * as monaco from 'monaco-editor'
+<!-- components/Tabs.vue -->
+<script setup lang="ts">
+import { LazyTabsBuild, LazyTabsConfiguration, LazyTabsSecrets } from '#components'
 
-const lang = ref<'plaintext' | 'html' | 'css' | 'javascript'>('plaintext')
-const options: monaco.editor.IEditorConstructionOptions = {
-  automaticLayout: true,
-  // theme:'vs-dark'
+const selectedTab = ref(0)
+
+const tabs = [
+  { label: 'configuration', component: LazyTabsConfiguration },
+  { label: 'build', component: LazyTabsBuild },
+  { label: 'secrets', component: LazyTabsSecrets },
+  // Add more tabs as needed
+]
+
+function selectTab(index: number) {
+  selectedTab.value = index
 }
-
-const val = ref('Hello nuxt-monaco-editor!')
-const originalVal = 'Hello nuxt-monaco-editor.'
-const modifiedVal = ref('Hello nuxt-monaco-editor!!!')
-
-watchEffect(() => {
-  switch (lang.value) {
-    case 'plaintext':
-      val.value = 'Hello nuxt-monaco-editor!'
-      break
-    case 'html':
-      val.value = '<!DOCTYPE html>\n<html>\n  <body>\n    <h1>Hello nuxt-monaco-editor!</h1>\n  </body>\n</html>'
-      break
-    case 'css':
-      val.value = '.hello__nuxt-monaco-editor {\n  border: 1px solid black;\n}'
-      break
-    case 'javascript':
-      val.value = 'alert(\'Hello nuxt-monaco-editor!\')'
-      break
-  }
-})
 </script>
 
 <template>
-  <div class="container">
-    <h1>nuxt-monaco-editor</h1>
-    <section>
-      <h2>
-        Code Editor
-      </h2>
-      <select v-model="lang">
-        <option value="plaintext">
-          Plain Text
-        </option>
-        <option value="html">
-          HTML
-        </option>
-        <option value="css">
-          CSS
-        </option>
-        <option value="javascript">
-          JavaScript
-        </option>
-      </select>
-      <ClientOnly>
-        <MonacoEditor v-model="val" :lang="lang" :options="options" class="editor">
-          Loading...
-        </MonacoEditor>
-      </ClientOnly>
-    </section>
-    <section>
-      <h2>
-        Diff Editor
-      </h2>
-      <MonacoDiffEditor v-model="modifiedVal" :original="originalVal" :options="options" class="editor min-h-screen">
-        Loading...
-      </MonacoDiffEditor>
-    </section>
-    <section>
-      <h2>Model Values (readonly)</h2>
-      <MonacoEditor :model-value="JSON.stringify({ val, modifiedVal }, null, 2)" :options="{ ...options, readOnly: true }" lang="json" class="editor" />
-    </section>
-  </div>
-</template>
+  <div>
+    <div class="flex items-center justify-between mb-20">
+      <div class="flex items-center space-x-2 ">
+        <h1 class="text-2xl font-bold">
+          Configurations
+        </h1>
+        <UBadge>HEALTHY</UBadge>
+      </div>
+      <!-- Left side with buttons and icons -->
+      <div class="flex space-x-2">
+        <UButton
+          icon="i-heroicons-arrow-path-solid" size="sm" color="sky" variant="solid" label="Restart"
+          :trailing=" false "
+        />
+        <UButton
+          icon="i-heroicons-arrow-path-solid" size="sm" color="red" variant="solid" label="Force Redeploy"
+          :trailing=" false "
+        />
+        <UButton icon="i-heroicons-pause" size="sm" color="amber" variant="solid" label="Stop" :trailing=" false " />
+        <UButton
+          icon="i-heroicons-arrow-up-right" size="sm" color="primary" variant="solid" label="Open"
+          :trailing=" false "
+        />
+      </div>
 
-<style>
-.editor{
-  min-height: 10vh;
-}
-</style>
+      <!-- Right side with page title and badge -->
+    </div>
+    <div class="flex px-5 gap-3">
+      <!-- Left sidebar with buttons -->
+      <div class="w-1/4 p-4 bg-blue-600 h-fit rounded-lg">
+        <UButton
+        v-for="(tab, index) in tabs"
+        :key="index"
+        :class="{ 'bg-gray-300': selectedTab === index }"
+        class="w-full p-2 mb-2 text-left max"
+        @click="selectTab(index)"
+        >
+        {{ tab.label }}
+      </UButton>
+    </div>
+    
+    <!-- Main component area -->
+    <div class="flex-1 p-4 w-3/4">
+      <div v-for="(tab, index) in tabs"  :key="index">
+        <div v-if="selectedTab === index">
+          <component :is="tab.component" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
