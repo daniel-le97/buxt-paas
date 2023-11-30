@@ -4,7 +4,6 @@
 
 <template>
   <div>
-    appplication layout
     <slot />
   </div>
 </template>

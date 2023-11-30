@@ -1,4 +1,9 @@
+import fs from 'node:fs/promises'
+import { Readable } from 'node:stream'
+import * as os from 'node:os'
+import type { FileSink } from 'bun'
 import { z } from 'zod'
+import consola from 'consola'
 
 const schema = z.object({
   repoURL: z.string().min(1),
@@ -10,75 +15,111 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>
 
+
+// async function runCommandAndSendStream(command: string[], writer: FileSink, send: (callback: (id: number) => any) => void) {
+//   try {
+//     const decoder = new TextDecoder()
+//     const toDecode = (chunk: Uint8Array | any) => {
+//       if (chunk instanceof Uint8Array || Buffer.isBuffer(chunk))
+//         return decoder.decode(chunk)
+
+//       return chunk as string
+//     }
+//     const _command = Bun.spawn(command, { stdio: ['ignore', 'pipe', 'pipe'] })
+//     const streams = [_command.stderr, _command.stdout]
+//     for await (const stream of streams) {
+//       for await (const chunk of stream) {
+//         const message = toDecode(chunk)
+//         send(id => ({ id, message }))
+//         writer.write(message)
+//       }
+//     }
+//     _command.kill(0)
+//     await _command.exited
+//   }
+//   catch (error) {
+//     consola.withTag('command:failed').error(`${command}`)
+//   }
+// }
+
+let running = false
+
+
 export default defineEventHandler(async (event) => {
-  // const body = await readBody(event)
-  const id = getRouterParam(event, 'id')
-  if (!id)
-    throw createError('unable to find id')
+  try {
+    if (running)
+      return 'please wait till the last build is finished'
 
-  console.log(id)
+    running = true
+    // const body = await readBody(event)
+    const id = getRouterParam(event, 'id')
+    if (!id)
+      throw createError('unable to find id')
 
-  const repo = await useStorage('db').getItem(id) as Schema
-  console.log(repo)
+    console.log('running')
 
-  const sse = useSSE(event, 'sse:event')
+    const generateId = crypto.randomUUID()
 
-  const decoder = new TextDecoder()
+    const logsPath = `${process.cwd()}/data/logs/${id}/${generateId}.txt`
 
-  const clone = Bun.spawn(['git', 'clone', '--depth=1', repo.repoURL, `./temp/${id}`], {
-    stdio: ['ignore', 'pipe', 'pipe'],
-  })
-  const cloneStream = [clone.stderr, clone.stdout]
-  for await (const stream of cloneStream) {
-    for await (const chunk of stream) {
-      let message: any
-      if (chunk instanceof Uint8Array || Buffer.isBuffer(chunk)) {
-        message = decoder.decode(chunk)
+    if (!await fs.exists(`${process.cwd()}/data/logs/${id}/`))
+      console.log('making dir')
+
+    await fs.mkdir(`${process.cwd()}/data/logs/${id}/`, { recursive: true })
+
+    const repo = await useDbStorage('logs').setItem(`${id}:${generateId}`, `created at: ${new Date()}\n`)
+    // console.log(repo)
+
+    const generatedName = generateName()
+    const { send, close } = useSSE(event, `sse:event:${generatedName}`)
+
+    const logFile = Bun.file(logsPath)
+
+    const writer = logFile.writer()
+
+    const repoURL = 'https://github.com/daniel-le97/astro-portfolio'
+
+    async function runCommandAndSendStream(command: string[]) {
+      try {
+        const decoder = new TextDecoder()
+        const toDecode = (chunk: Uint8Array | any) => {
+          if (chunk instanceof Uint8Array || Buffer.isBuffer(chunk))
+            return decoder.decode(chunk)
+
+          return chunk as string
+        }
+        const _command = Bun.spawn(command, { stdio: ['ignore', 'pipe', 'pipe'] })
+        console.log(_command.pid)
+
+        const streams = [_command.stderr, _command.stdout]
+        for await (const stream of streams) {
+          for await (const chunk of stream) {
+            const message = toDecode(chunk)
+            send(id => ({ id, message }))
+            writer.write(message)
+          }
+        }
+        _command.kill(0)
+        await _command.exited
       }
-      else if (typeof chunk === 'string') {
-        message = chunk
+      catch (error) {
+        consola.withTag('command:failed').error(`${command}`)
       }
-      else {
-        console.error('Invalid chunk type:', typeof chunk)
-        // Handle or skip the chunk based on your requirements
-        continue
-      }
-      sse.send(() => ({ id: sse.id, data: message }))
     }
-  }
 
-  const builder = Bun.spawn(['nixpacks', 'build', `./temp/${id}`, '--name', generateName()], {
-    stdio: ['ignore', 'pipe', 'pipe'],
-  })
-  const streams = [builder.stderr, builder.stdout]
+    await runCommandAndSendStream(['git', 'clone', '--depth=1', repoURL, `./temp/${generatedName}`])
 
-  for await (const stream of streams) {
-    for await (const chunk of stream) {
-      let message: any
-      if (chunk instanceof Uint8Array || Buffer.isBuffer(chunk)) {
-        message = decoder.decode(chunk)
-      }
-      else if (typeof chunk === 'string') {
-        message = chunk
-      }
-      else {
-        console.error('Invalid chunk type:', typeof chunk)
-        // Handle or skip the chunk based on your requirements
-        continue
-      }
-      sse.send(() => ({ id: sse.id, data: message }))
-    }
-  }
-  builder.kill(0)
-  await builder.exited
-  for await (const chunk of builder.stderr) {
-    const message = decoder.decode(chunk)
-    sse.send(() => (message))
-  }
-  for await (const chunk of builder.stdout) {
-    const message = decoder.decode(chunk)
-    sse.send(() => (message))
-  }
+    await runCommandAndSendStream(['nixpacks', 'build', `./temp/${generatedName}`, '--name', generatedName])
 
-  sse.close()
+    writer.flush()
+    writer.end()
+
+    console.log('ending stream')
+
+    close()
+    running = false
+  }
+  catch (error) {
+    throw createError({ statusMessage: `failed to build app` })
+  }
 })

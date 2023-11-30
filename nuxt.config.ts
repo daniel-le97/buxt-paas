@@ -17,6 +17,8 @@ export default defineNuxtConfig({
     // 'nuxt-monaco-editor',
   ],
 
+  ignore:['temp'],
+
   tailwindcss: {
     quiet: true,
   },

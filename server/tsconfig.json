@@ -4,5 +4,4 @@
     "types": ["bun-types"]
   },
   "exclude": ["../eslint.config.js"]
-  // "include": ["../runtime/"]
 }

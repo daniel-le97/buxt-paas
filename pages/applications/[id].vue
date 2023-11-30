@@ -14,7 +14,7 @@ const tabs = [
 function selectTab(index: number) {
   selectedTab.value = index
 }
-// onMounted( () => setPageLayout('application-layout'))
+onMounted( () => setPageLayout('application-layout'))
 </script>
 
 <template>

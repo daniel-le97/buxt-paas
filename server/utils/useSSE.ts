@@ -1,31 +1,30 @@
 import type { H3Event } from 'h3'
-import { hooks } from './hooks'
+import { createHooks } from 'hookable'
 
-// export interface ServerSentEvent {
-//     [key: string]: <T, R>(data: T) => R | void
-// }
+export interface ServerSentEvent {
+  [key: string]: <T, R>(data: T) => R | void
+}
 
-// const sseHooks = createHooks<ServerSentEvent>()
+const sseHooks = createHooks<ServerSentEvent>()
 
 export function useSSE(event: H3Event, hookName: string) {
   setHeader(event, 'content-type', 'text/event-stream')
   setHeader(event, 'cache-control', 'no-cache')
   setHeader(event, 'connection', 'keep-alive')
   setResponseStatus(event, 200)
-  const ip = getRequestIP(event)
 
-  const id = crypto.randomUUID()
+  let id = 0
 
-  hooks.hook(hookName, (data: any) => {
-    const formattedData = typeof data === 'string' ? data : JSON.stringify(data)
-    // event.node.res.write(`id: ${id}\n`)
-    event.node.res.write(`data: ${formattedData}\n\n`)
-
+  sseHooks.hook(hookName, (data: any) => {
+    event.node.res.write(`id: ${id += 1}\n`)
+    event.node.res.write(`data: ${JSON.stringify(data)}\n\n`)
     event.node.res.flushHeaders()
   })
 
-  const send = (callback: () => any) => {
-    hooks.callHook(hookName, callback())
+  const send = (callback: (id: number) => any) => {
+    console.log(callback(id));
+    
+    sseHooks.callHook(hookName, callback(id))
   }
 
   const close = () => {
@@ -35,5 +34,5 @@ export function useSSE(event: H3Event, hookName: string) {
   event._handled = true
   event.node.req.on('close', close)
 
-  return { send, close, id }
+  return { send, close }
 }
