@@ -1,11 +1,13 @@
 <!-- components/Tabs.vue -->
 <script setup lang="ts">
-
 import { LazyTabsBuild, LazyTabsConfiguration, LazyTabsSecrets } from '#components'
 
-const route = useRoute()
-const { data, pending, error, refresh } = await useFetch(`/api/projects/${route.params}`)
+const route = useRoute('projects-id')
+console.log(route.params)
 
+const { data, pending, error, refresh } = await useFetch(`/api/projects/${route.params.id}`)
+if (data.value)
+  useActiveProject(data.value)
 
 const selectedTab = ref(0)
 
@@ -28,7 +30,7 @@ function selectTab(index: number) {
         <h1 class="text-2xl font-bold">
           Configurations
         </h1>
-        <UBadge v-if="data">{{ data }}</UBadge>
+        <UBadge>Healthy</UBadge>
       </div>
       <!-- Left side with buttons and icons -->
       <div class="flex space-x-2">

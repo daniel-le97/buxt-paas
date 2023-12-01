@@ -16,8 +16,6 @@
     "docker:restart": "bunx nuxi-docker restart && bunx nuxi-docker bun --bun dev"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^2.1.2",
-    "@nuxt/devtools": "latest",
     "@nuxt/image": "latest",
     "@nuxt/ui": "^2.11.0",
     "@nuxtjs/tailwindcss": "^6.10.1",
@@ -30,6 +28,7 @@
     "monaco-editor": "^0.44.0",
     "nuxt": "^3.8.2",
     "nuxt-monaco-editor": "latest",
+    "octokit": "^3.1.2",
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2",
     "vite": "^5.0.4",
@@ -37,5 +36,9 @@
     "vue-router": "^4.2.5",
     "zod": "^3.22.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.1.2",
+    "@nuxt/devtools": "latest",
+    "nuxt-security": "latest"
+  }
 }

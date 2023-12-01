@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const cwd = process.cwd()
 export default defineNuxtConfig({
   devtools: {
     enabled: true,
@@ -13,8 +14,9 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
     // 'nuxt-monaco-editor',
-    '@nuxt/image',
     // 'nuxt-monaco-editor',
+    '@nuxt/image',
+    'nuxt-security',
   ],
 
   ignore:['temp'],
@@ -44,6 +46,14 @@ export default defineNuxtConfig({
     preset: './server/runtime/bun',
     imports: {
       dirs: ['./types'],
+    },
+    typescript:{
+      tsConfig:{
+        compilerOptions:{
+          types: ["bun-types"],
+        },
+        exclude: [`${cwd}/eslint.config.js`, `${cwd}/temp`]
+      }
     },
     experimental: {
       asyncContext: true,

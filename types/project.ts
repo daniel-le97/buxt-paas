@@ -10,6 +10,8 @@ export interface Project {
 }
 
 
+
+
 interface Application {
     repoUrl:string,
     buildCommand?:string

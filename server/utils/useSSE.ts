@@ -15,7 +15,7 @@ export function useSSE(event: H3Event, hookName: string) {
 
   let id = 0
 
-  sseHooks.hook(hookName, (data: any) => {
+  const unregister = sseHooks.hook(hookName, (data: any) => {
     event.node.res.write(`id: ${id += 1}\n`)
     event.node.res.write(`data: ${JSON.stringify(data)}\n\n`)
     event.node.res.flushHeaders()
@@ -29,6 +29,7 @@ export function useSSE(event: H3Event, hookName: string) {
 
   const close = () => {
     event.node.res.end()
+    unregister()
   }
 
   event._handled = true
