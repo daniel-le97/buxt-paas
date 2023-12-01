@@ -1,7 +1,11 @@
+
+<script setup lang="ts">
+import SideNavBar from './components/navigation/SideNavBar.vue';
+</script>
 <template>
-  <div class="flex justify-between align-middle">
+  <div class="flex  min-h-screen">
     <div class="">
-      hello
+     <SideNavBar/>
     </div>
     <NuxtPage />
   </div>
