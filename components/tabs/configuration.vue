@@ -20,10 +20,11 @@ const options = [
   { label: 'docker-compose', value: 'docker-compose' },
 ]
 
-async function onSubmit(event: FormSubmitEvent<Schema>) {
+async function onSubmit() {
   // event.preventDefault()
   // Do something with data
-  console.log(event.data)
+ console.log(state.value);
+ 
 
   // const res = await useFetch('/api/build', {
   //   method: 'POST',
@@ -34,7 +35,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
 <template>
   <div v-if="state.application">
-    <UForm :schema=" schema " :state=" state.application " class="space-y-4" @submit="onSubmit">
+    <UForm :schema=" schema " :state=" state.application " class="space-y-4">
       <UFormGroup label="Repo URL" name="repoUrl">
         <UInput v-model=" state.application.repoUrl " type="url" />
       </UFormGroup>
@@ -58,9 +59,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         </div>
       </div>
 
-      <UButton type="submit">
-        Save
-      </UButton>
+      <RippleBtn type="submit" @click.prevent="onSubmit" class="rounded bg-primary"> Save</RippleBtn>
     </UForm>
   </div>
   <div v-else>loading...</div>

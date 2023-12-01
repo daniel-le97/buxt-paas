@@ -1,11 +1,11 @@
-
-<script setup lang="ts">
-import SideNavBar from './components/navigation/SideNavBar.vue';
+<script setup>
+import SideNavBar from './components/navigation/sideNavBar.vue'
 </script>
+
 <template>
-  <div class="flex  min-h-screen">
+  <div class="flex w-full  min-h-screen">
     <div class="">
-     <SideNavBar/>
+      <SideNavBar />
     </div>
     <NuxtPage />
   </div>

@@ -44,9 +44,9 @@ async function handleClick() {
 
 <template>
   <section class="flex align-middle justify-center">
-    <div class="p-2 w-3/4">
+    <div class="p-2">
       <div class="lg:flex space-x-3">
-        <label class="block dark:text-white text-gray-700 text-3xl  font-bold mb-2" for="username">
+        <label class="block dark:text-white text-gray-700 text-3xl  font-bold mb-2" for="build-logs">
           Build Logs
         </label>
         <UButton type="button" @click="handleClick">
@@ -64,7 +64,7 @@ async function handleClick() {
         <pre id="pre-build" class="scrollable-pre screen"> {{ buildData }}</pre>
       </div>
     </div>
-    <div class="flex flex-col w-1/4 pt-10">
+    <div class="flex flex-col pt-10">
       <UButton>logs</UButton>
       <UButton>logs</UButton>
       <UButton>logs</UButton>

@@ -26,7 +26,7 @@ function selectTab(index: number) {
 </script>
 
 <template>
-  <div class="p-5">
+  <div class="p-5 w-full">
     <div class="flex items-center justify-between mb-20">
       <div class="flex items-center space-x-2 ">
         <h1 class="text-2xl font-bold">
@@ -53,9 +53,9 @@ function selectTab(index: number) {
 
       <!-- Right side with page title and badge -->
     </div>
-    <div class="flex px-5 gap-3">
+    <div class="flex  px-5 gap-3">
       <!-- Left sidebar with buttons -->
-      <div class="w-1/4 p-2 bg-blue-600 h-fit rounded-lg">
+      <div class="p-2 bg-blue-600 h-fit rounded-lg">
         <UButton
           v-for="(tab, index) in tabs"
           :key="index"
@@ -68,7 +68,7 @@ function selectTab(index: number) {
       </div>
 
       <!-- Main component area -->
-      <div class="flex-1 w-3/4 ">
+      <div class=" w-full">
         <div v-for="(tab, index) in tabs" :key="index">
           <div v-if="selectedTab === index">
             <component :is="tab.component" />
