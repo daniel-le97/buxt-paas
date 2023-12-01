@@ -1,8 +1,8 @@
 <template>
   <div class="flex justify-between align-middle">
     <div class="">
-       hello
+      hello
     </div>
-      <NuxtPage />
+    <NuxtPage />
   </div>
 </template>

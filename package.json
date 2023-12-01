@@ -11,9 +11,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "clean": "bun --bun nuxi cleanup && bun i",
-    "docker:restart": "bunx nuxi-docker restart && bunx nuxi-docker bun --bun dev"
+    "lint:fix": "bun --bun eslint . --fix",
+    "clean": "bun --bun nuxi cleanup && bun i && bun run dev"
   },
   "dependencies": {
     "@nuxt/image": "latest",

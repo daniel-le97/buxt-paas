@@ -1,5 +1,5 @@
 import * as fs from 'node:fs'
-import type { FileSink } from 'bun'
+import type { FileSink } from 'node:bun'
 import { z } from 'zod'
 import consola from 'consola'
 
