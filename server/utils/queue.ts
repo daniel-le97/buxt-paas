@@ -1,5 +1,4 @@
-/* eslint-disable no-console */
-import { Hookable, createHooks } from 'hookable'
+import { Hookable } from 'hookable'
 
 interface Task {
   repo: string
@@ -13,7 +12,6 @@ class Hooker extends Hookable {
     super()
     this.queue = []
     this.isProcessing = false
-
   }
 
   addTask(task: Task) {
@@ -56,6 +54,5 @@ class Hooker extends Hookable {
     })
   }
 }
-
 
 export const queue = new Hooker()

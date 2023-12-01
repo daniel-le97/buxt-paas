@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     if (project)
       projects.push(project)
   }
-return projects
+  return projects
   // projects.push(await db.getItem(key) as unknown as Project)
 
   // console.log(projects);

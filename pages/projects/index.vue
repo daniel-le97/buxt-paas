@@ -27,7 +27,7 @@ async function naver(id: string) {
     </div>
     <div class="flex justify-evenly flex-row align-middle gap-7">
       <div v-for="project in data" :key="project.id" class="flex justify-evenly align-middle">
-        <div @click="naver(project.id)" class="bg-slate-600">
+        <div class="bg-slate-600" @click="naver(project.id)">
           <div>
             {{ project.name }}
           </div>

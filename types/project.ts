@@ -9,12 +9,9 @@ export interface Project {
   buildsLogs?: string[] // Adjust the type based on the actual structure of the buildsLogs property
 }
 
-
-
-
 interface Application {
-    repoUrl:string,
-    buildCommand?:string
-    installCommand?:string
-    startCommand?:string
+  repoUrl: string
+  buildCommand?: string
+  installCommand?: string
+  startCommand?: string
 }

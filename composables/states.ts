@@ -1,8 +1,6 @@
 // import type { Project } from "../types/project";
 
-import type { Project } from "../types/project";
-
-
+import type { Project } from '../types/project'
 
 export const useTabIndex = () => useState('tab-index', () => 0)
 
@@ -16,5 +14,4 @@ export const useRepo = () => useState('repo', () => 'https://github.com/daniel-l
 
 export const useActiveTemplate = () => useState('activeTemplate', () => '')
 
-
-export const useActiveProject = (project?:Project) => useState<Project | null>('activeProject', () => project ?? null)
+export const useActiveProject = (project?: Project) => useState<Project | null>('activeProject', () => project ?? null)

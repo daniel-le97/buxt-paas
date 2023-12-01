@@ -11,7 +11,7 @@ const defaults: EventWatch = {
 export function createEventSource(url: string) {
   const watchEvents = useState<EventWatch>('event-source', () => defaults)
   const data = useState('event-data', () => '')
-  
+
   const { data: value, status, error, close } = useEventSource(`http://localhost:3000/api/build/${6}`)
 
   const end = () => Object.values(watchEvents.value).forEach((fn) => {

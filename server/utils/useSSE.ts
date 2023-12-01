@@ -22,8 +22,8 @@ export function useSSE(event: H3Event, hookName: string) {
   })
 
   const send = (callback: (id: number) => any) => {
-    console.log(callback(id));
-    
+    console.log(callback(id))
+
     sseHooks.callHook(hookName, callback(id))
   }
 

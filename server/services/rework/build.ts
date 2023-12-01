@@ -43,7 +43,7 @@ export default defineEventHandler(async (event) => {
         // Handle or skip the chunk based on your requirements
         continue
       }
-      sse.send((id) => ({ id, data: message }))
+      sse.send(id => ({ id, data: message }))
     }
   }
 
@@ -66,7 +66,7 @@ export default defineEventHandler(async (event) => {
         // Handle or skip the chunk based on your requirements
         continue
       }
-      sse.send((id) => ({ id, data: message }))
+      sse.send(id => ({ id, data: message }))
     }
   }
   builder.kill(0)
@@ -77,7 +77,7 @@ export default defineEventHandler(async (event) => {
   }
   for await (const chunk of builder.stdout) {
     const message = decoder.decode(chunk)
-    sse.send((id) => (message))
+    sse.send(id => (message))
   }
 
   sse.close()

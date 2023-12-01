@@ -1,4 +1,4 @@
-import { Hookable, createHooks } from 'hookable'
+import { Hookable } from 'hookable'
 
 // class TaskQueue {
 //   hooks: Hookable<Record<string, any>, string>
@@ -89,8 +89,7 @@ class Hooker extends Hookable {
     this.queue = []
     this.isProcessing = false
     this.beforeEach((event) => {
-        console.log(event);
-        
+      console.log(event)
     })
   }
 
@@ -135,8 +134,7 @@ class Hooker extends Hookable {
   }
 }
 
-
 const queue = new Hooker()
 
-queue.addTask({repo: 'bleep bloop'})
-queue.addTask({repo: 'bleep dfkjhlksdjf'})
+queue.addTask({ repo: 'bleep bloop' })
+queue.addTask({ repo: 'bleep dfkjhlksdjf' })

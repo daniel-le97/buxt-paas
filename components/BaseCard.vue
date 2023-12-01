@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-
 interface Projects {
- project: Project
+  project: Project
 }
 const props = defineProps<Projects>()
 </script>

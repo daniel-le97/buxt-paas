@@ -16,10 +16,10 @@ export default defineNuxtConfig({
     // 'nuxt-monaco-editor',
     // 'nuxt-monaco-editor',
     '@nuxt/image',
-    'nuxt-security',
+    // 'nuxt-security',
   ],
 
-  ignore:['temp'],
+  ignore: ['temp'],
 
   tailwindcss: {
     quiet: true,
@@ -47,13 +47,13 @@ export default defineNuxtConfig({
     imports: {
       dirs: ['./types'],
     },
-    typescript:{
-      tsConfig:{
-        compilerOptions:{
-          types: ["bun-types"],
+    typescript: {
+      tsConfig: {
+        compilerOptions: {
+          types: ['bun-types'],
         },
-        exclude: [`${cwd}/eslint.config.js`, `${cwd}/temp`]
-      }
+        exclude: [`${cwd}/eslint.config.js`, `${cwd}/temp`],
+      },
     },
     experimental: {
       asyncContext: true,

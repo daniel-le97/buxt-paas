@@ -1,5 +1,3 @@
-import overlay from 'unstorage/drivers/overlay'
-import memory from 'unstorage/drivers/memory'
 import fs from 'unstorage/drivers/fs-lite'
 
 // import { createStorage, defineDriver} from "unstorage";
@@ -30,7 +28,7 @@ export default defineNitroPlugin((nitroApp) => {
   //   layers: [memory(), fs({ base: './data' })],
   // })
 
-  const driver = fs({base:'./data'})
+  const driver = fs({ base: './data' })
 
   // Mount driver
   storage.mount('db', driver)

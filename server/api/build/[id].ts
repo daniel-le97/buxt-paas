@@ -1,6 +1,4 @@
 import * as fs from 'node:fs'
-import { Readable } from 'node:stream'
-import * as os from 'node:os'
 import type { FileSink } from 'bun'
 import { z } from 'zod'
 import consola from 'consola'
@@ -63,7 +61,7 @@ export default defineEventHandler(async (event) => {
     const logsPath = `${process.cwd()}/data/logs/${id}/${generateId}.txt`
 
     if (!fs.existsSync(`${process.cwd()}/data/logs/${id}/`))
-    fs.mkdirSync(`${process.cwd()}/data/logs/${id}/`, { recursive: true })
+      fs.mkdirSync(`${process.cwd()}/data/logs/${id}/`, { recursive: true })
     console.log('making dir')
 
     const repo = await useDbStorage('logs').setItem(`${id}:${generateId}`, `created at: ${new Date()}\n`)

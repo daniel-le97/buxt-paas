@@ -14,7 +14,7 @@ async function handleClick() {
   // const data = useState('event-data', () => '')
 
   const { data, status, error, close } = useEventSource(`http://localhost:3000/api/build/${6}`)
-  
+
   if (data.value)
     buildData.value += JSON.parse(data.value).message
 

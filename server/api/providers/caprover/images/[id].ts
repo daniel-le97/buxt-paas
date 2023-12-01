@@ -19,12 +19,12 @@ export default defineEventHandler(async (event) => {
 
   const file = Bun.file(`${cwd}/data/templates/caprover/logos/${id}`)
 
-  // setResponseHeaders(event, { 'Content-type': 'image/png', 'Content-Length': file.size })
+  setResponseHeaders(event, { 'Content-type': 'image/png', 'Content-Length': file.size })
 
-
-  // // createReadSteam()
-  // const arrayBuffer = await file.arrayBuffer()
-  // const buffer = Buffer.from(arrayBuffer)
+  // createReadSteam()
+  const arrayBuffer = await file.arrayBuffer()
+  const buffer = Buffer.from(arrayBuffer)
+  return buffer
   // return await sendWebResponse(event, new Response(file))
-  return sendStream(event, await file.stream())
+  // return sendStream(event, await file.stream())
 })

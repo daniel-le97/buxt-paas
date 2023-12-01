@@ -1,5 +1,3 @@
-import * as os from 'node:os'
-
 export default defineNitroPlugin((nitroApp) => {
   // const totalMemory = () => os.totalmem()
   // const freeMemory = () => os.freemem()

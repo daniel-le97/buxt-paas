@@ -48,24 +48,24 @@ function selectTab(index: number) {
       <!-- Left sidebar with buttons -->
       <div class="w-1/4 p-4 bg-blue-600 h-fit rounded-lg">
         <UButton
-        v-for="(tab, index) in tabs"
-        :key="index"
-        :class="{ 'bg-gray-300': selectedTab === index }"
-        class="w-full p-2 mb-2 text-left max"
-        @click="selectTab(index)"
+          v-for="(tab, index) in tabs"
+          :key="index"
+          :class="{ 'bg-gray-300': selectedTab === index }"
+          class="w-full p-2 mb-2 text-left max"
+          @click="selectTab(index)"
         >
-        {{ tab.label }}
-      </UButton>
-    </div>
-    
-    <!-- Main component area -->
-    <div class="flex-1 p-4 w-3/4">
-      <div v-for="(tab, index) in tabs"  :key="index">
-        <div v-if="selectedTab === index">
-          <component :is="tab.component" />
+          {{ tab.label }}
+        </UButton>
+      </div>
+
+      <!-- Main component area -->
+      <div class="flex-1 p-4 w-3/4">
+        <div v-for="(tab, index) in tabs" :key="index">
+          <div v-if="selectedTab === index">
+            <component :is="tab.component" />
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </template>

@@ -22,30 +22,25 @@ const state = reactive({
 
 const options = [
   { label: 'nixpacks', value: 'nixpacks' },
-  { label: 'Option 2', value: 'option-2' },
-  { label: 'Option 3', value: 'option-3' },
+  { label: 'dockerfile', value: 'dockerfile' },
+  { label: 'docker-compose', value: 'docker-compose' },
 ]
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
+  // event.preventDefault()
   // Do something with data
   console.log(event.data)
 
-  const res = await useFetch('/api/build', {
-    method: 'POST',
-    body: event.data,
-  })
-  
-}
-
-function changeIndex(number?: number) {
-  const index = useTabIndex()
-  index.value = number ?? index.value + 1
+  // const res = await useFetch('/api/build', {
+  //   method: 'POST',
+  //   body: event.data,
+  // })
 }
 </script>
 
 <template>
   <div>
-    <UForm :schema=" schema " :state=" state " class="space-y-4" @submit=" onSubmit ">
+    <UForm :schema=" schema " :state=" state " class="space-y-4" @submit="onSubmit">
       <UFormGroup label="Repo URL" name="repoURL">
         <UInput v-model=" state.repoURL " type="url" />
       </UFormGroup>
@@ -70,7 +65,7 @@ function changeIndex(number?: number) {
       </div>
 
       <UButton type="submit">
-        Submit
+        Save
       </UButton>
     </UForm>
   </div>
