@@ -6,8 +6,10 @@ const route = useRoute('projects-id')
 console.log(route.params)
 
 const { data, pending, error, refresh } = await useFetch(`/api/projects/${route.params.id}`)
-if (data.value)
-  useActiveProject(data.value)
+if (data.value) {
+  const activeProject = useActiveProject()
+  activeProject.value = data.value
+}
 
 const selectedTab = ref(0)
 

@@ -13,13 +13,20 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
-    // 'nuxt-monaco-editor',
-    // 'nuxt-monaco-editor',
     '@nuxt/image',
+    // these are currently unusable with bun
+    // 'nuxt-monaco-editor',
     // 'nuxt-security',
   ],
 
+
   ignore: ['temp'],
+
+  // security: {
+  //   headers: {
+  //     crossOriginEmbedderPolicy: process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
+  //   },
+  // },
 
   tailwindcss: {
     quiet: true,

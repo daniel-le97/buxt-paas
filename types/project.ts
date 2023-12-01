@@ -5,13 +5,15 @@ export interface Project {
   name: string
   deployed: boolean
   configured: boolean
-  application?: Application// Adjust the type based on the actual structure of the project property
-  buildsLogs?: string[] // Adjust the type based on the actual structure of the buildsLogs property
+  application: Application// Adjust the type based on the actual structure of the project property
+  buildsLogs: string[] // Adjust the type based on the actual structure of the buildsLogs property
 }
 
 interface Application {
   repoUrl: string
-  buildCommand?: string
-  installCommand?: string
-  startCommand?: string
+  buildPack: 'nixpacks' | 'dockerfile' | 'docker-compose'
+  buildCommand: string
+  installCommand: string
+  startCommand: string
+
 }

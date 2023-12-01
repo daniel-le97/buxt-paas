@@ -38,6 +38,6 @@
   "devDependencies": {
     "@antfu/eslint-config": "^2.1.2",
     "@nuxt/devtools": "latest",
-    "nuxt-security": "latest"
+    "nuxt-security": "^1.0.0-rc.4"
   }
 }

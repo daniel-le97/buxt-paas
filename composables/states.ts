@@ -14,4 +14,4 @@ export const useRepo = () => useState('repo', () => 'https://github.com/daniel-l
 
 export const useActiveTemplate = () => useState('activeTemplate', () => '')
 
-export const useActiveProject = (project?: Project) => useState<Project | null>('activeProject', () => project ?? null)
+export const useActiveProject = () => useState<Project>('activeProject')

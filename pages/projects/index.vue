@@ -8,7 +8,8 @@ async function handleProjectCreate() {
       user: 'me',
     },
   })
-  useActiveProject(project)
+  const activeProject = useActiveProject()
+  activeProject.value = project
 
   await navigateTo(`/projects/${project.id}`)
   // execute()

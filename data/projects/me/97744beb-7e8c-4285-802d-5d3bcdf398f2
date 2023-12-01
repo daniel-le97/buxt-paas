@@ -1,0 +1,16 @@
+{
+    "id": "97744beb-7e8c-4285-802d-5d3bcdf398f2",
+    "user": "me",
+    "createdAt": "12/1/2023, 3:14:38 PM",
+    "name": "separate-unassailable-athena",
+    "deployed": false,
+    "configured": false,
+    "buildsLogs": [],
+    "application": {
+        "repoUrl": "",
+        "startCommand": "",
+        "buildCommand": "",
+        "installCommand": "",
+        "buildPack": "nixpacks"
+    }
+}
