@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <NuxtLayout>
+  <div class="flex justify-between align-middle">
+    <div class="">
+       hello
+    </div>
       <NuxtPage />
-    </NuxtLayout>
   </div>
 </template>
