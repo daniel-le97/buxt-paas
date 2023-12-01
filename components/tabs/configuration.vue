@@ -30,15 +30,11 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   // Do something with data
   console.log(event.data)
 
-  const res = await $fetch('/api/repo', {
+  const res = await useFetch('/api/build', {
     method: 'POST',
     body: event.data,
   })
-  if (res) {
-    const id = useActiveId()
-    id.value = res
-    changeIndex(1)
-  }
+  
 }
 
 function changeIndex(number?: number) {

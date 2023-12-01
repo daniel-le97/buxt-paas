@@ -25,8 +25,8 @@ const inactive = 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hove
       <ULink to="/" active-class="text-primary" :inactive-class="inactive">
         Home
       </ULink>
-      <ULink to="/applications" active-class="text-primary" :inactive-class="inactive">
-        applications
+      <ULink to="/projects" active-class="text-primary" :inactive-class="inactive">
+        projects
       </ULink>
       <!-- <UDropdown :items="items" :popper="{ placement: 'bottom-start', arrow: false }">
         <UButton color="white" label="Providers" trailing-icon="i-heroicons-chevron-down-20-solid" />

@@ -12,10 +12,11 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "clean": "bun --bun nuxi cleanup && bun i"
+    "clean": "bun --bun nuxi cleanup && bun i",
+    "docker:restart": "bunx nuxi-docker restart && bunx nuxi-docker bun --bun dev"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^2.1.1",
+    "@antfu/eslint-config": "^2.1.2",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "latest",
     "@nuxt/ui": "^2.11.0",
@@ -31,12 +32,10 @@
     "nuxt-monaco-editor": "latest",
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2",
-    "vite": "^5.0.3",
+    "vite": "^5.0.4",
     "vue": "^3.3.9",
     "vue-router": "^4.2.5",
     "zod": "^3.22.4"
   },
-  "devDependencies": {
-
-  }
+  "devDependencies": {}
 }

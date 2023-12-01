@@ -1,10 +1,11 @@
-version: '3'
+version: "3.8"
 services:
   nuxt-app:
-    build:
-      context: .
-      dockerfile: dockerfile
+    user: "${DOCKER_USER_UID}:${DOCKER_USER_GID}"
+    image: hele:latest
+    tty: true
     ports:
-      - '3000:3000'
+      - "3000:3000"
+      - "24678:24678"
     volumes:
-      - .:/usr/src/app
+      - /var/run/docker.sock:/var/run/docker.sock

@@ -1,6 +1,10 @@
 <!-- components/Tabs.vue -->
 <script setup lang="ts">
+
 import { LazyTabsBuild, LazyTabsConfiguration, LazyTabsSecrets } from '#components'
+
+const route = useRoute()
+const { data, pending, error, refresh } = await useFetch(`/api/projects/${route.params}`)
 
 
 const selectedTab = ref(0)
@@ -24,7 +28,7 @@ function selectTab(index: number) {
         <h1 class="text-2xl font-bold">
           Configurations
         </h1>
-        <UBadge>HEALTHY</UBadge>
+        <UBadge v-if="data">{{ data }}</UBadge>
       </div>
       <!-- Left side with buttons and icons -->
       <div class="flex space-x-2">
@@ -47,7 +51,7 @@ function selectTab(index: number) {
     </div>
     <div class="flex px-5 gap-3">
       <!-- Left sidebar with buttons -->
-      <div class="w-1/4 p-4 bg-blue-600 h-fit rounded-lg">
+      <div class="w-1/4 p-2 bg-blue-600 h-fit rounded-lg">
         <UButton
           v-for="(tab, index) in tabs"
           :key="index"
@@ -60,7 +64,7 @@ function selectTab(index: number) {
       </div>
 
       <!-- Main component area -->
-      <div class="flex-1 p-4 w-3/4 ">
+      <div class="flex-1 w-3/4 ">
         <div v-for="(tab, index) in tabs" :key="index">
           <div v-if="selectedTab === index">
             <component :is="tab.component" />

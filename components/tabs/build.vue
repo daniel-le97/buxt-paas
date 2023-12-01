@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { WatchStopHandle } from 'vue';
+import type { WatchStopHandle } from 'vue'
 
 const buildData = useBuildSSE()
 
@@ -12,8 +12,11 @@ const defaults: EventWatch = {}
 async function handleClick() {
   const watchEvents = useState<EventWatch>('event-source', () => defaults)
   // const data = useState('event-data', () => '')
-  
+
   const { data, status, error, close } = useEventSource(`http://localhost:3000/api/build/${6}`)
+  
+  if (data.value)
+    buildData.value += JSON.parse(data.value).message
 
   const end = () => Object.values(watchEvents.value).forEach((fn) => {
     if (fn) {
