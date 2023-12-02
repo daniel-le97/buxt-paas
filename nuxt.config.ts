@@ -52,6 +52,7 @@ export default defineNuxtConfig({
     preset: './server/runtime/bun',
     imports: {
       dirs: ['./types'],
+      // 'imports':[{name: '*', as:'Bun', from: 'bun', type: true, 'typeFrom': 'bun-types'}]
     },
     typescript: {
       tsConfig: {

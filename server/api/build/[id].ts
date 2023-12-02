@@ -3,6 +3,12 @@ import { z } from 'zod'
 import consola from 'consola'
 import type { FileSink } from 'bun'
 
+// import type { FileSink } from 'bun'
+
+// import type { FileSink } from 'bun'
+// import { file } from 'bun'
+// import { Bun } from '#imports'
+
 const schema = z.object({
   repoURL: z.string().min(1),
   installCommand: z.string().nullable(),
