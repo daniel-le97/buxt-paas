@@ -6,7 +6,8 @@ import type { FileSink } from 'bun'
 // import type { FileSink } from 'bun'
 
 // import type { FileSink } from 'bun'
-// import { file } from 'bun'
+import { file } from 'bun'
+
 // import { Bun } from '#imports'
 
 const schema = z.object({
@@ -70,13 +71,13 @@ export default defineEventHandler(async (event) => {
       fs.mkdirSync(`${process.cwd()}/data/logs/${id}/`, { recursive: true })
       // console.log('making dir')
 
-    const repo = await useDbStorage('logs').setItem(`${id}:${generateId}`, `created at: ${new Date()}\n`)
+    const repo = await useDbStorage('logs').setItem(`${id}:${generateId}`, `created at: ${Date.now()}\n`)
     // console.log(repo)
 
     const generatedName = generateName()
     const { send, close } = useSSE(event, `sse:event:${generatedName}`)
 
-    const logFile = Bun.file(logsPath)
+    const logFile = file(logsPath)
 
     const writer = logFile.writer()
 

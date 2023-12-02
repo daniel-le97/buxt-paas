@@ -1,10 +1,15 @@
 <script lang="ts" setup>
-
+async function handleDeploy() {
+  const { data, pending, error, refresh } = await useFetch('/api/build', {
+    method: 'POST',
+    body: useActiveProject().value
+  })
+}
 </script>
 
 <template>
   <div>
-    <RippleBtn class="rounded-md bg-blue-700 flex gap-2 justify-center text-center align-middle">
+    <RippleBtn class="rounded-md bg-blue-700 flex gap-2 justify-center text-center align-middle" @click="handleDeploy()">
       <Icon name="material-symbols:deployed-code-update-outline-rounded" class="text-xl text-center align-middle text" />
       <span class="">Deploy</span>
     </RippleBtn>

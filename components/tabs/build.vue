@@ -57,7 +57,7 @@ async function handleClick() {
         Build Logs
       </label>
       <UButton type="button" class=" font-bold py-1" @click="handleClick">
-        Build It
+        Reset build queue
       </UButton>
       <UTooltip>
         <UIcon name="uil:rocket" class="text-2xl" />

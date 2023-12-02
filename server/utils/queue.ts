@@ -1,11 +1,13 @@
 import { Hookable } from 'hookable'
 
-interface Task {
-  repo: string
-}
+// import { Project } from '../../types/project';
+
+// interface Project {
+//   repo: string
+// }
 
 class Hooker extends Hookable {
-  queue: Task[]
+  queue: Project[]
   isProcessing: boolean
 
   constructor() {
@@ -14,8 +16,8 @@ class Hooker extends Hookable {
     this.isProcessing = false
   }
 
-  addTask(task: Task) {
-    this.queue.push(task)
+  addProject(Project: Project) {
+    this.queue.push(Project)
     if (!this.isProcessing)
       this.processQueue()
   }
@@ -26,31 +28,34 @@ class Hooker extends Hookable {
       return
     }
 
-    const task = this.queue.shift()
-    if (!task)
+    console.log(this.queue.length);
+    
+
+    const Project = this.queue.shift()
+    if (!Project)
       return
 
     this.isProcessing = true
 
-    // Trigger 'processTask' hook
-    await this.callHook('processTask', task)
+    // Trigger 'processProject' hook
+    await this.callHook('processProject', Project)
 
-    // Simulate task processing
-    console.log(`Processing task: ${task.repo}`)
-    await this.doTask(task)
+    // Simulate Project processing
+    console.log(`Processing Project: ${Project.id} at ${new Date(Date.now())}`)
+    await this.doProject(Project)
 
-    // Trigger 'afterProcessTask' hook
-    await this.callHook('afterProcessTask', task)
+    // Trigger 'afterProcessProject' hook
+    await this.callHook('afterProcessProject', Project)
 
-    this.processQueue() // Process the next task
+    this.processQueue() // Process the next Project
   }
 
-  async doTask(task: Task) {
-    // Simulate some asynchronous task
+  async doProject(Project: Project) {
+    // Simulate some asynchronous Project
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(task)
-      }, 5000) // Simulating 3 seconds of task processing
+        resolve(Project)
+      }, 5000) // Simulating 3 seconds of Project processing
     })
   }
 }

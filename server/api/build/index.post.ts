@@ -1,8 +1,7 @@
-import { queue } from '../../utils/queue'
+// import { queue } from '../../utils/queue'
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event)
-  console.log(body)
-  queue.addTask(body)
-
+  const body = await readBody<Project>(event)
+  queue.addProject(body)
+  return body
 })
