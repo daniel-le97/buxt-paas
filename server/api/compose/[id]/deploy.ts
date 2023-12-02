@@ -13,4 +13,6 @@ export default defineEventHandler(async (event) => {
   // const file = await useCompose().
 })
 
-function NotFound(id?: string) { throw createError({ statusCode: 404, statusMessage: id ? `${id} not found` : 'not found' }) }
+function NotFound(id?: string) {
+  throw createError({ statusCode: 404, statusMessage: id ? `${id} not found` : 'not found' })
+}

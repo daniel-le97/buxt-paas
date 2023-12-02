@@ -19,7 +19,6 @@ export default defineNuxtConfig({
     // 'nuxt-security',
   ],
 
-
   ignore: ['temp'],
 
   // security: {

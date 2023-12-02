@@ -13,13 +13,13 @@ export default defineEventHandler(async (event) => {
       deployed: false,
       configured: false,
       buildsLogs: [],
-      application:{
-        repoUrl:'',
+      application: {
+        repoUrl: '',
         startCommand: '',
         buildCommand: '',
         installCommand: '',
         buildPack: 'nixpacks',
-      }
+      },
     }
     const path = `${process.cwd()}/data/projects/${project.user}`
     if (!fs.existsSync(path))

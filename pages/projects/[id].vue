@@ -35,36 +35,23 @@ function selectTab(index: number) {
         <UBadge>Healthy</UBadge>
       </div>
       <!-- Left side with buttons and icons -->
-      <div class="flex space-x-2">
-        <UButton
-          icon="i-heroicons-arrow-path-solid" size="sm" color="sky" variant="solid" label="Restart"
-          :trailing=" false "
-        />
-        <UButton
-          icon="i-heroicons-arrow-path-solid" size="sm" color="red" variant="solid" label="Force Redeploy"
-          :trailing=" false "
-        />
-        <UButton icon="i-heroicons-pause" size="sm" color="amber" variant="solid" label="Stop" :trailing=" false " />
-        <UButton
-          icon="i-heroicons-arrow-up-right" size="sm" color="primary" variant="solid" label="Open"
-          :trailing=" false "
-        />
-      </div>
+
+      <TabsApplicationControlBar class="flex gap-2" />
 
       <!-- Right side with page title and badge -->
     </div>
     <div class="flex  px-5 gap-3">
       <!-- Left sidebar with buttons -->
-      <div class="p-2 bg-blue-600 h-fit rounded-lg">
-        <UButton
+      <div class="p-2  border h-fit rounded-lg">
+        <RippleBtn
           v-for="(tab, index) in tabs"
           :key="index"
-          :class="{ 'bg-gray-300': selectedTab === index }"
-          class="w-full p-2 mb-2 text-left max"
+          :class="{ 'bg-white text-black': selectedTab === index }"
+          class="w-full p-2 mb-2 text-left max rounded"
           @click="selectTab(index)"
         >
           {{ tab.label }}
-        </UButton>
+        </RippleBtn>
       </div>
 
       <!-- Main component area -->

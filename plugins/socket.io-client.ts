@@ -13,7 +13,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   return {
     provide: {
       io: socket,
-      logger:consola
+      logger: consola,
     },
   }
 })

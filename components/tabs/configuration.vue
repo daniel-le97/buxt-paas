@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { z } from 'zod'
-import type { FormSubmitEvent } from '#ui/types'
 
 const schema = z.object({
   repoUrl: z.string().min(1),
@@ -22,7 +21,6 @@ const options = [
 
 async function onSubmit() {
   try {
-    
     const { data } = await useFetch(`/api/projects/${state.value.id}`, {
       method: 'PUT',
       body: state.value,
@@ -36,7 +34,6 @@ async function onSubmit() {
       title: 'Configuration Updated',
       timeout: 1500,
     })
-
   }
   catch (error) {
     useLogger().withTag('configuration').error('unable to update configuration')

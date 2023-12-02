@@ -7,6 +7,14 @@ interface EventWatch {
   [key: string]: WatchStopHandle | null
 }
 
+const logs = [
+  { id: 1, duration: 222 },
+  { id: 2, duration: 222 },
+  { id: 3, duration: 222 },
+  { id: 4, duration: 222 },
+  { id: 5, duration: 222 },
+]
+
 const defaults: EventWatch = {}
 
 async function handleClick() {
@@ -43,31 +51,32 @@ async function handleClick() {
 </script>
 
 <template>
-  <section class="flex align-middle justify-center">
-    <div class="p-2">
-      <div class="lg:flex space-x-3">
-        <label class="block dark:text-white text-gray-700 text-3xl  font-bold mb-2" for="build-logs">
-          Build Logs
-        </label>
-        <UButton type="button" @click="handleClick">
-          build it
-        </UButton>
-        <UTooltip>
-          <UIcon name="uil:rocket" class="text-2xl" />
-          <template #text>
-            <span class="italic">Hello World!</span>
-          </template>
-        </UTooltip>
+  <section class="flex  flex-col items-center  justify-center w-full space-y-3 ">
+    <div class="lg:flex space-x-3 w-full">
+      <label class="block dark:text-white text-gray-700 text-3xl  font-bold mb-2" for="build-logs">
+        Build Logs
+      </label>
+      <UButton type="button" class=" font-bold py-1" @click="handleClick">
+        Build It
+      </UButton>
+      <UTooltip>
+        <UIcon name="uil:rocket" class="text-2xl" />
+        <template #text>
+          <span class="italic">Hello World!</span>
+        </template>
+      </UTooltip>
+    </div>
+    <UDivider class="w-full" />
+    <div class="w-full flex">
+      <div class="p-2  w-4/5">
+        <div class="p-2 bg-zinc-700 rounded-md">
+          <pre id="pre-build" class="scrollable-pre screen"> {{ buildData }}</pre>
+        </div>
       </div>
 
-      <div class="p-2 bg-zinc-700 rounded-md">
-        <pre id="pre-build" class="scrollable-pre screen"> {{ buildData }}</pre>
-      </div>
-    </div>
-    <div class="flex flex-col pt-10">
-      <UButton>logs</UButton>
-      <UButton>logs</UButton>
-      <UButton>logs</UButton>
+      <!-- BUILD STATUS -->
+      <BuildLogCard />
+      <!-- BUILD STATUS -->
     </div>
   </section>
 </template>

@@ -8,6 +8,6 @@ import SideNavBar from './components/navigation/sideNavBar.vue'
       <SideNavBar />
     </div>
     <NuxtPage />
-    <UNotifications/>
+    <UNotifications />
   </div>
 </template>

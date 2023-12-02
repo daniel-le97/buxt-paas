@@ -1,7 +1,7 @@
 import * as fs from 'node:fs'
-import type { FileSink } from 'node:bun'
 import { z } from 'zod'
 import consola from 'consola'
+import type { FileSink } from 'bun'
 
 const schema = z.object({
   repoURL: z.string().min(1),
@@ -54,7 +54,7 @@ export default defineEventHandler(async (event) => {
     if (!id)
       throw createError('unable to find id')
 
-    console.log('running')
+    // console.log('running')
 
     const generateId = crypto.randomUUID()
 
@@ -62,7 +62,7 @@ export default defineEventHandler(async (event) => {
 
     if (!fs.existsSync(`${process.cwd()}/data/logs/${id}/`))
       fs.mkdirSync(`${process.cwd()}/data/logs/${id}/`, { recursive: true })
-    console.log('making dir')
+      // console.log('making dir')
 
     const repo = await useDbStorage('logs').setItem(`${id}:${generateId}`, `created at: ${new Date()}\n`)
     // console.log(repo)
@@ -76,23 +76,23 @@ export default defineEventHandler(async (event) => {
 
     const repoURL = 'https://github.com/daniel-le97/astro-portfolio'
 
-    console.log('running command')
+    // console.log('running command')
 
     await runCommandAndSendStream(['git', 'clone', '--depth=1', repoURL, `./temp/${generatedName}`], writer, send)
-    console.log('running next command')
+    // console.log('running next command')
 
     await runCommandAndSendStream(['nixpacks', 'build', `./temp/${generatedName}`, '--name', generatedName], writer, send)
 
     writer.flush()
     writer.end()
 
-    console.log('ending stream')
+    // console.log('ending stream')
 
     close()
     running = false
   }
   catch (error) {
-    console.log(error)
+    // console.log(error)
 
     throw createError({ statusMessage: `failed to build app` })
   }

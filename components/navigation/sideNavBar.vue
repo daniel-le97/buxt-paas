@@ -43,7 +43,7 @@ const navItems = [
 <template>
   <div ref="SideNavBar" class="flex flex-col items-center justify-between w-20 h-full bg-zinc-800 text-white p-1 py-3">
     <div class=" flex flex-col  w-full  justify-center items-center  space-y-3">
-      <UTooltip v-for="navItem in navItems" :text="navItem.label" :popper="{ placement: 'right' }" :key="navItem.label">
+      <UTooltip v-for="navItem in navItems" :key="navItem.label" :text="navItem.label" :popper="{ placement: 'right' }">
         <NuxtLink :to="navItem.link" class="flex items-center justify-center " active-class="active">
           <RippleBtn>
             <Icon :name="navItem.icon" class="text-5xl" />

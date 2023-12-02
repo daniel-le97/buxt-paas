@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 services:
   medusa-backend:
     build:
@@ -15,9 +15,9 @@ services:
       STORE_CORS: http://localhost
     volumes:
       - /portainer/Files/AppData/Config/medusacms/backend:/app/medusa
-      - /portainer/Files/AppData/Config/medusacms/backend/node_modules:/app/medusa/node_modules  
+      - /portainer/Files/AppData/Config/medusacms/backend/node_modules:/app/medusa/node_modules
     ports:
-      - "9009:9000"
+      - '9009:9000'
 
   medusa-postgres:
     image: postgres:13.9-alpine
@@ -28,14 +28,14 @@ services:
       POSTGRES_DB: medusa-docker
 
   medusa-redis:
-    redis:latest
+    image: redis:latest
     restart: always
 
   medusa-admin:
     build:
       context: ./admin
       dockerfile: Dockerfile.prod
-    admin:latest
+    image: admin:latest
     restart: always
     depends_on:
       - medusa-backend
@@ -44,20 +44,20 @@ services:
       NODE_ENV: production
       NODE_OPTIONS: --openssl-legacy-provider
     ports:
-      - "7007:80"
+      - '7007:80'
 
   medusa-storefront:
     build:
       dockerfile: Dockerfile.prod
-    storefront:latest
+    image: storefront:latest
     container_name: medusa-storefront
     restart: always
     environment:
       NODE_ENV: production
     volumes:
       - /portainer/Files/AppData/Config/medusacms/storefront:/app/storefront
-      - /portainer/Files/AppData/Config/medusacms/storefront/node_modules:/app/storefront/node_modules  
+      - /portainer/Files/AppData/Config/medusacms/storefront/node_modules:/app/storefront/node_modules
     depends_on:
       - medusa-backend
     ports:
-      - "808:80"
+      - '808:80'

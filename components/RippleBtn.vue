@@ -34,15 +34,19 @@ function purgeRipples() {
 </script>
 
 <template>
-  <button ref="containerRef" class="relative overflow-hidden"
-    :class="[{ outlined: variant === 'outlined', link: variant === 'link' }]" @mousedown="addRipple">
+  <button
+    ref="containerRef" class="relative overflow-hidden"
+    :class="[{ outlined: variant === 'outlined', link: variant === 'link' }]" @mousedown="addRipple"
+  >
     <transition-group name="ripple" tag="div">
-      <div v-for="ripple in ripples" :key="ripple.id" class="ripple-circle" :style="{
-        top: `${ripple.top}px`,
-        left: `${ripple.left}px`,
-        width: `${ripple.size}px`,
-        height: `${ripple.size}px`,
-      }" />
+      <div
+        v-for="ripple in ripples" :key="ripple.id" class="ripple-circle" :style="{
+          top: `${ripple.top}px`,
+          left: `${ripple.left}px`,
+          width: `${ripple.size}px`,
+          height: `${ripple.size}px`,
+        }"
+      />
     </transition-group>
     <slot />
   </button>
