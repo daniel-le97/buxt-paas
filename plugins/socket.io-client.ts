@@ -1,4 +1,5 @@
 import io from 'socket.io-client'
+import consola from 'consola'
 
 export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig().public
@@ -12,6 +13,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   return {
     provide: {
       io: socket,
+      logger:consola
     },
   }
 })

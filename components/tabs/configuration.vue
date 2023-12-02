@@ -21,34 +21,47 @@ const options = [
 ]
 
 async function onSubmit() {
-  // event.preventDefault()
-  // Do something with data
- console.log(state.value);
- 
+  try {
+    
+    const { data } = await useFetch(`/api/projects/${state.value.id}`, {
+      method: 'PUT',
+      body: state.value,
+    })
 
-  // const res = await useFetch('/api/build', {
-  //   method: 'POST',
-  //   body: event.data,
-  // })
+    if (!data.value)
+      throw new Error('unable to update config')
+
+    useToast().add({
+      id: state.value.id,
+      title: 'Configuration Updated',
+      timeout: 1500,
+    })
+
+  }
+  catch (error) {
+    useLogger().withTag('configuration').error('unable to update configuration')
+  }
 }
+
+const needsRepo = computed(() => state.value.application.buildCommand === 'nixpacks')
 </script>
 
 <template>
   <div v-if="state.application">
-    <UForm :schema=" schema " :state=" state.application " class="space-y-4">
-      <UFormGroup label="Repo URL" name="repoUrl">
+    <UForm :schema=" schema " :state=" state.application " class="space-y-4" @submit="onSubmit">
+      <UFormGroup label="Repo URL" name="repoUrl" :required="needsRepo">
         <UInput v-model=" state.application.repoUrl " type="url" />
       </UFormGroup>
 
       <div class="flex space-x-4">
         <div class="w-1/2 flex flex-col space-y-3">
-          <UFormGroup label="Install command" name="installCommand" required>
+          <UFormGroup label="Install command" name="installCommand">
             <UInput v-model=" state.application.installCommand " placeholder="npm install" type="text" />
           </UFormGroup>
-          <UFormGroup label="Build command" name="buildCommand" required>
+          <UFormGroup label="Build command" name="buildCommand">
             <UInput v-model=" state.application.buildCommand " placeholder="npm run build" type="text" />
           </UFormGroup>
-          <UFormGroup label="Start command" name="startCommand" required>
+          <UFormGroup label="Start command" name="startCommand">
             <UInput v-model=" state.application.startCommand " placeholder="npm run serve" type="text" />
           </UFormGroup>
         </div>
@@ -59,8 +72,12 @@ async function onSubmit() {
         </div>
       </div>
 
-      <RippleBtn type="submit" @click.prevent="onSubmit" class="rounded bg-primary"> Save</RippleBtn>
+      <RippleBtn type="submit" class="rounded bg-primary">
+        Save
+      </RippleBtn>
     </UForm>
   </div>
-  <div v-else>loading...</div>
+  <div v-else>
+    loading...
+  </div>
 </template>
