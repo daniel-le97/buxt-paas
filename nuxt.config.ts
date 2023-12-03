@@ -47,7 +47,7 @@ export default defineNuxtConfig({
     componentIslands: true,
   },
   nitro: {
-    // preset: './server/runtime/bun',
+    preset: 'bun',
     imports: {
       dirs: ['./types'],
       // 'imports':[{name: '*', as:'Bun', from: 'bun', type: true, 'typeFrom': 'bun-types'}]
