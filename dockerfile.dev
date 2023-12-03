@@ -4,9 +4,11 @@
 # Use Node.js as the base image
 ARG NODE_VERSION=20.8.0
 FROM node:${NODE_VERSION}-slim as node_base
+# FROM oven/bun:canary
 
 # Set the working directory
 WORKDIR /usr/src/app
+
 
 # Set the environment to production
 ENV NODE_ENV=production
@@ -18,14 +20,15 @@ RUN apt-get update -qq && apt-get install -y build-essential openssl libssl-dev 
 RUN npm install -g bun
 
 # Copy package files and lock files for Bun
-COPY package.json bun.lockb ./
+# COPY package.json bun.lockb ./
 
+# USER bun
 # Install dependencies with Bun
-RUN bun install --frozen-lockfile
 
 # Copy your source code
 COPY . .
 
+RUN bun install
 # Use npx to run Prisma generate
 
 RUN bun run build

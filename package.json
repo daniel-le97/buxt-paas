@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.2.0",
+    "@monaco-editor/loader": "^1.4.0",
     "@nuxt/devtools": "latest",
     "nuxt-security": "^1.0.0-rc.4"
   }

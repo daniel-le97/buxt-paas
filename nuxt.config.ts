@@ -9,15 +9,14 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: [
-    '@nuxt/ui',
-    '@nuxtjs/tailwindcss',
-    '@vueuse/nuxt',
-    '@nuxt/image',
-    // these are currently unusable with bun
-    // 'nuxt-monaco-editor',
-    // 'nuxt-security',
-  ],
+  modules: ['@nuxt/ui',
+  '@nuxtjs/tailwindcss',
+  '@vueuse/nuxt', // these are currently unusable with bun
+  // 'nuxt-monaco-editor',
+  // 'nuxt-security',
+  '@nuxt/image',
+  // 'nuxt-monaco-editor'
+],
 
   ignore: ['temp'],
 

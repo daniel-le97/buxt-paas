@@ -11,10 +11,11 @@ const Logs = useActiveProject()
 
 const defaults: EventWatch = {}
 
-
+const activeId = useState('active-log-id')
 
 async function getLogs(id:string) {
  console.log(id);
+ activeId.value = id
  const routerId = useRoute('projects-id').params.id
  const { data, pending, error, refresh } = await useFetch(`/api/build/${routerId}/logs/${id}`)
 console.log(data.value);
@@ -74,15 +75,15 @@ async function handleClick() {
       </UTooltip>
     </div>
     <UDivider class="w-full" />
-    <div class="w-full flex">
+    <div class="w-full flex p-2 gap-2">
       <div class="w-4/5">
         <div class="p-2 bg-zinc-700 rounded-md">
-          <pre id="pre-build" class="scrollable-pre screen w-full"> {{ buildData }}</pre>
+          <pre id="pre-build" class="w-full h-full overflow-auto whitespace-pre-wrap scrollable-pre"> {{ buildData }}</pre>
         </div>
       </div>
       <div class="w-1/5">
         <div v-for="logs in Logs.buildsLogs" :key="logs.id" class="w-full flex justify-center items-center">
-          <BuildLogCard :duration="logs.buildTime" :date="logs.date" @click="getLogs(logs.id)" />
+          <BuildLogCard :duration="logs.buildTime" :date="logs.date" @click="getLogs(logs.id)" :class=" activeId === logs.id ? 'bg-white text-black' : ''"/>
         </div>
       </div>
 

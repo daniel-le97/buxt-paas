@@ -9,7 +9,9 @@ export default defineEventHandler(async (event) => {
 
     const db = useDbStorage('projects')
 
-    return await db.getItem<Project>(`${user}:${id}`)
+    const project = await db.getItem<Project>(`${user}:${id}`)
+
+    return project
   }
   catch (error) {
     console.log('invalid id or user')

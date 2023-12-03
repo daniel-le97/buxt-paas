@@ -1,8 +1,10 @@
 <script setup lang="ts">
-const { data, pending, error, refresh } = await useFetch('/api/projects')
+
+
+const { data, pending, error, refresh } = await useFetch<Project[]>('/api/projects')
 
 async function handleProjectCreate() {
-  const project = await $fetch('/api/projects', {
+  const project = await $fetch<Project>('/api/projects', {
     method: 'POST',
     body: {
       user: 'me',
@@ -20,7 +22,7 @@ async function naver(id: string) {
 </script>
 
 <template>
-  <div class="m-2 p-2 ">
+  <div class="m-2 p-2 " v-if="data">
     <div class="flex justify-end">
       <UButton @click="handleProjectCreate">
         Create +

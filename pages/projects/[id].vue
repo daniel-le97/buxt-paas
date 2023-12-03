@@ -2,10 +2,11 @@
 <script setup lang="ts">
 import { LazyTabsBuild, LazyTabsConfiguration, LazyTabsSecrets } from '#components'
 
+
 const route = useRoute('projects-id')
 // console.log(route.params)
 
-const { data, pending, error, refresh } = await useFetch(`/api/projects/${route.params.id}`)
+const { data, pending, error, refresh } = await useFetch<Project>(`/api/projects/${route.params.id}`)
 if (data.value) {
   const activeProject = useActiveProject()
   activeProject.value = data.value

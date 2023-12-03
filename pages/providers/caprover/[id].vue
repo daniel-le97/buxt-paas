@@ -1,20 +1,20 @@
 <script  lang="ts" setup>
+
+
 const router = useRoute('providers-caprover-id').params.id
 
-const { data: templates } = await useFetch(`/api/providers/caprover/${router}`)
+const { data: templates } = await useFetch<string>(`/api/providers/caprover/${router}`)
 const thisRef = ref<string>(JSON.stringify(templates as unknown as string)) as unknown as CaproverDockerComposeConfig
-// console.log(templates.value)
+console.log(templates.value)
 </script>
 
 <template>
-  <div>
+  <div class=" pl-32 w-full h-full">
     <!-- <pre>
       {{ templates }}
 
     </pre> -->
     <!-- <MonacoEditor v-if="templates" v-model="templates" :options="{ theme: 'vs-dark' }" class=" min-h-screen" /> -->
-    <ClientOnly>
-      <LazyMyMonacoEditor :value="templates" language="typescript" class="monaco" />
-    </ClientOnly>
+      <LazyTestMonaco :value="templates" language="yaml" class="min-h-screen"/>
   </div>
 </template>
