@@ -25,7 +25,7 @@ async function handleClick() {
   const { data, status, error, close } = useEventSource(`http://localhost:3000/api/build/${id}`)
 
   if (data.value)
-  useBuildSSE().value += JSON.parse(data.value).message
+  useBuildSSE().value += JSON.parse(data.value).data
 
   const end = () => Object.values(watchEvents.value).forEach((fn) => {
     if (fn) {
@@ -34,9 +34,16 @@ async function handleClick() {
     }
   })
 
-  watchEvents.value.data = watch(data, () => {
-    if (data.value)
-    useBuildSSE().value += JSON.parse(data.value).message
+  watchEvents.value.data = watch(data, (value) => {
+    if (value) {
+      const real = JSON.parse(value).data
+      // console.log(real);
+      useBuildSSE().value += real
+      
+    }
+    
+    // if (data.value)
+    // useBuildSSE().value += JSON.parse(data.value).data
   })
 
   watchEvents.value.status = watch(status, () => {

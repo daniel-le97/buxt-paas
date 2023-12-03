@@ -1,4 +1,4 @@
-import * as fs from 'node:fs'
+import * as fsPromises from 'node:fs/promises'
 import * as path from 'node:path'
 
 interface FileInfo {
@@ -21,7 +21,7 @@ async function getFileNamesAndPaths(directory: string): Promise<FileInfo[]> {
   const file_list: FileInfo[] = []
 
   // Asynchronously read the directory
-  const files = await fs.promises.readdir(directory)
+  const files = await fsPromises.readdir(directory)
 
   // Iterate through all files in the directory
   for (const file of files) {
@@ -29,7 +29,7 @@ async function getFileNamesAndPaths(directory: string): Promise<FileInfo[]> {
     const full_path = path.join(directory, file)
 
     // Check if it's a file (not a directory)
-    const isFile = (await fs.promises.stat(full_path)).isFile()
+    const isFile = (await fsPromises.stat(full_path)).isFile()
 
     if (isFile) {
       // Append the file name and full path to the list

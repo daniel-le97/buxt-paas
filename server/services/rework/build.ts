@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { execa } from 'execa'
 
 const schema = z.object({
   repoURL: z.string().min(1),
@@ -25,60 +26,73 @@ export default defineEventHandler(async (event) => {
 
   const decoder = new TextDecoder()
 
-  const clone = Bun.spawn(['git', 'clone', '--depth=1', repo.repoURL, `./temp/${id}`], {
-    stdio: ['ignore', 'pipe', 'pipe'],
+  const clone = execa('git',['clone', '--depth=1', repo.repoURL, `./temp/${id}`])
+  clone.stderr?.on('data', (data) => {
+    sse.send(id => ({id,data}))
   })
-  const cloneStream = [clone.stderr, clone.stdout]
-  for await (const stream of cloneStream) {
-    for await (const chunk of stream) {
-      let message: any
-      if (chunk instanceof Uint8Array || Buffer.isBuffer(chunk)) {
-        message = decoder.decode(chunk)
-      }
-      else if (typeof chunk === 'string') {
-        message = chunk
-      }
-      else {
-        console.error('Invalid chunk type:', typeof chunk)
-        // Handle or skip the chunk based on your requirements
-        continue
-      }
-      sse.send(id => ({ id, data: message }))
-    }
-  }
-
-  const builder = Bun.spawn(['nixpacks', 'build', `./temp/${id}`, '--name', generateName()], {
-    stdio: ['ignore', 'pipe', 'pipe'],
+  clone.stdout?.on('data', (data) => {
+    sse.send(id => ({id,data}))
   })
-  const streams = [builder.stderr, builder.stdout]
+  await clone
+  clone.kill()
+  // const cloneStream = [clone.stderr, clone.stdout]
+  // for await (const stream of cloneStream) {
+  //   for await (const chunk of stream) {
+  //     let message: any
+  //     if (chunk instanceof Uint8Array || Buffer.isBuffer(chunk)) {
+  //       message = decoder.decode(chunk)
+  //     }
+  //     else if (typeof chunk === 'string') {
+  //       message = chunk
+  //     }
+  //     else {
+  //       console.error('Invalid chunk type:', typeof chunk)
+  //       // Handle or skip the chunk based on your requirements
+  //       continue
+  //     }
+  //     sse.send(id => ({ id, data: message }))
+  //   }
+  // }
 
-  for await (const stream of streams) {
-    for await (const chunk of stream) {
-      let message: any
-      if (chunk instanceof Uint8Array || Buffer.isBuffer(chunk)) {
-        message = decoder.decode(chunk)
-      }
-      else if (typeof chunk === 'string') {
-        message = chunk
-      }
-      else {
-        console.error('Invalid chunk type:', typeof chunk)
-        // Handle or skip the chunk based on your requirements
-        continue
-      }
-      sse.send(id => ({ id, data: message }))
-    }
-  }
-  builder.kill(0)
-  await builder.exited
-  for await (const chunk of builder.stderr) {
-    const message = decoder.decode(chunk)
-    sse.send(() => (message))
-  }
-  for await (const chunk of builder.stdout) {
-    const message = decoder.decode(chunk)
-    sse.send(id => (message))
-  }
+  const builder = execa('nixpacks',['build', `./temp/${id}`, '--name', generateName()])
+  builder.stderr?.on('data', (data) => {
+    sse.send(id => ({id,data}))
+  })
+  builder.stdout?.on('data', (data) => {
+    sse.send(id => ({id,data}))
+  })
+
+  await builder
+  builder.kill()
+  // const streams = [builder.stderr, builder.stdout]
+
+  // for await (const stream of streams) {
+  //   for await (const chunk of stream) {
+  //     let message: any
+  //     if (chunk instanceof Uint8Array || Buffer.isBuffer(chunk)) {
+  //       message = decoder.decode(chunk)
+  //     }
+  //     else if (typeof chunk === 'string') {
+  //       message = chunk
+  //     }
+  //     else {
+  //       console.error('Invalid chunk type:', typeof chunk)
+  //       // Handle or skip the chunk based on your requirements
+  //       continue
+  //     }
+  //     sse.send(id => ({ id, data: message }))
+  //   }
+  // }
+  // builder.kill(0)
+  // await builder.exited
+  // for await (const chunk of builder.stderr) {
+  //   const message = decoder.decode(chunk)
+  //   sse.send(() => (message))
+  // }
+  // for await (const chunk of builder.stdout) {
+  //   const message = decoder.decode(chunk)
+  //   sse.send(id => (message))
+  // }
 
   sse.close()
 })

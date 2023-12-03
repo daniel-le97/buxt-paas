@@ -1,12 +1,7 @@
 import * as fs from 'node:fs'
 import { z } from 'zod'
 import consola from 'consola'
-import type { FileSink } from 'bun'
-
-// import type { FileSink } from 'bun'
-
-// import type { FileSink } from 'bun'
-import { file, nanoseconds } from 'bun'
+import { execa } from 'execa'
 
 // import { Bun } from '#imports'
 
@@ -22,7 +17,9 @@ type Schema = z.output<typeof schema>
 
 // TODO we need to grab the users project to fill out these placeholders
 
-async function runCommandAndSendStream(command: string[], writer: FileSink, send: (callback: (id: number) => any) => void) {
+let fileContents = ''
+
+async function runCommandAndSendStream(first: string, command: string[], send: (callback: (id: number) => any) => void) {
   try {
     const decoder = new TextDecoder()
     const toDecode = (chunk: Uint8Array | any) => {
@@ -31,17 +28,32 @@ async function runCommandAndSendStream(command: string[], writer: FileSink, send
 
       return chunk as string
     }
-    const _command = Bun.spawn(command, { stdio: ['ignore', 'pipe', 'pipe'] })
-    const streams = [_command.stderr, _command.stdout]
-    for await (const stream of streams) {
-      for await (const chunk of stream) {
-        const message = toDecode(chunk)
-        send(id => ({ id, message }))
-        writer.write(message)
-      }
-    }
-    _command.kill(0)
-    await _command.exited
+
+    const _command = execa(first, command)
+
+    _command.stderr?.on('data', (data) => {
+      const message = toDecode(data)
+      send(id => ({ id, data:message }))
+      fileContents += `\n${message}`
+    })
+    _command.stdout?.on('data', (data) => {
+      const message = toDecode(data)
+      send(id => ({ id, data:message }))
+      fileContents += `\n${message}`
+    })
+
+    await _command
+    _command.kill()
+
+    // for await (const stream of streams) {
+    //   for await (const chunk of stream) {
+    //     const message = toDecode(chunk)
+    //     send(id => ({ id, message }))
+    //     writer.write(message)
+    //   }
+    // }
+    // _command.kill(0)
+    // await _command.exited
   }
   catch (error) {
     consola.withTag('command:failed').error(`${command}`)
@@ -76,28 +88,30 @@ export default defineEventHandler(async (event) => {
     const generatedName = generateName()
     const { send, close } = useSSE(event, `sse:event:${generatedName}`)
 
-    const logFile = file(`${logsPath + generateId}.txt`)
+    // const logFile = await fs.promises.readFile(`${logsPath + generateId}.txt`)
 
     const buildsLogs = project?.buildsLogs ?? []
     // buildsLogs.push(generateId)
     const date = new Date()
-    const writer = logFile.writer()
-    writer.write(`project built at: ${date}\n\n`)
+    // const writer = logFile.writer()
+    // writer.write(`project built at: ${date}\n\n`)
 
     if (!project?.application.repoUrl)
       throw createError('please update your configuration to include a repoURL')
 
-    const start = nanoseconds()
-    await runCommandAndSendStream(['git', 'clone', '--depth=1', project?.application.repoUrl, `./temp/${generatedName}`], writer, send)
+    const start = performance.now()
+    await runCommandAndSendStream('git', ['clone', '--depth=1', project?.application.repoUrl, `./temp/${generatedName}`], send)
 
-    await runCommandAndSendStream(['nixpacks', 'build', `./temp/${generatedName}`, '--name', generatedName], writer, send)
-    const end = nanoseconds()
-    writer.flush()
-    writer.end()
+    await runCommandAndSendStream('nixpacks', ['build', `./temp/${generatedName}`, '--name', generatedName], send)
+    const end = performance.now()
+    await fs.promises.writeFile(`${logsPath + generateId}.txt`, fileContents)
+    fileContents = ''
+    // writer.flush()
+    // writer.end()
     const newBuildLog = {
       id: generateId,
       buildTime: (end - start),
-      date
+      date,
     }
     buildsLogs.push(newBuildLog)
     await db.setItem(key, { ...project, buildsLogs })

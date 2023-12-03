@@ -1,3 +1,6 @@
+import * as fs from 'node:fs/promises'
+import { date } from 'zod'
+
 const cwd = process.cwd()
 
 export default defineEventHandler(async (event) => {
@@ -17,14 +20,15 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const file = Bun.file(`${cwd}/data/templates/caprover/logos/${id}`)
+  
+  // let _data: string = ''
+  const file = await fs.readFile(`${cwd}/data/templates/caprover/logos/${id}`)
 
-  setResponseHeaders(event, { 'Content-type': 'image/png', 'Content-Length': file.size })
+  setResponseHeaders(event, { 'Content-type': 'image/png', 'Content-Length': file.length })
 
   // createReadSteam()
-  const arrayBuffer = await file.arrayBuffer()
-  const buffer = Buffer.from(arrayBuffer)
-  return buffer
+
+  return file
   // return await sendWebResponse(event, new Response(file))
   // return sendStream(event, await file.stream())
 })

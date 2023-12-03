@@ -1,4 +1,4 @@
-import type { ITemplate } from '../../../../utils/types'
+
 
 function removeSpecialCharacters(inputString: string): string {
   // Use a regular expression to match all non-alphanumeric characters

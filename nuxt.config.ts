@@ -48,16 +48,16 @@ export default defineNuxtConfig({
     componentIslands: true,
   },
   nitro: {
-    preset: './server/runtime/bun',
+    // preset: './server/runtime/bun',
     imports: {
       dirs: ['./types'],
       // 'imports':[{name: '*', as:'Bun', from: 'bun', type: true, 'typeFrom': 'bun-types'}]
     },
     typescript: {
       tsConfig: {
-        compilerOptions: {
-          types: ['bun-types'],
-        },
+        // compilerOptions: {
+        //   types: ['bun-types'],
+        // },
         exclude: [`${cwd}/eslint.config.js`, `${cwd}/temp`],
       },
     },
