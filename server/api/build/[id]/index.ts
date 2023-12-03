@@ -60,7 +60,7 @@ async function runCommandAndSendStream(first: string, command: string[], send: (
   }
 }
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event: any) => {
   try {
     // const body = await readBody(event)
     const user = 'me'

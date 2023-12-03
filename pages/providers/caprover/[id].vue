@@ -10,11 +10,9 @@ console.log(templates.value)
 
 <template>
   <div class=" pl-32 w-full h-full">
-    <!-- <pre>
+    <pre>
       {{ templates }}
+    </pre>
 
-    </pre> -->
-    <!-- <MonacoEditor v-if="templates" v-model="templates" :options="{ theme: 'vs-dark' }" class=" min-h-screen" /> -->
-      <LazyTestMonaco :value="templates" language="yaml" class="min-h-screen"/>
   </div>
 </template>

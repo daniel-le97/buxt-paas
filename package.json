@@ -3,16 +3,15 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "bun --bun nuxt build",
-    "testing": "bun testing.ts",
+    "build": "nuxt build",
     "dev": "nuxt dev",
-    "start": "bun .output/server/index.mjs ",
+    "start": "node .output/server/index.mjs ",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "lint:fix": "bun --bun eslint . --fix",
-    "clean": "bun --bun nuxi cleanup && rm bun.lockb && bun i && bun run dev"
+    "lint:fix": "eslint . --fix",
+    "clean": "nuxi cleanup && rm bun.lockb && bun i && bun run dev"
   },
   "dependencies": {
     "@nuxt/image": "latest",

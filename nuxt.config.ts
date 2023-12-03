@@ -15,7 +15,6 @@ export default defineNuxtConfig({
   // 'nuxt-monaco-editor',
   // 'nuxt-security',
   '@nuxt/image',
-  // 'nuxt-monaco-editor'
 ],
 
   ignore: ['temp'],

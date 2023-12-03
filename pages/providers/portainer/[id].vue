@@ -8,13 +8,9 @@ const thisRef = ref<string>(JSON.stringify(templates as unknown as string)) as u
 
 <template>
   <div>
-    <!-- <pre>
+    <pre>
       {{ templates }}
+    </pre>
 
-    </pre> -->
-    <!-- <MonacoEditor v-if="templates" v-model="templates" :options="{ theme: 'vs-dark' }" class=" min-h-screen" /> -->
-    <ClientOnly>
-      <LazyMyMonacoEditor :value="templates" language="typescript" class="monaco" />
-    </ClientOnly>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <TestMonaco :value="value" :language="language"/>
+  <div>hello</div>
 </template>
 
 <script lang="ts" setup>
