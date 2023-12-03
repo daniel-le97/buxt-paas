@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   '@vueuse/nuxt', // these are currently unusable with bun
   // 'nuxt-monaco-editor',
   // 'nuxt-security',
-  '@nuxt/image',
+  // '@nuxt/image',
 ],
 
   ignore: ['temp'],

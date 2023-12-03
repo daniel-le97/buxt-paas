@@ -2,13 +2,13 @@
 # see all versions at https://hub.docker.com/r/oven/bun/tags
 FROM node:lts as base
 WORKDIR /usr/src/app
-RUN npm i -g pnpm
+RUN npm i -g bun
 # install dependencies into temp directory
 # this will cache them and speed up future builds
 FROM base AS install
 RUN mkdir -p /temp/dev
-COPY package.json pnpm-lock.yaml /temp/dev/
-RUN cd /temp/dev && pnpm install
+COPY package.json /temp/dev/
+RUN cd /temp/dev && bun install
 
 # # install with --production (exclude devDependencies)
 # RUN mkdir -p /temp/prod
@@ -24,10 +24,10 @@ COPY . .
 # [optional] tests & build
 ENV NODE_ENV=production
 # RUN bun test
-RUN pnpm run build
+RUN bun run build
 
 # copy production dependencies and source code into final image
-FROM base AS release
+FROM oven/bun:latest AS release
 # nuxt packages everything it needs in its .output directory when building
 # COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prerelease /usr/src/app/.output/ ./.output/
@@ -36,5 +36,6 @@ COPY --from=prerelease /usr/src/app/data/ ./data/
 
 
 # run the app
+USER bun
 EXPOSE 3000/tcp
-ENTRYPOINT [ "node", ".output/server/index.mjs" ]
+ENTRYPOINT [ "bun", ".output/server/index.mjs" ]

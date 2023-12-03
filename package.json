@@ -14,7 +14,6 @@
     "clean": "nuxi cleanup && rm bun.lockb && bun i && bun run dev"
   },
   "dependencies": {
-    "@nuxt/image": "latest",
     "@nuxt/ui": "^2.11.0",
     "@nuxtjs/tailwindcss": "^6.10.1",
     "@types/js-yaml": "^4.0.9",
