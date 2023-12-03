@@ -12,7 +12,7 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "lint:fix": "bun --bun eslint . --fix",
-    "clean": "bun --bun nuxi cleanup && bun i && bun run dev"
+    "clean": "bun --bun nuxi cleanup && rm bun.lockb && bun i && bun run dev"
   },
   "dependencies": {
     "@nuxt/image": "latest",
@@ -20,12 +20,12 @@
     "@nuxtjs/tailwindcss": "^6.10.1",
     "@types/js-yaml": "^4.0.9",
     "@vueuse/nuxt": "^10.6.1",
-    "bun-types": "^1.0.14",
-    "eslint": "^8.54.0",
+    "bun-types": "^1.0.15",
+    "eslint": "^8.55.0",
     "fetchgit": "^1.0.0",
     "js-yaml": "^4.1.0",
     "monaco-editor": "^0.44.0",
-    "nuxt": "^3.8.2",
+    "nuxt": "npm:nuxt-nightly@latest",
     "nuxt-monaco-editor": "latest",
     "octokit": "^3.1.2",
     "socket.io": "^4.7.2",
@@ -36,7 +36,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.1.2",
+    "@antfu/eslint-config": "^2.2.0",
     "@nuxt/devtools": "latest",
     "nuxt-security": "^1.0.0-rc.4"
   }

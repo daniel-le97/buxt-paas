@@ -6,7 +6,7 @@ import type { FileSink } from 'bun'
 // import type { FileSink } from 'bun'
 
 // import type { FileSink } from 'bun'
-import { file } from 'bun'
+import { file, nanoseconds } from 'bun'
 
 // import { Bun } from '#imports'
 
@@ -48,55 +48,60 @@ async function runCommandAndSendStream(command: string[], writer: FileSink, send
   }
 }
 
-let running = false
-
 export default defineEventHandler(async (event) => {
   try {
-    if (running)
-      return 'please wait till the last build is finished'
-
-    running = true
     // const body = await readBody(event)
+    const user = 'me'
+
     const id = getRouterParam(event, 'id')
     if (!id)
       throw createError('unable to find id')
 
-    // console.log('running')
-
+    const key = `${user}:${id}`
     const generateId = crypto.randomUUID()
 
-    const logsPath = `${process.cwd()}/data/logs/${id}/${generateId}.txt`
+    const db = useDbStorage('projects')
+    const isProject = await db.hasItem(key)
 
-    if (!fs.existsSync(`${process.cwd()}/data/logs/${id}/`))
-      fs.mkdirSync(`${process.cwd()}/data/logs/${id}/`, { recursive: true })
-      // console.log('making dir')
+    if (!isProject)
+      throw createError('unable to find project for user')
 
-    const repo = await useDbStorage('logs').setItem(`${id}:${generateId}`, `created at: ${Date.now()}\n`)
-    // console.log(repo)
+    const project = await db.getItem<Project>(key)
+
+    const logsPath = `${process.cwd()}/data/logs/${id}/`
+
+    if (!fs.existsSync(logsPath))
+      fs.mkdirSync(logsPath, { recursive: true })
 
     const generatedName = generateName()
     const { send, close } = useSSE(event, `sse:event:${generatedName}`)
 
-    const logFile = file(logsPath)
+    const logFile = file(`${logsPath + generateId}.txt`)
 
+    const buildsLogs = project?.buildsLogs ?? []
+    // buildsLogs.push(generateId)
+    const date = new Date()
     const writer = logFile.writer()
+    writer.write(`project built at: ${date}\n\n`)
 
-    const repoURL = 'https://github.com/daniel-le97/astro-portfolio'
+    if (!project?.application.repoUrl)
+      throw createError('please update your configuration to include a repoURL')
 
-    // console.log('running command')
-
-    await runCommandAndSendStream(['git', 'clone', '--depth=1', repoURL, `./temp/${generatedName}`], writer, send)
-    // console.log('running next command')
+    const start = nanoseconds()
+    await runCommandAndSendStream(['git', 'clone', '--depth=1', project?.application.repoUrl, `./temp/${generatedName}`], writer, send)
 
     await runCommandAndSendStream(['nixpacks', 'build', `./temp/${generatedName}`, '--name', generatedName], writer, send)
-
+    const end = nanoseconds()
     writer.flush()
     writer.end()
-
-    // console.log('ending stream')
-
+    const newBuildLog = {
+      id: generateId,
+      buildTime: (end - start),
+      date
+    }
+    buildsLogs.push(newBuildLog)
+    await db.setItem(key, { ...project, buildsLogs })
     close()
-    running = false
   }
   catch (error) {
     // console.log(error)

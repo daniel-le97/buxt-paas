@@ -6,7 +6,7 @@ export interface Project {
   deployed: boolean
   configured: boolean
   application: Application// Adjust the type based on the actual structure of the project property
-  buildsLogs: string[] // Adjust the type based on the actual structure of the buildsLogs property
+  buildsLogs: Logs[] // Adjust the type based on the actual structure of the buildsLogs property
 }
 
 interface Application {
@@ -16,4 +16,11 @@ interface Application {
   installCommand: string
   startCommand: string
 
+}
+
+
+interface Logs {
+  id: string,
+  buildTime: number
+  date:Date
 }

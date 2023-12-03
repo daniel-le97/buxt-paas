@@ -7,21 +7,28 @@ interface EventWatch {
   [key: string]: WatchStopHandle | null
 }
 
-const logs = [
-  { id: 1, duration: 222 },
-  { id: 2, duration: 222 },
-  { id: 3, duration: 222 },
-  { id: 4, duration: 222 },
-  { id: 5, duration: 222 },
-]
+const Logs = useActiveProject()
 
 const defaults: EventWatch = {}
 
+
+
+async function getLogs(id:string) {
+ console.log(id);
+ const routerId = useRoute('projects-id').params.id
+ const { data, pending, error, refresh } = await useFetch(`/api/build/${routerId}/logs/${id}`)
+console.log(data.value);
+
+buildData.value = data.value
+
+}
+
 async function handleClick() {
+  const id = useRoute('projects-id').params.id
   const watchEvents = useState<EventWatch>('event-source', () => defaults)
   // const data = useState('event-data', () => '')
 
-  const { data, status, error, close } = useEventSource(`http://localhost:3000/api/build/${6}`)
+  const { data, status, error, close } = useEventSource(`http://localhost:3000/api/build/${id}`)
 
   if (data.value)
     buildData.value += JSON.parse(data.value).message
@@ -57,7 +64,7 @@ async function handleClick() {
         Build Logs
       </label>
       <UButton type="button" class=" font-bold py-1" @click="handleClick">
-        Reset build queue
+        makeshift build
       </UButton>
       <UTooltip>
         <UIcon name="uil:rocket" class="text-2xl" />
@@ -68,14 +75,18 @@ async function handleClick() {
     </div>
     <UDivider class="w-full" />
     <div class="w-full flex">
-      <div class="p-2  w-4/5">
+      <div class="w-4/5">
         <div class="p-2 bg-zinc-700 rounded-md">
-          <pre id="pre-build" class="scrollable-pre screen"> {{ buildData }}</pre>
+          <pre id="pre-build" class="scrollable-pre screen w-full"> {{ buildData }}</pre>
+        </div>
+      </div>
+      <div class="w-1/5">
+        <div v-for="logs in Logs.buildsLogs" :key="logs.id" class="w-full flex justify-center items-center">
+          <BuildLogCard :duration="logs.buildTime" :date="logs.date" @click="getLogs(logs.id)" />
         </div>
       </div>
 
       <!-- BUILD STATUS -->
-      <BuildLogCard />
       <!-- BUILD STATUS -->
     </div>
   </section>

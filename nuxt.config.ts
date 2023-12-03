@@ -65,6 +65,7 @@ export default defineNuxtConfig({
     experimental: {
       asyncContext: true,
       openAPI: true,
+    
     },
   },
 
