@@ -9,12 +9,13 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxt/ui',
+  modules: [
+  '@nuxt/ui',
   '@nuxtjs/tailwindcss',
-  '@vueuse/nuxt', // these are currently unusable with bun
+  '@vueuse/nuxt',
+  'nuxt-security',
+  '@nuxt/image',
   // 'nuxt-monaco-editor',
-  // 'nuxt-security',
-  // '@nuxt/image',
 ],
 
   ignore: ['temp'],
@@ -33,9 +34,9 @@ export default defineNuxtConfig({
     dirs: ['./types'],
   },
   runtimeConfig: {
-    redis: {
-      url: process.env.NUXT_REDIS_URL,
-    },
+    // redis: {
+    //   url: process.env.NUXT_REDIS_URL,
+    // },
     public: {
       socketUrl: 3001,
       host: 'localhost',
@@ -47,7 +48,6 @@ export default defineNuxtConfig({
     componentIslands: true,
   },
   nitro: {
-    preset: 'bun',
     imports: {
       dirs: ['./types'],
       // 'imports':[{name: '*', as:'Bun', from: 'bun', type: true, 'typeFrom': 'bun-types'}]

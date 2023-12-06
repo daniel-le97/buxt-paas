@@ -1,5 +1,42 @@
-version: '3.8'
+version: '3'
+
 services:
-  node:
-    image: node:lts
-    working_dir: /usr/src/app
+  proxy:
+    image: "traefik:v2.10"
+    container_name: "nuxt-sailor-proxy"
+    command:
+      - "--api.insecure=true"
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - nux-sailor
+
+  core:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: "nuxt-sailor-core"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.bun.rule=Host(`bun.localhost`)"
+      - "traefik.http.routers.bun.entrypoints=web"
+      - "traefik.http.services.bun.loadbalancer.server.port=3000"
+      - "traefik.http.services.bun.loadbalancer.server.scheme=http"
+    ports:
+       - "3000:3000"
+    volumes:
+       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - nux-sailor
+
+networks:
+  nux-sailor:
+      driver: bridge
+

@@ -5,7 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "start": "bun .output/server/index.mjs ",
+    "start": "node .output/server/index.mjs ",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -35,7 +35,7 @@
     "@antfu/eslint-config": "^2.2.0",
     "@monaco-editor/loader": "^1.4.0",
     "@nuxt/devtools": "latest",
-    "@types/execa": "^2.0.0",
+    "@nuxt/image": "latest",
     "execa": "^8.0.1",
     "nuxt-security": "^1.0.0-rc.4"
   }
