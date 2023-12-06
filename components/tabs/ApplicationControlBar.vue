@@ -35,15 +35,10 @@ async function handleClick() {
   })
 
   watchEvents.value.data = watch(data, (value) => {
-    if (value) {
-      const real = JSON.parse(value).data
-      // console.log(real);
-      useBuildSSE().value += real
-      
-    }
+    console.log(value);
     
-    // if (data.value)
-    // useBuildSSE().value += JSON.parse(data.value).data
+    if (data.value)
+    useBuildSSE().value += JSON.parse(data.value).data
   })
 
   watchEvents.value.status = watch(status, () => {

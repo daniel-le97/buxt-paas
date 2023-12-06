@@ -3,56 +3,6 @@ import { z } from 'zod'
 import consola from 'consola'
 import { execa } from 'execa'
 
-
-
-// import { Bun } from '#imports'
-
-// const schema = z.object({
-//   repoURL: z.string().min(1),
-//   installCommand: z.string().nullable(),
-//   buildCommand: z.string().nullable(),
-//   startCommand: z.string().nullable(),
-//   buildPack: z.string().min(1, 'Must be at least 8 characters'),
-// })
-
-// type Schema = z.output<typeof schema>
-
-// TODO we need to grab the users project to fill out these placeholders
-
-// let fileContents = ''
-
-// async function runCommandAndSendStream(first: string, command: string[], send: (callback: (id: number) => any) => void) {
-//   try {
-//     const decoder = new TextDecoder()
-//     const toDecode = (chunk: Uint8Array | any) => {
-//       if (chunk instanceof Uint8Array || Buffer.isBuffer(chunk))
-//         return decoder.decode(chunk)
-
-//       return chunk as string
-//     }
-
-//     const _command = execa(first, command)
-
-//     _command.stderr?.on('data', (data) => {
-//       const message = toDecode(data)
-//       send(id => ({ id, data:message }))
-//       fileContents += `\n${message}`
-//     })
-//     _command.stdout?.on('data', (data) => {
-//       const message = toDecode(data)
-//       send(id => ({ id, data:message }))
-//       fileContents += `\n${message}`
-//     })
-
-//     await _command
-//     _command.kill()
-
-//   }
-//   catch (error) {
-//     consola.withTag('command:failed').error(`${command}`)
-//   }
-// }
-
 export default defineEventHandler(async (event: any) => {
   try {
     // const body = await readBody(event)
@@ -90,7 +40,7 @@ export default defineEventHandler(async (event: any) => {
     close
   } as ProcessProject
 
-  queue.addProject(newProject)
+  await queue.addProject(newProject)
   
   }
   catch (error) {
