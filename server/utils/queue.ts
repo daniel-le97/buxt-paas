@@ -3,16 +3,7 @@ import { execa } from 'execa'
 import { createHooks } from 'hookable'
 import consola from 'consola'
 
-// import { Project } from '../../types/project';
-
-interface ProcessProject extends Project {
-  send: (callback: (id: number) => any) => void
-  close: () => void
-  key:string
-  logPath:string
-}
-
-class Queue{
+class Queue {
   hooks = createHooks()
   queue: ProcessProject[] | null
   isProcessing: boolean
@@ -24,10 +15,10 @@ class Queue{
     this.fileContents = ''
   }
 
-  addProject(Project: ProcessProject) {
+  async addProject(Project: ProcessProject) {
     this.queue?.push(Project)
     if (!this.isProcessing)
-      this.processQueue()
+      await this.processQueue()
   }
 
   async processQueue() {
@@ -54,7 +45,7 @@ class Queue{
     // Trigger 'afterProcessProject' hook
     await this.hooks.callHook('afterProcessProject', Project)
 
-    this.processQueue() // Process the next Project
+    await this.processQueue() // Process the next Project
   }
 
   private async doProject(project: ProcessProject) {
@@ -70,7 +61,10 @@ class Queue{
     await this.runCommandAndSendStream('nixpacks', ['build', `./temp/${generatedName}`, '--name', generatedName], project.send)
     const end = performance.now()
 
-    await fs.promises.writeFile(`${project.logPath + generateId}.txt`, this.fileContents)
+    if (!fs.existsSync(project.logsPath))
+      fs.mkdirSync(project.logsPath, { recursive: true })
+
+    await fs.promises.writeFile(`${project.logsPath + generateId}.txt`, this.fileContents)
 
     // writer.flush()
     // writer.end()

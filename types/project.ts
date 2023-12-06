@@ -24,3 +24,11 @@ interface Logs {
   buildTime: number
   date:Date
 }
+
+
+export interface ProcessProject extends Project {
+  send: (callback: (id: number) => any) => void
+  close: () => void
+  key:string
+  logsPath:string
+}
