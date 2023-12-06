@@ -25,7 +25,7 @@ services:
     container_name: nuxt-sailor-core
     labels:
       - traefik.enable=true
-      - traefik.http.routers.bun.rule=Host(`bun.localhost`)
+      - traefik.http.routers.bun.rule=Host(`nux-sailor.localhost`)
       - traefik.http.routers.bun.entrypoints=web
       - traefik.http.services.bun.loadbalancer.server.port=3000
       - traefik.http.services.bun.loadbalancer.server.scheme=http

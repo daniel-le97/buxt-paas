@@ -1,13 +1,14 @@
 export default defineEventHandler(async (event: any) => {
   try {
-    // const body = await readBody(event)
-    const user = 'me'
+    const session = await requireAuthSession(event)
 
     const id = getRouterParam(event, 'id')
-    if (!id)
+ 
+    
+    if (!id || !session.id)
       throw createError('unable to find id')
 
-    const key = `${user}:${id}`
+    const key = `${session.id}:${id}`
 
     const db = useDbStorage('projects')
     const isProject = await db.hasItem(key)
@@ -19,25 +20,39 @@ export default defineEventHandler(async (event: any) => {
 
     const logsPath = `${process.cwd()}/data/logs/${id}/`
 
-    const generatedName = generateName()
-    const { send, close } = useSSE(event, `sse:event:${generatedName}`)
-
     if (!project?.application.repoUrl)
       throw createError('please update your configuration to include a repoURL')
 
-    const newProject = {
-      ...project,
-      logsPath,
-      key,
-      send,
-      close,
-    } as ProcessProject
+    const isActiveProject = queue.activeProject?.id === id
+    const isInQueue = queue.queue?.find(queue => queue.id === id)
+    const isListening = queue._listeners.find(listener => listener.userId === session.id)
 
-    await queue.addProject(newProject)
+    if (!isListening) {
+      const { send, close } = useSSE(event, `sse:event:${id}`)
+      const newListener: Listener = {
+        projectId: project.id,
+        send,
+        close,
+        userId: session.id,
+      }
+
+      if (isActiveProject || isInQueue) {
+        queue.addProjectListener(newListener)
+      }
+      else {
+        const newProject = {
+          ...project,
+          logsPath,
+          key,
+        } as ProcessProject
+        queue.addProjectListener(newListener)
+        await queue.addProject(newProject)
+      }
+    }
   }
   catch (error) {
-    // console.log(error)
-
+    console.log(error);
+    
     throw createError({ statusMessage: `failed to build app` })
   }
 })

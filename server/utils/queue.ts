@@ -3,11 +3,15 @@ import { execa } from 'execa'
 import { createHooks } from 'hookable'
 import consola from 'consola'
 
+
+
 class Queue {
   hooks = createHooks()
   queue: ProcessProject[] | null
   isProcessing: boolean
   fileContents: string
+  activeProject: ProcessProject | null = null
+  _listeners: Listener[] = []
 
   constructor() {
     this.queue = []
@@ -24,6 +28,7 @@ class Queue {
   async processQueue() {
     if (this.queue?.length === 0) {
       this.isProcessing = false
+      this.activeProject = null
       return
     }
 
@@ -34,16 +39,17 @@ class Queue {
       return
 
     this.isProcessing = true
+    this.activeProject = Project
 
     // Trigger 'processProject' hook
-    await this.hooks.callHook('processProject', Project)
+    // await this.hooks.callHook('processProject', Project)
 
     // Simulate Project processing
     console.log(`Processing Project: ${Project.id} at ${new Date(Date.now())}`)
     await this.doProject(Project)
 
     // Trigger 'afterProcessProject' hook
-    await this.hooks.callHook('afterProcessProject', Project)
+    // await this.hooks.callHook('afterProcessProject', Project)
 
     await this.processQueue() // Process the next Project
   }
@@ -56,9 +62,9 @@ class Queue {
     const generatedName = generateName()
     const date = new Date()
     this.fileContents = ''
-    await this.runCommandAndSendStream('git', ['clone', '--depth=1', application.repoUrl, `./temp/${generatedName}`], project.send)
+    await this.runCommandAndSendStream('git', ['clone', '--depth=1', application.repoUrl, `./temp/${generatedName}`], project.id)
 
-    await this.runCommandAndSendStream('nixpacks', ['build', `./temp/${generatedName}`, '--name', generatedName], project.send)
+    await this.runCommandAndSendStream('nixpacks', ['build', `./temp/${generatedName}`, '--name', generatedName], project.id)
     const end = performance.now()
 
     if (!fs.existsSync(project.logsPath))
@@ -66,8 +72,7 @@ class Queue {
 
     await fs.promises.writeFile(`${project.logsPath + generateId}.txt`, this.fileContents)
 
-    // writer.flush()
-    // writer.end()
+
     const newBuildLog = {
       id: generateId,
       buildTime: (end - start),
@@ -76,11 +81,34 @@ class Queue {
     const db = useDbStorage('projects')
     buildsLogs.push(newBuildLog)
     await db.setItem(project.key, { ...project, buildsLogs })
-    project.close()
-    // Simulate some asynchronous Project
+    this.closeListeners(project.id)
   }
 
-  private async runCommandAndSendStream(first: string, command: string[], send: (callback: (id: number) => any) => void, env = {}) {
+  addProjectListener(listener:Listener){
+    this._listeners.push(listener)
+  }
+
+  getProjectListeners(projectId: string) {
+    const _listeners = this._listeners.filter(listener => listener.projectId === projectId)
+    return _listeners
+  }
+
+  sendTolisteners(projectId: string, message:string){
+    const listeners = this.getProjectListeners(projectId)
+    console.log('sending to listeners', message);
+    
+    listeners.forEach(listener => {
+      listener.send(id => ({id, data:message}))
+    })
+  }
+
+  closeListeners(projectId:string){
+    const listeners = this.getProjectListeners(projectId)
+    listeners.forEach(listener => listener.close())
+    this._listeners = this._listeners.filter(listener => listener.projectId !== projectId)
+  }
+
+  private async runCommandAndSendStream(first: string, command: string[], projectId:string, env = {}) {
     try {
       const decoder = new TextDecoder()
       const toDecode = (chunk: Uint8Array | any) => {
@@ -90,19 +118,18 @@ class Queue {
         return chunk as string
       }
 
-      const _command = execa(first, command, {
-        extendEnv:false,
-        env
-      })
+      console.log('running :' ,first, command.join(" "));
+      
+      const _command = execa(first, command)
 
       _command.stderr?.on('data', (data) => {
         const message = toDecode(data)
-        send(id => ({ id, data: message }))
+        this.sendTolisteners(projectId, message)
         this.fileContents += `\n${message}`
       })
       _command.stdout?.on('data', (data) => {
         const message = toDecode(data)
-        send(id => ({ id, data: message }))
+        this.sendTolisteners(projectId, message)
         this.fileContents += `\n${message}`
       })
 
@@ -110,6 +137,8 @@ class Queue {
       _command.kill()
     }
     catch (error) {
+      console.log(error);
+      
       consola.withTag('command:failed').error(`${command}`)
     }
   }

@@ -25,8 +25,14 @@ interface Logs {
 }
 
 export interface ProcessProject extends Project {
-  send: (callback: (id: number) => any) => void
-  close: () => void
   key: string
   logsPath: string
+}
+
+
+export interface Listener {
+  projectId: string
+  userId?:string
+  send: (callback: (id: number) => any) => void
+  close: () => void
 }
