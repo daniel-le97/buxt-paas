@@ -1,5 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 const cwd = process.cwd()
+if (!process.env.NUXT_AUTH_PASSWORD) {
+  console.warn('Security warning: NUXT_AUTH_PASSWORD is not set. Using an example value. Please set it otherwise your session is unsecure!')
+  process.env.NUXT_AUTH_PASSWORD = 'secretsecretsecretsecretsecretsecretsecret'
+}
+
 export default defineNuxtConfig({
   devtools: {
     enabled: true,
@@ -8,15 +13,18 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
+  extends: [
+    './auth',
+  ],
 
   modules: [
-  '@nuxt/ui',
-  '@nuxtjs/tailwindcss',
-  '@vueuse/nuxt',
-  'nuxt-security',
-  '@nuxt/image',
+    '@nuxt/ui',
+    '@nuxtjs/tailwindcss',
+    '@vueuse/nuxt',
+    'nuxt-security',
+    '@nuxt/image',
   // 'nuxt-monaco-editor',
-],
+  ],
 
   ignore: ['temp'],
 
@@ -28,6 +36,11 @@ export default defineNuxtConfig({
 
   tailwindcss: {
     quiet: true,
+  },
+  security: {
+    headers: {
+      crossOriginEmbedderPolicy: process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
+    },
   },
 
   imports: {
@@ -63,7 +76,7 @@ export default defineNuxtConfig({
     experimental: {
       asyncContext: true,
       openAPI: true,
-    
+
     },
   },
 

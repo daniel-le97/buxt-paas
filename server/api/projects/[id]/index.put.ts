@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
     if (!db.hasItem(key))
       throw createError({ message: 'unable to find project' })
 
-    await db.setItem<Project>(key, {...body, configured:true})
+    await db.setItem<Project>(key, { ...body, configured: true })
     return 'success'
   }
   catch (error) {

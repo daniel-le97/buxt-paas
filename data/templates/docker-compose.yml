@@ -1,6 +1,6 @@
 volumes:
-  supa-postgres-data: 
-  
+  supa-postgres-data:
+
 services:
   traefik:
     image: traefik:v2.10

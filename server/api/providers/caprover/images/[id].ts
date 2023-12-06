@@ -1,5 +1,4 @@
 import * as fs from 'node:fs/promises'
-import { date } from 'zod'
 
 const cwd = process.cwd()
 
@@ -20,7 +19,6 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  
   // let _data: string = ''
   const file = await fs.readFile(`${cwd}/data/templates/caprover/logos/${id}`)
 

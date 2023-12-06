@@ -36,6 +36,11 @@ const navItems = [
     icon: 'ri:apps-2-fill',
     label: 'Caprover',
   },
+  {
+    link: '/login',
+    icon: 'material-symbols:login-rounded',
+    label: 'Login',
+  },
 
 ]
 </script>

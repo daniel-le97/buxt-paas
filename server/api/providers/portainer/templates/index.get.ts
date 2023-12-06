@@ -1,5 +1,3 @@
-
-
 function removeSpecialCharacters(inputString: string): string {
   // Use a regular expression to match all non-alphanumeric characters
   const regex = /[^a-zA-Z0-9]/g

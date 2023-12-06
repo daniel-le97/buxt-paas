@@ -5,8 +5,6 @@ export default defineEventHandler(async (event) => {
   queue.addProject(body)
   // const {result} = await runNitroTask('build', body)
   // console.log(result);
-  
+
   return body
 })
-
-

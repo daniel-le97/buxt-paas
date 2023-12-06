@@ -1,5 +1,4 @@
 export default defineEventHandler(async (event) => {
-  
   const id = getRouterParam(event, 'id')
   if (!id)
     return 'not found'
@@ -7,5 +6,3 @@ export default defineEventHandler(async (event) => {
   if (await db.hasItem(id))
     await db.removeItem(id)
 })
-
-

@@ -1,10 +1,10 @@
 version: '3.8'
-services:  
+services:
   node:
-    command: "npm i -g bun && bun run dev"
+    command: 'npm i -g bun && bun run dev'
     volumes:
       - .:/usr/src/app:cached
-    # networks: 
+    # networks:
     #   - web-dev
     # Remove the ports if you are using something like Trafeik or Caddy (recommended)
     ports:

@@ -18,17 +18,15 @@ interface Application {
 
 }
 
-
 interface Logs {
-  id: string,
+  id: string
   buildTime: number
-  date:Date
+  date: Date
 }
-
 
 export interface ProcessProject extends Project {
   send: (callback: (id: number) => any) => void
   close: () => void
-  key:string
-  logsPath:string
+  key: string
+  logsPath: string
 }

@@ -14,26 +14,24 @@ export function useSSE(event: H3Event, hookName: string, custom = false) {
   setResponseStatus(event, 200)
 
   let id = 0
-let unreg: () => void
+  let unreg: () => void
   if (!custom) {
     unreg = sseHooks.hook(hookName, (data: any) => {
-      console.log('sending: ', data);
-      
+      console.log('sending: ', data)
+
       event.node.res.write(`id: ${id += 1}\n`)
       event.node.res.write(`data: ${JSON.stringify(data)}\n\n`)
       event.node.res.flushHeaders()
     })
-    
-  }else{
+  }
+  else {
     unreg = sseHooks.hook(hookName, (data: any) => {
       event.node.res.write(`id: ${id += 1}\n`)
       event.node.res.write(`event: ${hookName}\n`)
       event.node.res.write(`data: ${JSON.stringify(data)}\n\n`)
       event.node.res.flushHeaders()
     })
-
   }
-
 
   const send = (callback: (id: number) => any) => {
     // console.log(callback(id))

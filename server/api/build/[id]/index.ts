@@ -1,8 +1,3 @@
-import * as fs from 'node:fs'
-import { z } from 'zod'
-import consola from 'consola'
-import { execa } from 'execa'
-
 export default defineEventHandler(async (event: any) => {
   try {
     // const body = await readBody(event)
@@ -27,21 +22,18 @@ export default defineEventHandler(async (event: any) => {
     const generatedName = generateName()
     const { send, close } = useSSE(event, `sse:event:${generatedName}`)
 
-    
-    
     if (!project?.application.repoUrl)
-    throw createError('please update your configuration to include a repoURL')
-  
-  const newProject = {
-    ...project,
-    logsPath,
-    key,
-    send,
-    close
-  } as ProcessProject
+      throw createError('please update your configuration to include a repoURL')
 
-  await queue.addProject(newProject)
-  
+    const newProject = {
+      ...project,
+      logsPath,
+      key,
+      send,
+      close,
+    } as ProcessProject
+
+    await queue.addProject(newProject)
   }
   catch (error) {
     // console.log(error)

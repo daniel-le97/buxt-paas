@@ -13,15 +13,14 @@ const defaults: EventWatch = {}
 
 const activeId = useState('active-log-id')
 
-async function getLogs(id:string) {
+async function getLogs(id: string) {
 //  console.log(id);
- activeId.value = id
- const routerId = useRoute('projects-id').params.id
- const { data, pending, error, refresh } = await useFetch(`/api/build/${routerId}/logs/${id}`)
-// console.log(data.value);
+  activeId.value = id
+  const routerId = useRoute('projects-id').params.id
+  const { data, pending, error, refresh } = await useFetch(`/api/build/${routerId}/logs/${id}`)
+  // console.log(data.value);
 
-buildData.value = data.value as string
-
+  buildData.value = data.value as string
 }
 
 async function handleClick() {
@@ -43,14 +42,12 @@ async function handleClick() {
   })
 
   watchEvents.value.data = watch(data, (value) => {
-    console.log(value);
-    
-    if (data.value){
-      console.log(JSON.parse(data.value));
-      buildData.value += JSON.parse(data.value).message
+    console.log(value)
 
+    if (data.value) {
+      console.log(JSON.parse(data.value))
+      buildData.value += JSON.parse(data.value).message
     }
-    
   })
 
   watchEvents.value.status = watch(status, () => {
@@ -90,7 +87,7 @@ async function handleClick() {
       </div>
       <div class="w-1/5">
         <div v-for="logs in Logs.buildsLogs" :key="logs.id" class="w-full flex justify-center items-center">
-          <BuildLogCard :duration="logs.buildTime" :date="logs.date" @click="getLogs(logs.id)" :class=" activeId === logs.id ? 'bg-white text-black' : ''"/>
+          <BuildLogCard :duration="logs.buildTime" :date="logs.date" :class=" activeId === logs.id ? 'bg-white text-black' : ''" @click="getLogs(logs.id)" />
         </div>
       </div>
 

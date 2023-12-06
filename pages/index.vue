@@ -10,14 +10,13 @@ onMounted(() => {
     data.value = value
   })
   watcher.event = watch(source.event, (value) => {
-    console.log(value);
-    
+    console.log(value)
   })
   watcher.error = watch(source.error, (value) => {
-    console.log(value);
+    console.log(value)
   })
   watcher.status = watch(source.status, (value) => {
-    console.log(value);
+    console.log(value)
   })
 })
 

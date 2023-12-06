@@ -11,6 +11,5 @@ const thisRef = ref<string>(JSON.stringify(templates as unknown as string)) as u
     <pre>
       {{ templates }}
     </pre>
-
   </div>
 </template>

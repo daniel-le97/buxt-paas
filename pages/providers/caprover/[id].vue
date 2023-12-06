@@ -1,6 +1,4 @@
 <script  lang="ts" setup>
-
-
 const router = useRoute('providers-caprover-id').params.id
 
 const { data: templates } = await useFetch<string>(`/api/providers/caprover/${router}`)
@@ -13,6 +11,5 @@ console.log(templates.value)
     <pre>
       {{ templates }}
     </pre>
-
   </div>
 </template>
