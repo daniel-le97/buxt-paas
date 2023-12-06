@@ -9,6 +9,10 @@ onMounted(() => {
   watcher.data = watch(source.data, (value) => {
     data.value = value
   })
+  watcher.event = watch(source.event, (value) => {
+    console.log(value);
+    
+  })
   watcher.error = watch(source.error, (value) => {
     console.log(value);
   })
@@ -23,6 +27,7 @@ onBeforeUnmount(() => {
     source = null
     watcher.data?.()
     watcher.error?.()
+    watcher.event?.()
     watcher.status?.()
   }
   catch (error) {

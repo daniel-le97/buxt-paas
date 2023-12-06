@@ -45,15 +45,6 @@ async function runCommandAndSendStream(first: string, command: string[], send: (
     await _command
     _command.kill()
 
-    // for await (const stream of streams) {
-    //   for await (const chunk of stream) {
-    //     const message = toDecode(chunk)
-    //     send(id => ({ id, message }))
-    //     writer.write(message)
-    //   }
-    // }
-    // _command.kill(0)
-    // await _command.exited
   }
   catch (error) {
     consola.withTag('command:failed').error(`${command}`)

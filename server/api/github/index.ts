@@ -22,6 +22,6 @@
 // Your app can now receive webhook events at `/api/github/webhooks`
 // createServer(createNodeMiddleware(app)).listen(3000)
 
-export default defineEventHandler(() => {
-
+export default defineEventHandler(async () => {
+  const tty = await import('node:tty')
 })
