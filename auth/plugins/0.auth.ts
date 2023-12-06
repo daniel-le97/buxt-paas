@@ -1,3 +1,4 @@
+import { routeLocationKey } from 'vue-router/auto';
 import type { AuthSession } from '~~/auth/server/utils/session'
 
 export default defineNuxtPlugin(async (nuxtApp) => {
@@ -37,15 +38,16 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   if (process.client) {
     watch(loggedIn, async (loggedIn) => {
-      if (!loggedIn && currentRoute.meta.auth) {
-        redirectTo.value = currentRoute.path
+      if (!loggedIn) {
+        console.log('navigating to login')
         await navigateTo('/login')
       }
     })
   }
 
-  if (loggedIn.value && currentRoute.path === '/login')
-    await navigateTo(redirectTo.value || '/')
+
+
+  // await navigateTo(redirectTo.value || '/')
 
   return {
     provide: {

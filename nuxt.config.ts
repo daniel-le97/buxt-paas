@@ -21,9 +21,8 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
-    'nuxt-security',
+    // 'nuxt-security',
     '@nuxt/image',
-  // 'nuxt-monaco-editor',
   ],
 
   ignore: ['temp'],

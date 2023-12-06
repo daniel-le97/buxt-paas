@@ -12,6 +12,8 @@ const schema = z.object({
 type Schema = z.output<typeof schema>
 
 const state = useActiveProject()
+console.log(state.value);
+
 
 const options = [
   { label: 'nixpacks', value: 'nixpacks' },
@@ -40,7 +42,7 @@ async function onSubmit() {
   }
 }
 
-const needsRepo = computed(() => state.value.application.buildCommand === 'nixpacks')
+const needsRepo = computed(() => state?.value?.application?.buildCommand === 'nixpacks')
 </script>
 
 <template>

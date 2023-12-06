@@ -4,10 +4,12 @@ export default defineEventHandler(async (event) => {
   try {
     const ip = getRequestIP(event)
     const body = await readBody(event)
+    const session = await requireAuthSession(event)
+
     // TODO replace user with a real user when authetication is added
     const project: Project = {
       id: crypto.randomUUID(),
-      user: body.user,
+      user: session.id!,
       createdAt: new Date().toLocaleString(),
       name: generateName(),
       deployed: false,

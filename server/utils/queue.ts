@@ -80,7 +80,7 @@ class Queue {
     // Simulate some asynchronous Project
   }
 
-  private async runCommandAndSendStream(first: string, command: string[], send: (callback: (id: number) => any) => void) {
+  private async runCommandAndSendStream(first: string, command: string[], send: (callback: (id: number) => any) => void, env = {}) {
     try {
       const decoder = new TextDecoder()
       const toDecode = (chunk: Uint8Array | any) => {
@@ -90,7 +90,10 @@ class Queue {
         return chunk as string
       }
 
-      const _command = execa(first, command)
+      const _command = execa(first, command, {
+        extendEnv:false,
+        env
+      })
 
       _command.stderr?.on('data', (data) => {
         const message = toDecode(data)

@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
   try {
     // TODO change with auth
-    const user = 'me'
+    const session = await requireAuthSession(event)
     const id = getRouterParam(event, 'id')
     const body = await readBody(event)
 
@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
 
     const db = useDbStorage('projects')
 
-    const key = `${user}:${id}`
+    const key = `${session.id}:${id}`
 
     if (!db.hasItem(key))
       throw createError({ message: 'unable to find project' })

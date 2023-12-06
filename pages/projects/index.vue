@@ -14,19 +14,16 @@ async function handleProjectCreate() {
   await navigateTo(`/projects/${project.id}`)
   // execute()
 }
-async function naver(id: string) {
-  await navigateTo(`/projects/${id}`)
-}
 </script>
 
 <template>
-  <div v-if="data" class="m-2 p-2 ">
+  <div class="m-2 p-2 ">
     <div class="flex justify-end">
       <UButton @click="handleProjectCreate">
         Create +
       </UButton>
     </div>
-    <div class="flex justify-evenly flex-row align-middle gap-7 p-3 m-3">
+    <div v-if="data" class="flex justify-evenly flex-row align-middle gap-7 p-3 m-3">
       <div v-for="template in data" :key="template.name" class="group shadow-md relative p-2 rounded-md dark:bg-gray-900 h-full hover:shadow-xl transition-all duration-150 ease-linear">
         <NuxtLink :to="`/projects/${template.id}`">
           <div class="flex    items-center justify-center space-x-3">
@@ -46,6 +43,9 @@ async function naver(id: string) {
           </div>
         </NuxtLink>
       </div>
+    </div>
+    <div v-else class="flex justify-evenly flex-row align-middle gap-7 p-3 m-3">
+      no projects to display
     </div>
   </div>
 </template>

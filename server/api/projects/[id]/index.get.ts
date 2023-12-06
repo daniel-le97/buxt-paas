@@ -1,7 +1,8 @@
 export default defineEventHandler(async (event) => {
   try {
     // TODO change with auth
-    const user = 'me'
+    
+    const session = await requireAuthSession(event)
     const id = getRouterParam(event, 'id')
 
     if (!id)
@@ -9,7 +10,7 @@ export default defineEventHandler(async (event) => {
 
     const db = useDbStorage('projects')
 
-    const project = await db.getItem<Project>(`${user}:${id}`)
+    const project = await db.getItem<Project>(`${session.id}:${id}`)
 
     return project
   }

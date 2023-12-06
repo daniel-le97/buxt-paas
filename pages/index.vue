@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { WatchStopHandle } from 'vue'
 
+definePageMeta({
+  auth: true,
+})
 const data = ref()
 let source: ReturnType<typeof useEventSource> | null
 const watcher: Record<string, WatchStopHandle> = {}
