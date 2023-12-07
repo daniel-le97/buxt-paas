@@ -14,6 +14,9 @@ const runtimeConfig = useRuntimeConfig()
 // Refer to Auth.js docs for more details
 export const authOptions: AuthConfig = {
   secret: runtimeConfig.authJs.secret,
+  // adapter: MyAdapter(useDbStorage('auth')),
+  // debug: process.env.NODE_ENV !== 'production',
+  // this is required for credentials provider
   // session: {
   //   strategy: 'jwt',
   // },

@@ -64,7 +64,7 @@ function onError(err: any) {
 <script setup lang="ts">
 const { signIn, signOut, session, status, cookies, getProviders, user } = useAuth()
 
-const { data, pending, error, refresh } = await useFetch('/api/stats')
+// const { data, pending, error, refresh } = await useFetch('/api/stats')/
 </script>
 
 <template>
@@ -81,7 +81,7 @@ const { data, pending, error, refresh } = await useFetch('/api/stats')
     <div>
       <pre>{{ status }}</pre>
       <pre>{{ session}}</pre>
-      <pre>{{ cookies }}</pre>
+      <!-- <pre>{{ cookies }}</pre> -->
       <pre>{{ user }}</pre>
     </div>
   </div>

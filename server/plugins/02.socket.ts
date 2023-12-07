@@ -1,11 +1,4 @@
-import type { Server } from 'socket.io'
-import type { DefaultEventsMap } from 'socket.io/dist/typed-events.js'
 
-// import DownloadAudio from 'node-youtube-audio'
-
-const count = 0
-
-const socketServer: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any> | null = null
 
 export default defineNitroPlugin((nitroApp) => {
   // if (!socketServer) {

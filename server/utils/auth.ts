@@ -47,8 +47,8 @@ export function MyAdapter(client: ReturnType<typeof createStorage>, options = {}
         return user
       }
       catch (error) {
-        console.log(error);
-        
+        console.log(error)
+
         return null
       }
     },
@@ -76,34 +76,38 @@ export function MyAdapter(client: ReturnType<typeof createStorage>, options = {}
 
     // },
     async createSession({ sessionToken, userId, expires }) {
+
       const session: AdapterSession = {
         expires,
         userId,
         sessionToken,
       }
+      // console.log('create session',{session});
+
       await db.setItem(`sessions:${sessionToken}`, session)
       return session
     },
     async getSessionAndUser(sessionToken) {
+      // console.log('get session and user', sessionToken);
 
       try {
-        
         const session = (await db.getItem<AdapterSession>(`sessions:${sessionToken}`))
         const user = (await db.getItem<AdapterUser>(`users:${session?.userId}`))
         if (!session || !user)
+          return null
+
+        return { session, user }
+      }
+      catch (error) {
+        console.log(error)
+
         return null
-      
-      return { session, user }
-    } catch (error) {
-      console.log(error);
-      
-      return null
-    }
+      }
     },
     async updateSession({ sessionToken: token, userId: id, expires: time }) {
       try {
-        console.log({token, id, time});
-        
+        // console.log({token, id, time});
+
         const session = (await db.getItem<AdapterSession>(`sessions:${token}`))
         const newSession: AdapterSession = {
           sessionToken: token ?? session?.sessionToken,
