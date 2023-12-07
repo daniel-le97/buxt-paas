@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 useHead({
   title: "User Profile",
 });
@@ -19,4 +19,5 @@ const {$auth} = useNuxtApp()
     <br>
     <UButton @click="authLogout()">Logout</UButton>
   </div>
-</template>
+</template> -->
+<template>hello</template>

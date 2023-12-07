@@ -15,17 +15,17 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
-  // alias: {
-  //   // if not using pnpm
-  //   // cookie: resolve(__dirname, 'node_modules/cookie'),
-  //   cookie: 'cookie',
-  // },
-  extends: [
-    './auth',
-  ],
+  alias: {
+    // if not using pnpm
+    // cookie: resolve(__dirname, 'node_modules/cookie'),
+    cookie: 'cookie',
+  },
+  // extends: [
+  //   './auth',
+  // ],
 
   modules: [
-    // '@hebilicious/authjs-nuxt',
+    '@hebilicious/authjs-nuxt',
     '@nuxt/ui',
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
@@ -33,7 +33,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
   ],
 
-  ignore: ['temp'],
+  ignore: ['/temp'],
 
   // security: {
   //   headers: {
@@ -44,6 +44,7 @@ export default defineNuxtConfig({
   tailwindcss: {
     quiet: true,
   },
+
   // security: {
   //   headers: {
   //     crossOriginEmbedderPolicy: process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',

@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
 
     const db = useDbStorage('projects')
 
-    const key = `${session.id}:${id}`
+    const key = `${session.user?.id}:${id}`
 
     if (!db.hasItem(key))
       throw createError({ message: 'unable to find project' })

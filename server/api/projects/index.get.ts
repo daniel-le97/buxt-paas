@@ -1,11 +1,11 @@
 export default defineEventHandler(async (event) => {
   // TODO change when auth is implemented
   // const user = 'me'
-  const session = await useAuthSession(event)
+  const session = await requireAuthSession(event)
   // console.log(session.id);
-  
+
   const db = useDbStorage('projects')
-  const keys = await db.getKeys(session.id)
+  const keys = await db.getKeys(session.user?.id)
   const projects: Project[] = []
   for await (const key of keys) {
     const project = await db.getItem<Project>(key)

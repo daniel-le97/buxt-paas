@@ -3,12 +3,11 @@ export default defineEventHandler(async (event: any) => {
     const session = await requireAuthSession(event)
 
     const id = getRouterParam(event, 'id')
- 
-    
-    if (!id || !session.id)
+
+    if (!id || !session.user?.id)
       throw createError('unable to find id')
 
-    const key = `${session.id}:${id}`
+    const key = `${session.user.id}:${id}`
 
     const db = useDbStorage('projects')
     const isProject = await db.hasItem(key)
@@ -25,24 +24,22 @@ export default defineEventHandler(async (event: any) => {
 
     const isActiveProject = queue.activeProject?.id === id
     const isInQueue = queue.queue?.find(queue => queue.id === id)
-    const isListening = queue._listeners.find(listener => listener.userId === session.id)
+    const isListening = queue._listeners.find(listener => listener.userId === session.user?.id)
 
-
-// if we dont already have a listener proceed
+    // if we dont already have a listener proceed
     if (!isListening) {
       const { send, close } = useSSE(event, `sse:event:${id}`)
       const newListener: Listener = {
         projectId: project.id,
         send,
         close,
-        userId: session.id,
+        userId: session.user?.id,
       }
 
       if (isActiveProject || isInQueue) {
-
         if (isActiveProject) {
           const fileContents = queue.fileContents
-          send(id => ({id, data:fileContents}) )
+          send(id => ({ id, data: fileContents }))
         }
         queue.addProjectListener(newListener)
       }
@@ -58,8 +55,8 @@ export default defineEventHandler(async (event: any) => {
     }
   }
   catch (error) {
-    console.log(error);
-    
+    console.log(error)
+
     throw createError({ statusMessage: `failed to build app` })
   }
 })

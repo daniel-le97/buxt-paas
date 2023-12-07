@@ -1,12 +1,10 @@
-import * as os from 'node:os'
 
-const totalMemory = () => os.totalmem()
-const freeMemory = () => os.freemem()
-
-const platform = () => os.platform()
-
-const cpus = () => os.loadavg()
+import { authOptions } from './auth/[...]'
+import { getServerSession, getServerToken } from '#auth'
 
 export default defineEventHandler(async (event) => {
-  return 'Hello Nitro'
+  const runtimeConfig = useRuntimeConfig()
+  const session = await requireAuthSession(event)
+  // const jwt = await getServerToken(event, authOptions)
+  console.log({ session, runtimeConfig })
 })

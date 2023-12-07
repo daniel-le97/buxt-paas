@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
 
     const db = useDbStorage('projects')
 
-    const project = await db.getItem<Project>(`${session.id}:${id}`)
+    const project = await db.getItem<Project>(`${session.user?.id}:${id}`)
 
     return project
   }
