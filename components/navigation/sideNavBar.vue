@@ -56,24 +56,24 @@ const navItems = [
 
 const items = ref(navItems)
 
-const auth = useAuth()
-const dontShow = computed(() => {
-  if (!auth.loggedIn)
-    items.value.filter(item => !item.auth)
-})
+// const auth = useAuth()
+// const dontShow = computed(() => {
+//   if (!auth.loggedIn)
+//     items.value.filter(item => !item.auth)
+// })
 
-const computedItems = computed (() => {
-  // console.log(auth.loggedIn);
+// const computedItems = computed (() => {
+//   // console.log(auth.loggedIn);
   
-  if (auth.loggedIn.value) {
-    // If authenticated, filter items with auth: true or items without auth property
-    return navItems.filter(item => item.auth === true)
-  }
-  else {
-    // If not authenticated, filter items without auth property
-    return navItems.filter(item => item.auth === false)
-  }
-})
+//   if (auth.loggedIn.value) {
+//     // If authenticated, filter items with auth: true or items without auth property
+//     return navItems.filter(item => item.auth === true)
+//   }
+//   else {
+//     // If not authenticated, filter items without auth property
+//     return navItems.filter(item => item.auth === false)
+//   }
+// })
 
 // watch(auth.loggedIn, () => {
 //   console.log('auth changed');
@@ -85,7 +85,7 @@ const computedItems = computed (() => {
 <template>
   <div ref="SideNavBar" class="flex flex-col items-center justify-between w-20 h-full bg-zinc-800 text-white p-1 py-3">
     <div class=" flex flex-col  w-full  justify-center items-center  space-y-3">
-      <UTooltip v-for="navItem in computedItems" :key="navItem.label" :text="navItem.label" :popper="{ placement: 'right' }">
+      <UTooltip v-for="navItem in items" :key="navItem.label" :text="navItem.label" :popper="{ placement: 'right' }">
         <NuxtLink :to="navItem.link" class="flex items-center justify-center " active-class="active">
           <RippleBtn>
             <Icon :name="navItem.icon" class="text-5xl" />

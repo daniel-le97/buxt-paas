@@ -1,9 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { resolve } from 'node:path'
 const cwd = process.cwd()
-if (!process.env.NUXT_AUTH_PASSWORD) {
-  console.warn('Security warning: NUXT_AUTH_PASSWORD is not set. Using an example value. Please set it otherwise your session is unsecure!')
-  process.env.NUXT_AUTH_PASSWORD = 'secretsecretsecretsecretsecretsecretsecret'
-}
+// if (!process.env.NUXT_AUTH_PASSWORD || !process.env.NUXT_NEXTAUTH_SECRET) {
+//   console.warn('Security warning: NUXT_AUTH_PASSWORD is not set. Using an example value. Please set it otherwise your session is unsecure!')
+//   process.env.NUXT_AUTH_PASSWORD = 'secretsecretsecretsecretsecretsecretsecret'
+//   process.env.NUXT_NEXTAUTH_SECRET = 'secretsecretsecretsecretsecretsecretsecret'
+// }
 
 export default defineNuxtConfig({
   devtools: {
@@ -13,11 +15,17 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
+  // alias: {
+  //   // if not using pnpm
+  //   // cookie: resolve(__dirname, 'node_modules/cookie'),
+  //   cookie: 'cookie',
+  // },
   extends: [
     './auth',
   ],
 
   modules: [
+    // '@hebilicious/authjs-nuxt',
     '@nuxt/ui',
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
@@ -36,22 +44,28 @@ export default defineNuxtConfig({
   tailwindcss: {
     quiet: true,
   },
-  security: {
-    headers: {
-      crossOriginEmbedderPolicy: process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
-    },
-  },
+  // security: {
+  //   headers: {
+  //     crossOriginEmbedderPolicy: process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
+  //   },
+  // },
 
   imports: {
     dirs: ['./types'],
   },
   runtimeConfig: {
-    // redis: {
-    //   url: process.env.NUXT_REDIS_URL,
-    // },
+    authJs: {
+      secret: process.env.NUXT_AUTH_JS_SECRET, // You can generate one with `openssl rand -base64 32`
+    },
+    github: {
+      clientId: process.env.NUXT_GITHUB_CLIENT_ID,
+      clientSecret: process.env.NUXT_GITHUB_CLIENT_SECRET,
+    },
     public: {
-      socketUrl: 3001,
-      host: 'localhost',
+      authJs: {
+        baseUrl: process.env.NUXT_PUBLIC_AUTH_JS_BASE_URL, // The URL of your deployed app (used for origin Check in production)
+        verifyClientOnEveryRequest: true, // whether to hit the /auth/session endpoint on every client request
+      },
     },
   },
   experimental: {

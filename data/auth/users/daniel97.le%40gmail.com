@@ -1,1 +1,0 @@
-{"id":"52a7bde8-bff8-4f70-a28f-bf150388dbb8","email":"daniel97.le@gmail.com","name":"daniel97.le","password":"4b5520e5ae9e3371aa514485e548bae4f0297fcf5db49c0c38194c4b45d27a426fdb4e7898e99bb0e1a1f5cd42e8888245f0847f77dfd2199373f5191a923730"}

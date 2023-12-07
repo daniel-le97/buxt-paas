@@ -28,6 +28,7 @@
     "octokit": "^3.1.2",
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2",
+    "uncrypto": "^0.1.3",
     "vite": "^5.0.4",
     "vue": "^3.3.9",
     "vue-router": "^4.2.5",
