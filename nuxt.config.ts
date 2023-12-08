@@ -24,16 +24,10 @@ export default defineNuxtConfig({
   //   './auth',
   // ],
 
-  modules: [
-    '@hebilicious/authjs-nuxt',
-    '@nuxt/ui',
-    '@nuxtjs/tailwindcss',
-    '@vueuse/nuxt',
-    // 'nuxt-security',
-    '@nuxt/image',
-  ],
+  modules: ['@hebilicious/authjs-nuxt', '@nuxt/ui', '@nuxtjs/tailwindcss', '@vueuse/nuxt',
+  '@nuxt/image', 'nuxt-monaco-editor'],
 
-  ignore: ['/temp'],
+  ignore: ['/temp', '/data'],
 
   // security: {
   //   headers: {
@@ -84,7 +78,7 @@ export default defineNuxtConfig({
         // compilerOptions: {
         //   types: ['bun-types'],
         // },
-        exclude: [`${cwd}/eslint.config.js`, `${cwd}/temp`],
+        exclude: [`${cwd}/eslint.config.js`, `${cwd}/temp`, `${cwd}/data`],
       },
     },
     experimental: {

@@ -42,11 +42,12 @@ export interface DockerComposeService {
     environment?: string[]
     volumes?: string[]
     restart?: string
+    labels?: string[]
   }
 }
 
 export interface DockerComposeConfig {
-  version: string
+  version?: string
   services: DockerComposeService
 }
 

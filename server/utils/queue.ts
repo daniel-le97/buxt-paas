@@ -2,8 +2,7 @@ import * as fs from 'node:fs'
 import { execa } from 'execa'
 import { createHooks } from 'hookable'
 import consola from 'consola'
-
-
+import YAML from 'yaml'
 
 class Queue {
   hooks = createHooks()
@@ -23,6 +22,46 @@ class Queue {
     this.queue?.push(Project)
     if (!this.isProcessing)
       await this.processQueue()
+  }
+
+  async createComposeFile(project: ProcessProject | Project) {
+    const traefik = true
+    const serviceName = project.name
+    let labels: string[]
+    // if (traefik) {
+    //   labels = [
+    //     'traefik.enable=true',
+    //     `traefik.http.routers.${serviceName}.rule=Host(${serviceName}.localhost)`,
+    //     `traefik.http.routers.${serviceName}.entrypoints=web`,
+    //     `traefik.http.services.${serviceName}.loadbalancer.server.port=${project.ports[0]}`,
+    //     `traefik.http.services.${serviceName}.loadbalancer.server.scheme=http`,
+    //   ]
+    // }
+    // else {
+    //   labels = []
+    // }
+
+    const compose: DockerComposeConfig = {
+      version: '3',
+      services: {
+        [serviceName]: {
+          image: serviceName,
+          ports: project.ports.map(port => `${port}:${port}`).filter(Boolean),
+          restart: 'always',
+          labels: traefik
+            ? [
+                'traefik.enable=true',
+        `traefik.http.routers.${serviceName}.rule=Host(\`${serviceName}.localhost\`)`,
+        `traefik.http.routers.${serviceName}.entrypoints=web`,
+        `traefik.http.services.${serviceName}.loadbalancer.server.port=${project.ports[0]}`,
+        `traefik.http.services.${serviceName}.loadbalancer.server.scheme=http`,
+              ]
+            : [],
+        },
+      },
+    }
+    const yaml = YAML.stringify(compose)
+    
   }
 
   async processQueue() {
@@ -59,19 +98,26 @@ class Queue {
     const { id, name, buildsLogs, application, createdAt, configured, deployed } = project
     const { repoUrl, buildPack, buildCommand, installCommand, startCommand } = application
     const generateId = crypto.randomUUID()
-    const generatedName = generateName()
+    const generatedName = project.name
+    const repoPath = `./data/temp/${generatedName}`
+
+    if (fs.existsSync(repoPath))
+      fs.rmSync(repoPath, { recursive: true })
+
+    // const generatedName = generateName()
     const date = new Date()
     this.fileContents = ''
-    await this.runCommandAndSendStream('git', ['clone', '--depth=1', application.repoUrl, `./temp/${generatedName}`], project.id)
 
-    await this.runCommandAndSendStream('nixpacks', ['build', `./temp/${generatedName}`, '--name', generatedName], project.id)
+    await this.runCommandAndSendStream('git', ['clone', '--depth=1', application.repoUrl, repoPath], project.id)
+
+    await this.runCommandAndSendStream('nixpacks', ['build', repoPath, '--name', generatedName], project.id)
+
     const end = performance.now()
 
     if (!fs.existsSync(project.logsPath))
       fs.mkdirSync(project.logsPath, { recursive: true })
 
     await fs.promises.writeFile(`${project.logsPath + generateId}.txt`, this.fileContents)
-
 
     const newBuildLog = {
       id: generateId,
@@ -84,7 +130,7 @@ class Queue {
     this.closeListeners(project.id)
   }
 
-  addProjectListener(listener:Listener){
+  addProjectListener(listener: Listener) {
     this._listeners.push(listener)
   }
 
@@ -93,22 +139,22 @@ class Queue {
     return _listeners
   }
 
-  sendTolisteners(projectId: string, message:string){
+  sendTolisteners(projectId: string, message: string) {
     const listeners = this.getProjectListeners(projectId)
-    console.log('sending to listeners', message);
-    
-    listeners.forEach(listener => {
-      listener.send(id => ({id, data:message}))
+    // console.log('sending to listeners', message)
+
+    listeners.forEach((listener) => {
+      listener.send(id => ({ id, data: message }))
     })
   }
 
-  closeListeners(projectId:string){
+  closeListeners(projectId: string) {
     const listeners = this.getProjectListeners(projectId)
     listeners.forEach(listener => listener.close())
     this._listeners = this._listeners.filter(listener => listener.projectId !== projectId)
   }
 
-  private async runCommandAndSendStream(first: string, command: string[], projectId:string, env = {}) {
+  private async runCommandAndSendStream(first: string, command: string[], projectId: string, env = {}) {
     try {
       const decoder = new TextDecoder()
       const toDecode = (chunk: Uint8Array | any) => {
@@ -118,8 +164,8 @@ class Queue {
         return chunk as string
       }
 
-      console.log('running :' ,first, command.join(" "));
-      
+      console.log('running:', first, command.join(' '))
+
       const _command = execa(first, command)
 
       _command.stderr?.on('data', (data) => {
@@ -137,8 +183,8 @@ class Queue {
       _command.kill()
     }
     catch (error) {
-      console.log(error);
-      
+      console.log(error)
+
       consola.withTag('command:failed').error(`${command}`)
     }
   }

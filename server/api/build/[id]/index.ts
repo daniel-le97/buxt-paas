@@ -26,6 +26,9 @@ export default defineEventHandler(async (event: any) => {
     const isInQueue = queue.queue?.find(queue => queue.id === id)
     const isListening = queue._listeners.find(listener => listener.userId === session.user?.id)
 
+    console.log({isActiveProject, isInQueue, isListening});
+    
+
     // if we dont already have a listener proceed
     if (!isListening) {
       const { send, close } = useSSE(event, `sse:event:${id}`)
@@ -35,13 +38,15 @@ export default defineEventHandler(async (event: any) => {
         close,
         userId: session.user?.id,
       }
+      queue.addProjectListener(newListener)
 
       if (isActiveProject || isInQueue) {
         if (isActiveProject) {
           const fileContents = queue.fileContents
           send(id => ({ id, data: fileContents }))
         }
-        queue.addProjectListener(newListener)
+        console.log('adding listener');
+        
       }
       else {
         const newProject = {
@@ -49,7 +54,7 @@ export default defineEventHandler(async (event: any) => {
           logsPath,
           key,
         } as ProcessProject
-        queue.addProjectListener(newListener)
+        // queue.addProjectListener(newListener)
         await queue.addProject(newProject)
       }
     }

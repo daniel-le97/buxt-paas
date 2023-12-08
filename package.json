@@ -28,14 +28,15 @@
     "vite": "^5.0.4",
     "vue": "^3.3.9",
     "vue-router": "^4.2.5",
+    "yaml": "^2.3.4",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.2.0",
-    "@monaco-editor/loader": "^1.4.0",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "latest",
     "execa": "^8.0.1",
+    "nuxt-monaco-editor": "latest",
     "nuxt-security": "^1.0.0-rc.4"
   }
 }

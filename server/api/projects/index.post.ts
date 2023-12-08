@@ -12,9 +12,10 @@ export default defineEventHandler(async (event) => {
       user: session.user!.id,
       createdAt: new Date().toLocaleString(),
       name: generateName(),
-      deployed: false,
+      deployed: '',
       configured: false,
       buildsLogs: [],
+      ports: [],
       application: {
         repoUrl: '',
         startCommand: '',

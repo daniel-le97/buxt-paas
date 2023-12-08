@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { z } from 'zod'
+import consola from 'consola'
 
 const schema = z.object({
   repoUrl: z.string().min(1),
@@ -7,13 +8,19 @@ const schema = z.object({
   buildCommand: z.string().nullable(),
   startCommand: z.string().nullable(),
   buildPack: z.string().min(1, 'Must be at least 8 characters'),
+  // baseDirectory: z.string().default('/'),
+  // publishDirectory: z.string().default('/'),
+  // branch: z.string().default('main'),
 })
+
+const onePort = ref('')
 
 type Schema = z.output<typeof schema>
 
 const state = useActiveProject()
-console.log(state.value);
+// console.log(state.value)
 
+onePort.value = state.value.ports.join(',')
 
 const options = [
   { label: 'nixpacks', value: 'nixpacks' },
@@ -22,7 +29,10 @@ const options = [
 ]
 
 async function onSubmit() {
+  state.value.ports = onePort.value ? onePort.value.split(',') : []
   try {
+    // console.log(state.value)
+
     const { data } = await useFetch(`/api/projects/${state.value.id}`, {
       method: 'PUT',
       body: state.value,
@@ -38,7 +48,7 @@ async function onSubmit() {
     })
   }
   catch (error) {
-    useLogger().withTag('configuration').error('unable to update configuration')
+    consola.withTag('configuration').error('unable to update configuration')
   }
 }
 
@@ -68,6 +78,21 @@ const needsRepo = computed(() => state?.value?.application?.buildCommand === 'ni
           <UFormGroup label="choose a build pack" name="buildPack">
             <USelect v-model=" state.application.buildPack" :options=" options " />
           </UFormGroup>
+          <UFormGroup label="please specify ports" name="ports">
+            <UInput v-model="onePort" placeholder="3000,3001" />
+          </UFormGroup>
+          <!-- <div class="flex gap-2">
+            <div class="w-1/2">
+              <UFormGroup label="base directory" name="buildPack">
+                <USelect v-model=" state.application.buildPack" :options=" options " />
+              </UFormGroup>
+            </div>
+            <div class="w-1/2">
+              <UFormGroup label="publish directory" name="buildPack">
+                <USelect v-model=" state.application.buildPack" :options=" options " />
+              </UFormGroup>
+            </div>
+          </div> -->
         </div>
       </div>
 

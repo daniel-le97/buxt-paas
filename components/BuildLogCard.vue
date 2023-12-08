@@ -1,14 +1,14 @@
 <script setup>
 const props = defineProps(['branch', 'date', 'id', 'duration'])
-const durationInSeconds = computed(() => props.duration / 1e9)
+const durationInSeconds = computed(() => props.duration / 1000)
 const minutes = computed(() => Math.floor(durationInSeconds.value / 60))
-const seconds = computed(() => durationInSeconds.value % 60)
+// const seconds = computed(() => durationInSeconds.value % 60)
 const displayDuration = computed(() => {
   if (minutes.value > 0)
-    return `${minutes.value}m ${seconds.value.toFixed(2)}s`
+    return `${minutes.value}m ${durationInSeconds.value.toFixed(2)}s`
 
   else
-    return `${seconds.value.toFixed(2)}s`
+    return `${durationInSeconds.value.toFixed(2)}s`
 })
 const timeago = useTimeAgo(props.date)
 </script>

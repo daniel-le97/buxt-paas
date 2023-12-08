@@ -1,6 +1,6 @@
 <!-- components/Tabs.vue -->
 <script setup lang="ts">
-import { LazyTabsBuild, LazyTabsConfiguration, LazyTabsSecrets } from '#components'
+import { LazyTabsBuild, LazyTabsCompose, LazyTabsConfiguration, LazyTabsSecrets } from '#components'
 
 const route = useRoute('projects-id')
 // console.log(route.params)
@@ -13,11 +13,20 @@ if (data.value) {
 
 const selectedTab = ref(0)
 
-const tabs = [
+const tabs = shallowRef([
   { label: 'configuration', component: LazyTabsConfiguration },
   { label: 'build', component: LazyTabsBuild },
   { label: 'secrets', component: LazyTabsSecrets },
-]
+])
+
+if (data.value?.configured) {
+  tabs.value = [
+    { label: 'configuration', component: LazyTabsConfiguration },
+    { label: 'build', component: LazyTabsBuild },
+    { label: 'secrets', component: LazyTabsSecrets },
+    { label: 'compose', component: LazyTabsCompose },
+  ]
+}
 
 function selectTab(index: number) {
   selectedTab.value = index

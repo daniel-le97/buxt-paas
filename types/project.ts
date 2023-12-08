@@ -3,10 +3,15 @@ export interface Project {
   user: string // Assuming body.user is a string, adjust the type accordingly
   createdAt: string
   name: string
-  deployed: boolean
+  deployed?: string
   configured: boolean
+  composePath?:{
+    path:string,
+    key:string
+  }
   application: Application// Adjust the type based on the actual structure of the project property
   buildsLogs: Logs[] // Adjust the type based on the actual structure of the buildsLogs property
+  ports: string[]
 }
 
 interface Application {
@@ -29,10 +34,9 @@ export interface ProcessProject extends Project {
   logsPath: string
 }
 
-
 export interface Listener {
   projectId: string
-  userId?:string
+  userId?: string
   send: (callback: (id: number) => any) => void
   close: () => void
 }

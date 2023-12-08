@@ -33,7 +33,7 @@ async function handleClick() {
   })
 
   watchEvents.value.data = watch(data, (value) => {
-    console.log(value)
+    // console.log(value)
 
     if (data.value)
       useBuildSSE().value += JSON.parse(data.value).data
