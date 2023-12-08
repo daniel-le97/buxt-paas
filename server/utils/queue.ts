@@ -3,6 +3,8 @@ import { execa } from 'execa'
 import { createHooks } from 'hookable'
 import consola from 'consola'
 import YAML from 'yaml'
+import { useSendRoomMessage } from './reworkSSE';
+
 
 class Queue {
   hooks = createHooks()
@@ -10,7 +12,7 @@ class Queue {
   isProcessing: boolean
   fileContents: string
   activeProject: ProcessProject | null = null
-  _listeners: Listener[] = []
+  // _listeners: Listener[] = []
 
   constructor() {
     this.queue = []
@@ -28,18 +30,6 @@ class Queue {
     const traefik = true
     const serviceName = project.name
     let labels: string[]
-    // if (traefik) {
-    //   labels = [
-    //     'traefik.enable=true',
-    //     `traefik.http.routers.${serviceName}.rule=Host(${serviceName}.localhost)`,
-    //     `traefik.http.routers.${serviceName}.entrypoints=web`,
-    //     `traefik.http.services.${serviceName}.loadbalancer.server.port=${project.ports[0]}`,
-    //     `traefik.http.services.${serviceName}.loadbalancer.server.scheme=http`,
-    //   ]
-    // }
-    // else {
-    //   labels = []
-    // }
 
     const compose: DockerComposeConfig = {
       version: '3',
@@ -126,32 +116,32 @@ class Queue {
     const db = useDbStorage('projects')
     buildsLogs.push(newBuildLog)
     await db.setItem(project.key, { ...project, buildsLogs })
-    this.closeListeners(project.id)
+    sseHooks.callHookParallel(`sse:event:${project.id}:close`)
   }
 
-  addProjectListener(listener: Listener) {
-    this._listeners.push(listener)
-  }
+  // addProjectListener(listener: Listener) {
+  //   this._listeners.push(listener)
+  // }
 
-  getProjectListeners(projectId: string) {
-    const _listeners = this._listeners.filter(listener => listener.projectId === projectId)
-    return _listeners
-  }
+  // getProjectListeners(projectId: string) {
+  //   const _listeners = this._listeners.filter(listener => listener.projectId === projectId)
+  //   return _listeners
+  // }
 
-  sendTolisteners(projectId: string, message: string) {
-    const listeners = this.getProjectListeners(projectId)
-    // console.log('sending to listeners', message)
+  // sendTolisteners(projectId: string, message: string) {
+  //   const listeners = this.getProjectListeners(projectId)
+  //   // console.log('sending to listeners', message)
 
-    listeners.forEach((listener) => {
-      listener.send(id => ({ id, data: message }))
-    })
-  }
+  //   listeners.forEach((listener) => {
+  //     listener.send(id => ({ id, data: message }))
+  //   })
+  // }
 
-  closeListeners(projectId: string) {
-    const listeners = this.getProjectListeners(projectId)
-    listeners.forEach(listener => listener.close())
-    this._listeners = this._listeners.filter(listener => listener.projectId !== projectId)
-  }
+  // closeListeners(projectId: string) {
+  //   const listeners = this.getProjectListeners(projectId)
+  //   listeners.forEach(listener => listener.close())
+  //   this._listeners = this._listeners.filter(listener => listener.projectId !== projectId)
+  // }
 
   private async runCommandAndSendStream(first: string, command: string[], projectId: string, env = {}) {
     try {
@@ -167,14 +157,14 @@ class Queue {
 
       const _command = execa(first, command)
 
-      _command.stderr?.on('data', (data) => {
+      _command.stderr?.on('data', async(data) => {
         const message = toDecode(data)
-        this.sendTolisteners(projectId, message)
+        await useSendRoomMessage(`build:${projectId}`, { data: message })
         this.fileContents += `\n${message}`
       })
-      _command.stdout?.on('data', (data) => {
+      _command.stdout?.on('data', async(data) => {
         const message = toDecode(data)
-        this.sendTolisteners(projectId, message)
+        await useSendRoomMessage(`build:${projectId}`, { data: message })
         this.fileContents += `\n${message}`
       })
 

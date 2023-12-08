@@ -5,9 +5,12 @@ export interface ServerSentEvent {
   [key: string]: <T, R>(data: T) => R | void
 }
 
-const sseHooks = createHooks<ServerSentEvent>()
+export const sseHooks = createHooks()
+const listeners = new Map()
 
-export function useSSE(event: H3Event, hookName: string, custom = false) {
+export async function useSSE(event: H3Event, hookName: string, custom = false) {
+  const userid = (await requireAuthSession(event)).user?.id
+
   setHeader(event, 'content-type', 'text/event-stream')
   setHeader(event, 'cache-control', 'no-cache')
   setHeader(event, 'connection', 'keep-alive')
@@ -32,6 +35,9 @@ export function useSSE(event: H3Event, hookName: string, custom = false) {
       event.node.res.flushHeaders()
     })
   }
+
+
+  listeners.set(userid, true)
 
   const send = (callback: (id: number) => any) => {
     // console.log(callback(id))
