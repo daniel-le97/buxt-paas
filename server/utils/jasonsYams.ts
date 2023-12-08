@@ -1,13 +1,5 @@
-import type { EventHandler, EventHandlerRequest } from 'h3'
+import YAML from 'yaml'
 
-export const defineWrappedResponseHandler = <T extends EventHandlerRequest, D> (
-  handler: EventHandler<T, D>
-): EventHandler<T, D> =>
-    defineEventHandler<T>(async (event) => {
-      try {
-        return { response }
-      } catch (err) {
-      // Error handling
-        return { err }
-      }
-    })
+function jsosYams(value: string) {
+  const toJson = YAML.parse(value)
+}

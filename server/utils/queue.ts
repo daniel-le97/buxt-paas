@@ -61,7 +61,6 @@ class Queue {
       },
     }
     const yaml = YAML.stringify(compose)
-    
   }
 
   async processQueue() {

@@ -1,4 +1,3 @@
-import { routeLocationKey } from 'vue-router/auto';
 import type { AuthSession } from '~~/auth/server/utils/session'
 
 export default defineNuxtPlugin(async (nuxtApp) => {
@@ -44,8 +43,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       }
     })
   }
-
-
 
   // await navigateTo(redirectTo.value || '/')
 

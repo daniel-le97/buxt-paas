@@ -22,7 +22,7 @@ async function createComposeFile(project: ProcessProject | Project) {
         image: serviceName,
         ports: project.ports.map(port => `${port}:${port}`).filter(Boolean),
         restart: 'always',
-        labels
+        labels,
       },
     },
   }

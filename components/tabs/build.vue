@@ -82,7 +82,8 @@ async function handleClick() {
     <div class="w-full flex p-2 gap-2">
       <div class="w-4/5">
         <div class="p-2 bg-zinc-700 rounded-md">
-          <pre id="pre-build" class="w-full h-full overflow-auto whitespace-pre-wrap scrollable-pre"> {{ buildData }}</pre>
+          <pre v-if="buildData.length" id="pre-build" class="w-full h-full overflow-auto whitespace-pre-wrap scrollable-pre"> {{ buildData }}</pre>
+          <pre v-else id="pre-build" class="w-full h-full overflow-auto whitespace-pre-wrap scrollable-pre"> {{ 'no builds logged' }}</pre>
         </div>
       </div>
       <div class="w-1/5">

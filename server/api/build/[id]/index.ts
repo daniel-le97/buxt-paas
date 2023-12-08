@@ -26,8 +26,7 @@ export default defineEventHandler(async (event: any) => {
     const isInQueue = queue.queue?.find(queue => queue.id === id)
     const isListening = queue._listeners.find(listener => listener.userId === session.user?.id)
 
-    console.log({isActiveProject, isInQueue, isListening});
-    
+    console.log({ isActiveProject, isInQueue, isListening })
 
     // if we dont already have a listener proceed
     if (!isListening) {
@@ -45,8 +44,7 @@ export default defineEventHandler(async (event: any) => {
           const fileContents = queue.fileContents
           send(id => ({ id, data: fileContents }))
         }
-        console.log('adding listener');
-        
+        console.log('adding listener')
       }
       else {
         const newProject = {

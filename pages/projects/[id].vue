@@ -22,9 +22,9 @@ const tabs = shallowRef([
 if (data.value?.configured) {
   tabs.value = [
     { label: 'configuration', component: LazyTabsConfiguration },
+    { label: 'compose', component: LazyTabsCompose },
     { label: 'build', component: LazyTabsBuild },
     { label: 'secrets', component: LazyTabsSecrets },
-    { label: 'compose', component: LazyTabsCompose },
   ]
 }
 

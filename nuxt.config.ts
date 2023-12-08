@@ -1,5 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { resolve } from 'node:path'
 const cwd = process.cwd()
 // if (!process.env.NUXT_AUTH_PASSWORD || !process.env.NUXT_NEXTAUTH_SECRET) {
 //   console.warn('Security warning: NUXT_AUTH_PASSWORD is not set. Using an example value. Please set it otherwise your session is unsecure!')
@@ -24,8 +23,7 @@ export default defineNuxtConfig({
   //   './auth',
   // ],
 
-  modules: ['@hebilicious/authjs-nuxt', '@nuxt/ui', '@nuxtjs/tailwindcss', '@vueuse/nuxt',
-  '@nuxt/image', 'nuxt-monaco-editor'],
+  modules: ['@hebilicious/authjs-nuxt', '@nuxt/ui', '@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxt/image', 'nuxt-monaco-editor'],
 
   ignore: ['/temp', '/data'],
 

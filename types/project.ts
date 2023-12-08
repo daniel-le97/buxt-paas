@@ -5,13 +5,16 @@ export interface Project {
   name: string
   deployed?: string
   configured: boolean
-  composePath?:{
-    path:string,
-    key:string
+  composePath?: {
+    path: string
+    key: string
   }
+  https: boolean
+  www: boolean
   application: Application// Adjust the type based on the actual structure of the project property
   buildsLogs: Logs[] // Adjust the type based on the actual structure of the buildsLogs property
   ports: string[]
+  managed: boolean
 }
 
 interface Application {

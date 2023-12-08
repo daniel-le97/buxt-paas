@@ -16,6 +16,9 @@ export default defineEventHandler(async (event) => {
       configured: false,
       buildsLogs: [],
       ports: [],
+      https: true,
+      www: true,
+      managed: true,
       application: {
         repoUrl: '',
         startCommand: '',

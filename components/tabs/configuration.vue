@@ -81,6 +81,12 @@ const needsRepo = computed(() => state?.value?.application?.buildCommand === 'ni
           <UFormGroup label="please specify ports" name="ports">
             <UInput v-model="onePort" placeholder="3000,3001" />
           </UFormGroup>
+          <UFormGroup label="use our proxy?" name="proxy">
+            <input v-model="state.managed" type="checkbox">
+          </UFormGroup>
+          <UFormGroup label="https" name="https">
+            <input v-model="state.https" type="checkbox">
+          </UFormGroup>
           <!-- <div class="flex gap-2">
             <div class="w-1/2">
               <UFormGroup label="base directory" name="buildPack">

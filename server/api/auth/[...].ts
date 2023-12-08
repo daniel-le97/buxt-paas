@@ -20,9 +20,9 @@ export const authOptions: AuthConfig = {
   // session: {
   //   strategy: 'jwt',
   // },
-//  theme:{
+  //  theme:{
 
-//  },
+  //  },
   providers: [
     CredentialsProvider({
       type: 'credentials',
@@ -85,7 +85,7 @@ export const authOptions: AuthConfig = {
     async jwt({ token, user, session, account, profile }) {
       return token
     },
-    
+
     async session({ session, user, token, trigger }) {
       if (session.user && token.sub)
         session.user.id = token.sub

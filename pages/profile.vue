@@ -20,4 +20,6 @@ const {$auth} = useNuxtApp()
     <UButton @click="authLogout()">Logout</UButton>
   </div>
 </template> -->
-<template>hello</template>
+<template>
+  hello
+</template>

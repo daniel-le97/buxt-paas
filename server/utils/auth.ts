@@ -1,7 +1,6 @@
 import type { Adapter, AdapterAccount, AdapterSession, AdapterUser } from '@auth/core/adapters'
 import type { createStorage } from 'unstorage'
 import { randomUUID } from 'uncrypto'
-import { defu } from 'defu'
 import consola from 'consola'
 
 interface Keys<T> {
@@ -76,7 +75,6 @@ export function MyAdapter(client: ReturnType<typeof createStorage>, options = {}
 
     // },
     async createSession({ sessionToken, userId, expires }) {
-
       const session: AdapterSession = {
         expires,
         userId,

@@ -80,7 +80,7 @@ const { signIn, signOut, session, status, cookies, getProviders, user } = useAut
     </div>
     <div>
       <pre>{{ status }}</pre>
-      <pre>{{ session}}</pre>
+      <pre>{{ session }}</pre>
       <!-- <pre>{{ cookies }}</pre> -->
       <pre>{{ user }}</pre>
     </div>

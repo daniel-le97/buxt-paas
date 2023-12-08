@@ -1,7 +1,47 @@
 import YAML from 'yaml'
 
+interface DockerComposeConfig {
+  version: string
+  services: {
+    [serviceName: string]: DockerServiceConfig
+  }
+  volumes?: {
+    [volumeName: string]: string | { driver: string, driver_opts?: Record<string, string> }
+  }
+  networks?: {
+    [networkName: string]: DockerNetworkConfig
+  }
+}
+
+interface DockerServiceConfig {
+  image?: string
+  build?: string | { context: string, dockerfile: string }
+  ports?: string[]
+  labels?: string[]
+  environment?: string[]
+  volumes?: (string | { source: string, target: string })[]
+  networks?: string[] | { [networkName: string]: DockerServiceNetworkConfig }
+  depends_on?: string[]
+  command?: string | string[]
+  restart?: 'no' | 'always' | 'unless-stopped'
+  // Add other service-specific configurations as needed
+}
+
+interface DockerNetworkConfig {
+  driver?: string
+  driver_opts?: Record<string, string>
+  external?: boolean
+}
+
+interface DockerServiceNetworkConfig {
+  aliases?: string[]
+  ipv4_address?: string
+  ipv6_address?: string
+}
+
 async function createComposeFile(project: ProcessProject | Project) {
-  const traefik = true
+  const traefik = project.managed
+  const https = project.https
   const serviceName = project.name
   let labels: string[]
   // if (traefik) {
@@ -17,23 +57,28 @@ async function createComposeFile(project: ProcessProject | Project) {
   //   labels = []
   // }
 
+  const networks = traefik ? { 'nux-sailor-proxy': { external: true } } : undefined
+
   const compose: DockerComposeConfig = {
     version: '3',
+    networks,
     services: {
       [serviceName]: {
         image: serviceName,
         ports: project.ports.map(port => `${port}:${port}`).filter(Boolean),
         restart: 'always',
+        networks: traefik ? ['nux-sailor-proxy'] : undefined,
         labels: traefik
-  ? [
-      'traefik.enable=true',
+          ? [
+              'traefik.enable=true',
       `traefik.http.routers.${serviceName}.rule=Host(\`${serviceName}.localhost\`)`,
-      `traefik.http.routers.${serviceName}.entrypoints=web`,
+      `traefik.http.routers.${serviceName}.entrypoints=${traefik && https ? 'websecure' : 'web'}`,
       `traefik.http.services.${serviceName}.loadbalancer.server.port=${project.ports[0]}`,
-      `traefik.http.services.${serviceName}.loadbalancer.server.scheme=http`,
-    ]
-  : [],
+      `traefik.http.services.${serviceName}.loadbalancer.server.scheme=${traefik && https ? 'https' : 'http'}`,
+            ]
+          : undefined,
       },
+
     },
   }
   return YAML.stringify(compose)

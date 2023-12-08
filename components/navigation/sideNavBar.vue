@@ -43,7 +43,7 @@ const navItems = [
     link: '/login',
     icon: 'material-symbols:login-rounded',
     label: 'Login',
-    auth:false
+    auth: false,
   },
   {
     link: '/profile',
@@ -64,7 +64,7 @@ const items = ref(navItems)
 
 // const computedItems = computed (() => {
 //   // console.log(auth.loggedIn);
-  
+
 //   if (auth.loggedIn.value) {
 //     // If authenticated, filter items with auth: true or items without auth property
 //     return navItems.filter(item => item.auth === true)

@@ -7,7 +7,9 @@ const { data, pending, error, refresh } = await useFetch<string>(`/api/projects/
 <template>
   <div>
     <MonacoEditor v-if="data" v-model="data" lang="yaml" class="min-h-screen" />
-    <div v-else>no compose found</div>
+    <div v-else>
+      no compose found
+    </div>
     <!-- <textarea v-if="data" v-model="data" class="w-screen min-h-screen" /> -->
   </div>
 </template>
