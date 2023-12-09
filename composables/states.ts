@@ -15,3 +15,12 @@ export const useRepo = () => useState('repo', () => 'https://github.com/daniel-l
 export const useActiveTemplate = () => useState('activeTemplate', () => '')
 
 export const useActiveProject = () => useState<Project>('activeProject')
+
+export async function refreshActiveProject() {
+  const route = useRoute('projects-id')
+  const { data, pending, error, refresh } = await useFetch<Project>(`/api/projects/${route.params.id}`)
+  if (data.value) {
+    const activeProject = useActiveProject()
+    activeProject.value = data.value
+  }
+}

@@ -13,20 +13,31 @@ if (data.value) {
 
 const selectedTab = ref(0)
 
-const tabs = shallowRef([
-  { label: 'configuration', component: LazyTabsConfiguration },
-  { label: 'build', component: LazyTabsBuild },
-  { label: 'secrets', component: LazyTabsSecrets },
-])
-
-if (data.value?.configured) {
-  tabs.value = [
+const tabs = computed(() => {
+  if (useActiveProject().value.configured) {
+    return [
+      { label: 'configuration', component: LazyTabsConfiguration },
+      { label: 'compose', component: LazyTabsCompose },
+      { label: 'build', component: LazyTabsBuild },
+      { label: 'secrets', component: LazyTabsSecrets },
+    ]
+  }
+  return [
     { label: 'configuration', component: LazyTabsConfiguration },
-    { label: 'compose', component: LazyTabsCompose },
+
     { label: 'build', component: LazyTabsBuild },
     { label: 'secrets', component: LazyTabsSecrets },
   ]
-}
+})
+
+// if (useActiveProject().value.configured) {
+//   tabs.value = [
+//     { label: 'configuration', component: LazyTabsConfiguration },
+//     { label: 'compose', component: LazyTabsCompose },
+//     { label: 'build', component: LazyTabsBuild },
+//     { label: 'secrets', component: LazyTabsSecrets },
+//   ]
+// }
 
 function selectTab(index: number) {
   selectedTab.value = index

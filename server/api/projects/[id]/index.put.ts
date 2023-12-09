@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
       throw createError({ message: 'unable to find project' })
 
     await db.setItem<Project>(key, { ...body, configured: true })
-    return 'success'
+    return { ...body, configured: true }
   }
   catch (error) {
     console.log('invalid id or user')

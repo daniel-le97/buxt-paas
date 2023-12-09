@@ -33,7 +33,7 @@ async function onSubmit() {
   try {
     // console.log(state.value)
 
-    const { data } = await useFetch(`/api/projects/${state.value.id}`, {
+    const { data } = await useFetch<Project>(`/api/projects/${state.value.id}`, {
       method: 'PUT',
       body: state.value,
     })
@@ -46,6 +46,8 @@ async function onSubmit() {
       title: 'Configuration Updated',
       timeout: 1500,
     })
+
+    useActiveProject().value = data.value
   }
   catch (error) {
     consola.withTag('configuration').error('unable to update configuration')

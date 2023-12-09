@@ -11,7 +11,7 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "clean": "nuxi cleanup && rm bun.lockb && bun i && bun run dev"
+    "clean": "nuxi cleanup && rm bun.lockb && rm -rf node_modules && bun i && bun run dev"
   },
   "dependencies": {
     "@auth/core": "^0.18.4",
