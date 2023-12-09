@@ -62,7 +62,7 @@ export default defineNuxtConfig({
     },
   },
   experimental: {
-    
+
     typedPages: true,
     viewTransition: true,
     componentIslands: true,
