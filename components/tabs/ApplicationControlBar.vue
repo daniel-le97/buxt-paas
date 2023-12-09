@@ -1,13 +1,6 @@
 <script lang="ts" setup>
 import type { WatchStopHandle } from 'vue'
 
-async function handleDeploy() {
-  const { data, pending, error, refresh } = await useFetch('/api/build', {
-    method: 'POST',
-    body: useActiveProject().value,
-  })
-}
-
 interface EventWatch {
   [key: string]: WatchStopHandle | null
 }
@@ -17,37 +10,9 @@ async function handleClick() {
   console.log('building project')
 
   const id = useRoute('projects-id').params.id
-  const watchEvents = useState<EventWatch>('event-source', () => defaults)
-  // const data = useState('event-data', () => '')
 
-  const { data, status, error, close } = useEventSource(`http://localhost:3000/api/build/${id}`)
+  const { data, pending, error, refresh } = await useFetch(`/api/build/${id}`)
 
-  if (data.value)
-    useBuildSSE().value += JSON.parse(data.value).data
-
-  const end = () => Object.values(watchEvents.value).forEach((fn) => {
-    if (fn) {
-      fn()
-      close()
-    }
-  })
-
-  watchEvents.value.data = watch(data, (value) => {
-    // console.log(value)
-
-    if (data.value)
-      useBuildSSE().value += JSON.parse(data.value).data
-  })
-
-  watchEvents.value.status = watch(status, () => {
-    const sending = status.value === 'CONNECTING' || status.value === 'OPEN'
-    if (!sending)
-      end()
-  })
-
-  watchEvents.value.error = watch(error, () => {
-    end()
-  })
 }
 </script>
 

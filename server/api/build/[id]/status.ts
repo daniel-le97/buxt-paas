@@ -1,4 +1,4 @@
-import { SSEEvents, useJoinRoom, useSendRoomMessage } from '../../../utils/reworkSSE'
+import { useJoinRoom, useSendRoomMessage } from '../../../utils/reworkSSE'
 
 export default defineEventHandler(async (event: any) => {
   try {
@@ -26,16 +26,20 @@ export default defineEventHandler(async (event: any) => {
 
     const isActiveProject = queue.activeProject?.id === id
     const isInQueue = queue.queue?.find(queue => queue.id === id)
-
-
-    if (isActiveProject || isInQueue) {
-      const connection = SSEEvents.connections.get(session.user.id)
-      connection?.send({ data: queue.fileContents, event: `build:${id}` })
-      await useJoinRoom(event, `build:${id}`)
-      return
-    }
+    // const isListening = queue._listeners.find(listener => listener.userId === session.user?.id)
 
     await useJoinRoom(event, `build:${id}`)
+
+    // setInterval(() => {
+    //   console.log('subbed');
+      
+    //   useSendRoomMessage(`build:${id}`, { data: 'building stuff' })
+    // }, 1000)
+
+
+
+    
+
     const newProject = {
       ...project,
       logsPath,

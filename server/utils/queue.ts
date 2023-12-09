@@ -116,7 +116,7 @@ class Queue {
     const db = useDbStorage('projects')
     buildsLogs.push(newBuildLog)
     await db.setItem(project.key, { ...project, buildsLogs })
-    sseHooks.callHookParallel(`sse:event:${project.id}:close`)
+    // sseHooks.callHookParallel(`sse:event:${project.id}:close`)
   }
 
   // addProjectListener(listener: Listener) {

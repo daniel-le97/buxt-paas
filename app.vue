@@ -5,7 +5,12 @@ onMounted(() => {
   const eventSource = new EventSource('http://localhost:3000/api/sse')
 
   eventSource.addEventListener('message', (event) => {
-    console.log(event.data)
+    const parsed = JSON.parse(event.data)
+
+    if (parsed.event.includes('build'))
+      useBuildSSE().value += parsed.data
+
+    console.log({raw:event.data, parsed})
   })
 
   eventSource.addEventListener('error', (error) => {
