@@ -62,11 +62,13 @@ export default defineNuxtConfig({
     },
   },
   experimental: {
+    
     typedPages: true,
     viewTransition: true,
     componentIslands: true,
   },
   nitro: {
+    // preset: 'bun',
     imports: {
       dirs: ['./types'],
       // 'imports':[{name: '*', as:'Bun', from: 'bun', type: true, 'typeFrom': 'bun-types'}]
