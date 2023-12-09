@@ -33,9 +33,9 @@ export default defineNuxtConfig({
   //   },
   // },
 
-  tailwindcss: {
-    quiet: true,
-  },
+  // tailwindcss: {
+  //   quiet: true,
+  // },
 
   // security: {
   //   headers: {
