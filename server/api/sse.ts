@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
   setResponseStatus(event, 200)
   event._handled = true
   await useSSEManager(event)
-  // use
+
 
   console.log('connecting client')
 })

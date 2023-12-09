@@ -38,6 +38,7 @@
     "@antfu/eslint-config": "^2.4.3",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "latest",
+    "@nuxtus/nuxt-localtunnel": "latest",
     "execa": "^8.0.1",
     "nuxt-monaco-editor": "latest",
     "nuxt-security": "^1.0.0-rc.5",

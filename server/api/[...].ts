@@ -1,10 +1,9 @@
-import { Octokit } from 'octokit';
+import { Octokit } from 'octokit'
 import { Probot, createNodeMiddleware, createProbot } from 'probot'
 import consola from 'consola'
 
 // For more information, see https://probot.github.io/docs/development/
 export function probot(app: Probot) {
-
   app.log.info('Yay, the app was loaded!')
   app.onAny(async (context) => {
     consola.info('onAny')
@@ -19,4 +18,4 @@ const probotApp = new Probot({
   // webhookPath: "/api/webhooks",
 })
 
-export default fromNodeMiddleware(createNodeMiddleware(probot, { webhooksPath: '/api/webhooks', probot: probotApp }))
+export default fromNodeMiddleware(createNodeMiddleware(probot, { webhookPath: '/api/webhooks', probot: probotApp }))
