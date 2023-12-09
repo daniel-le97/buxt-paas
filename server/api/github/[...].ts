@@ -1,3 +1,4 @@
+import { Octokit } from 'octokit';
 import { Probot, createNodeMiddleware, createProbot } from 'probot'
 
 // For more information, see https://probot.github.io/docs/development/
@@ -16,4 +17,4 @@ const probotApp = new Probot({
   // webhookPath: "/api/webhooks",
 })
 
-export default fromNodeMiddleware(createNodeMiddleware(probot, { webhooksPath: '/api/webhooks', probot: probotApp }))
+export default fromNodeMiddleware(createNodeMiddleware(probot, { webhooksPath: '/', probot: probotApp }))
