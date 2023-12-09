@@ -24,6 +24,7 @@
     "js-yaml": "^4.1.0",
     "nuxt": "npm:nuxt-nightly@latest",
     "octokit": "^3.1.2",
+    "probot": "^12.3.3",
     "pusher": "^5.2.0",
     "pusher-js": "^8.4.0-rc2",
     "uncrypto": "^0.1.3",
@@ -39,6 +40,7 @@
     "@nuxt/image": "latest",
     "execa": "^8.0.1",
     "nuxt-monaco-editor": "latest",
-    "nuxt-security": "^1.0.0-rc.5"
+    "nuxt-security": "^1.0.0-rc.5",
+    "smee-client": "^2.0.0"
   }
 }
