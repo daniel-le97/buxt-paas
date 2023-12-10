@@ -14,7 +14,7 @@
     "clean": "nuxi cleanup && rm bun.lockb && rm -rf node_modules && bun i && bun run dev"
   },
   "dependencies": {
-    "@auth/core": "^0.18.4",
+    "@auth/core": "^0.17.0",
     "@hebilicious/authjs-nuxt": "^0.3.5",
     "@nuxt/ui": "^2.11.0",
     "@nuxtjs/tailwindcss": "^6.10.1",
