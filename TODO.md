@@ -1,12 +1,6 @@
 # AUTH
 
-need to properly be showing and creating based off of user id
- (all auth functionality is stored in /auth)
-
-# Build QUEUE 
-
-if the project id is already in the queue do not add it again when hitting deploy
-we want make the user subsribe to the output of it instead
+may need to change auth
 
 
 # Data directory
@@ -15,6 +9,23 @@ this directory houses all of our needed files and data, need to figure out how t
 
 
 
-# images 
+# Phase 1
 
-fix images for portainer templates
+
+
+## Task Checklist
+
+- [ ] users must be signed in to start creating projects
+- [ ] users can sign into github and pick repos to use as a project
+    - [ ] doing the above should automatically add the gitrepo webhooks to the webhooks middleware allowing for automatic builds
+- [ ] each user is part of a group, and all projects show the groups projects or just their own on a button click
+- [ ] traefik properly configured labels when building a docker compose
+  - [ ] figure out how to get dns working correctly in production
+  - [ ] allow all traefik configurations to be configurable
+- [ ] going to a projects page automatically subscribes the user to build output/ sends the cached output if it is building currently
+- [ ] building a project properly configured docker volumes
+  - [] volumes/filesystem data should be sub directories of the main /data mount
+  - [ ] volumes can be seen with r/w priviledges through a file editor(monaco)
+
+
+# Phase 2
