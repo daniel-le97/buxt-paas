@@ -6,7 +6,7 @@
         "Adblocking"
       ],
       "description": "AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it’ll cover ALL your home devices, and you don’t need any client-side software for that. With the rise of Internet-Of-Things and connected devices, it becomes more and more important to be able to control your network.",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/adguard.png",
+      "logo": "/logos/adguard-home.png",
       "name": "adguardhome",
       "platform": "linux",
       "repository": {
@@ -51,7 +51,7 @@
         "Multimedia"
       ],
       "description": "Bazarr is a companion application to Sonarr and Radarr. It can manage and download Subtitles based on your requirements. You define your preferences by TV show or movie and Bazarr takes care of everything for you.",
-      "logo": "https://www.bazarr.media/assets/img/logo.png",
+      "logo": "/logos/bazarr.png",
       "name": "bazarr",
       "platform": "linux",
       "repository": {
@@ -108,7 +108,8 @@
         "url": "https://github.com/xneo1/portainer_templates"
       },
       "title": "ProxiTok",
-      "type": 3
+      "type": 3,
+      "logo": "/docker-compose.png"
     },
     {
       "categories": [
@@ -255,7 +256,7 @@
           "name": "PORT"
         }
       ],
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/bookstack2.png",
+      "logo": "/logos/bookstack.png",
       "note": "Default login is admin@admin.com with a password of password. The database created is called bookstackapp and the database user is called bookstack",
       "platform": "linux",
       "repository": {
@@ -459,7 +460,7 @@
         }
       ],
       "image": "nmtan/chevereto:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/Chevereto.png",
+      "logo": "/logos/chevereto.png",
       "name": "Chevereto",
       "platform": "linux",
       "ports": [
@@ -531,7 +532,7 @@
         }
       ],
       "image": "linuxserver/code-server:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/code-server.png",
+      "logo": "/logos/openvscode-server.png",
       "name": "code-server",
       "platform": "linux",
       "ports": [
@@ -701,7 +702,7 @@
         }
       ],
       "image": "linuxserver/davos:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/davos.png",
+      "logo": "/logos/davos.png",
       "name": "davos",
       "note": "Configuration <ul><li><b>/config</b> - AppData Location</li><li><b>/downloads</b> - File Download Location</li></ul>",
       "platform": "linux",
@@ -884,7 +885,7 @@
         }
       ],
       "image": "linuxserver/duplicati:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/duplicati-icon.png",
+      "logo": "/logos/duplicati.png",
       "name": "duplicati",
       "platform": "linux",
       "ports": [
@@ -987,7 +988,7 @@
       ],
       "description": "Web File Browser which can be used as a middleware or standalone app.",
       "image": "80x86/filebrowser:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/filebrowser.png",
+      "logo": "/logos/filebrowser.png",
       "name": "filebrowser",
       "note": "The default user and password is admin/admin.",
       "platform": "linux",
@@ -1026,7 +1027,7 @@
         }
       ],
       "image": "linuxserver/freshrss:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/freshrss-icon.png",
+      "logo": "/logos/freshrss.png",
       "name": "freshrss",
       "platform": "linux",
       "ports": [
@@ -1047,7 +1048,7 @@
         "Feed Reader"
       ],
       "description": "Miniflux is a minimalist and opinionated feed reader.",
-      "logo": "",
+      "logo": "/logos/miniflux.png",
       "name": "miniflux",
       "platform": "linux",
       "repository": {
@@ -1104,7 +1105,7 @@
       ],
       "description": "A clientless remote desktop gateway.",
       "image": "oznu/guacamole:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/guacamole.png",
+      "logo": "/logos/guacamole.png",
       "name": "guacamole",
       "note": "The default login will be guacadmin/guacadmin. It is common practice to add a new admin user and remove the default user for Guacamole.",
       "platform": "linux",
@@ -1144,7 +1145,7 @@
         }
       ],
       "image": "linuxserver/grocy:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/grocy_logo.png",
+      "logo": "/logos/grocy.png",
       "name": "grocy",
       "platform": "linux",
       "ports": [
@@ -1257,7 +1258,7 @@
         }
       ],
       "image": "linuxserver/heimdall:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/heimdall-icon.png",
+      "logo": "/logos/heimdall.png",
       "name": "heimdall",
       "platform": "linux",
       "ports": [
@@ -1419,7 +1420,7 @@
           "name": "PORT"
         }
       ],
-      "logo": "https://github.com/advplyr/audiobookshelf/raw/master/images/banner.svg",
+      "logo": "/logos/audiobookshelf.png",
       "name": "Audiobookshelf",
       "platform": "linux",
       "repository": {
@@ -1639,7 +1640,7 @@
           "name": "PORT"
         }
       ],
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/invoice_ninja.png",
+      "logo": "/logos/invoiceninja.png",
       "name": "invoice_ninja",
       "note": "The database user is invoice_ninja and the database is ninja_db. Please generate an app key following the documentation <a href='https://github.com/invoiceninja/dockerfiles'>here</a>. ",
       "platform": "linux",
@@ -1713,7 +1714,7 @@
         }
       ],
       "image": "linuxserver/jellyfin:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/jellyfin.png",
+      "logo": "/logos/jellyfin.png",
       "name": "jellyfin",
       "platform": "linux",
       "ports": [
@@ -1918,8 +1919,8 @@
       ],
       "image": "linuxserver/swag:latest",
       "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/letsencrypt.png",
-      "name": "letsencrypt / SWAG",
-      "note": "Before running this container, make sure that the url and subdomains are properly forwarded to this container's host.<ul><li>- Port 443 on the internet side of the router should be forwarded to this container's port 443.</li><li>- If you need a dynamic dns provider, you can use the free provider duckdns.org where the url will be yoursubdomain.duckdns.org and the subdomains can be www,ftp,cloud</li><li>- The container detects changes to url and subdomains, revokes existing certs and generates new ones during start.</li><li>- It also detects changes to the DHLEVEL parameter and replaces the dhparams file.</li><li>- If you'd like to password protect your sites, you can use htpasswd. Run the following command on your host to generate the htpasswd file <code>docker exec -it letsencrypt htpasswd -c /config/nginx/.htpasswd \u0026lt;username\u0026gt;</code>",
+      "name": "letsencrypt-SWAG",
+      "note": "Before running this container, make sure that the url and subdomains are properly forwarded to this container's host.<ul><li>- Port 443 on the internet side of the router should be forwarded to this container's port 443.</li><li>- If you need a dynamic dns provider, you can use the free provider duckdns.org where the url will be yoursubdomain.duckdns.org and the subdomains can be www,ftp,cloud</li><li>- The container detects changes to url and subdomains, revokes existing certs and generates new ones during start.</li><li>- It also detects changes to the DHLEVEL parameter and replaces the dhparams file.</li><li>- If you'd like to password protect your sites, you can use htpasswd. Run the following command on your host to generate the htpasswd file <code>docker exec -it letsencrypt htpasswd -c /config/nginx/.htpasswd &lt;username&gt;</code>",
       "platform": "linux",
       "ports": [
         "80/tcp",
@@ -2022,7 +2023,7 @@
         }
       ],
       "image": "linuxserver/lychee:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/lychee-icon.png",
+      "logo": "/logos/lychee.png",
       "name": "lychee",
       "platform": "linux",
       "ports": [
@@ -2065,7 +2066,7 @@
         }
       ],
       "image": "linuxserver/mariadb:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/mariadb-icon.png",
+      "logo": "/logos/mariadb.png",
       "name": "mariadb",
       "platform": "linux",
       "ports": [
@@ -2569,7 +2570,7 @@
           "name": "PORT"
         }
       ],
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/nextcloud-icon.png",
+      "logo": "/logos/nextcloud.png",
       "name": "nextcloud",
       "note": "The database user is nextcloud and the database is nextcloud_db. The host of the database will be located at the bottom of the DB conotainer in portainer.",
       "platform": "linux",
@@ -2599,7 +2600,7 @@
         }
       ],
       "image": "linuxserver/nginx:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/nginx-icon.png",
+      "logo": "/logos/nginx-redirect.png",
       "name": "nginx",
       "platform": "linux",
       "ports": [
@@ -2680,7 +2681,7 @@
         "Tools"
       ],
       "description": "Ombi allows you to host your own Plex Request and user management system.",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/ombi.png",
+      "logo": "/logos/ombi.png",
       "name": "ombi",
       "platform": "linux",
       "repository": {
@@ -2713,7 +2714,7 @@
         }
       ],
       "image": "linuxserver/openvpn-as:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/openvpn-as-icon.png",
+      "logo": "/logos/openvpn-as.png",
       "name": "openvpn-as",
       "platform": "linux",
       "ports": [
@@ -2737,7 +2738,7 @@
         "Dashboard"
       ],
       "description": "Organizr allows you to setup Tabs that will be loaded all in one webpage. You can then work on your server with ease.",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/organizr-icon.png",
+      "logo": "/logos/organizr.png",
       "name": "organizr-v2",
       "platform": "linux",
       "repository": {
@@ -2985,7 +2986,7 @@
         }
       ],
       "image": "linuxserver/plex:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/plex-icon.png",
+      "logo": "/logos/plex-arm.png",
       "name": "plex",
       "network": "host",
       "platform": "linux",
@@ -3068,7 +3069,7 @@
         }
       ],
       "image": "linuxserver/projectsend:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/projectsend-logo.png",
+      "logo": "/logos/projectsend.png",
       "name": "projectsend",
       "platform": "linux",
       "ports": [
@@ -3133,7 +3134,7 @@
         }
       ],
       "image": "ghcr.io/linuxserver/prowlarr:develop",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/prowlarr.png",
+      "logo": "/logos/prowlarr.png",
       "name": "prowlarr",
       "platform": "linux",
       "ports": [
@@ -3167,7 +3168,7 @@
         }
       ],
       "image": "linuxserver/pydio:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/pydio-icon.png",
+      "logo": "/logos/pydio.png",
       "name": "pydio",
       "platform": "linux",
       "ports": [
@@ -3205,7 +3206,7 @@
         }
       ],
       "image": "linuxserver/qbittorrent:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/qbittorrent-icon.png",
+      "logo": "/logos/qbittorrent.png",
       "name": "qbittorrent",
       "platform": "linux",
       "ports": [
@@ -3280,7 +3281,7 @@
         }
       ],
       "image": "hotio/radarr:release",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/radarr.png",
+      "logo": "/logos/radarr.png",
       "name": "radarr",
       "platform": "linux",
       "ports": [
@@ -3309,7 +3310,7 @@
         "Multimedia"
       ],
       "description": "Tdarr is a popular conditional transcoding application for processing large (or small) media libraries.",
-      "logo": "https://tdarr.io/static/media/logo3.02a3f4a3.png",
+      "logo": "/docker-compose.png",
       "name": "tdarr",
       "platform": "linux",
       "repository": {
@@ -3361,7 +3362,7 @@
         }
       ],
       "image": "linuxserver/resilio-sync:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/resilio.png",
+      "logo": "/logos/resilio-sync.png",
       "name": "resilio-sync",
       "platform": "linux",
       "restart_policy": "unless-stopped",
@@ -3569,7 +3570,7 @@
         }
       ],
       "image": "linuxserver/smokeping:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/smokeping-icon.png",
+      "logo": "/logos/smokeping.png",
       "name": "smokeping",
       "platform": "linux",
       "ports": [
@@ -3623,7 +3624,7 @@
         }
       ],
       "image": "hotio/sonarr:release",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/sonarr-icon.png",
+      "logo": "/logos/sonarr.png",
       "name": "sonarr",
       "platform": "linux",
       "ports": [
@@ -3669,7 +3670,7 @@
         }
       ],
       "image": "linuxserver/tautulli:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/tautulli-icon.png",
+      "logo": "/logos/tautulli.png",
       "name": "tautulli",
       "note": "<b>Port 8181</b> The webui for Tautulli's webui<br/></br>Configuration <ul><li><b>/config</b> - Storing Configuration and the Tautulli database</li><li><b>/logs</b> - Map to you plex logs (required for IP logging)</li></ul>",
       "platform": "linux",
@@ -3708,7 +3709,7 @@
         }
       ],
       "image": "linuxserver/thelounge:latest",
-      "logo": "https://raw.githubusercontent.com/linuxserver/community-templates/master/lsiocommunity/img/shout-icon.png",
+      "logo": "/logos/the-lounge.png",
       "name": "thelounge",
       "platform": "linux",
       "ports": [
@@ -3731,7 +3732,7 @@
       ],
       "description": "A unique, non-linear notebook wiki.",
       "image": "mazzolino/tiddlywiki:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/tiddlywiki.png",
+      "logo": "/logos/tiddlywiki.png",
       "name": "tiddlywiki",
       "platform": "linux",
       "ports": [
@@ -3799,7 +3800,7 @@
         }
       ],
       "image": "linuxserver/transmission:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/transmission-icon.png",
+      "logo": "/logos/transmission.png",
       "name": "transmission",
       "platform": "linux",
       "ports": [
@@ -3889,7 +3890,7 @@
         "Video",
         "Other"
       ],
-      "description": "Tvheadend is a TV streaming server and recorder for Linux, FreeBSD and Android supporting DVB-S, DVB-S2, DVB-C, DVB-T, ATSC, ISDB-T, IPTV, SAT\u0026gt;IP and HDHomeRun as input sources. Tvheadend offers the HTTP (VLC, MPlayer), HTSP (Kodi, Movian) and SAT\u0026gt;IP streaming. Multiple EPG sources are supported (over-the-air DVB and ATSC including OpenTV DVB extensions, XMLTV, PyXML).",
+      "description": "Tvheadend is a TV streaming server and recorder for Linux, FreeBSD and Android supporting DVB-S, DVB-S2, DVB-C, DVB-T, ATSC, ISDB-T, IPTV, SAT&gt;IP and HDHomeRun as input sources. Tvheadend offers the HTTP (VLC, MPlayer), HTSP (Kodi, Movian) and SAT&gt;IP streaming. Multiple EPG sources are supported (over-the-air DVB and ATSC including OpenTV DVB extensions, XMLTV, PyXML).",
       "env": [
         {
           "default": "1000",
@@ -4097,7 +4098,7 @@
       ],
       "description": "Wikijs A modern, lightweight and powerful wiki app built on NodeJS.",
       "image": "linuxserver/wikijs:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/wikijs.png",
+      "logo": "/logos/wiki-js.png",
       "name": "Wikijs",
       "platform": "linux",
       "ports": [
@@ -4149,7 +4150,7 @@
         "Network"
       ],
       "description": "It is a self-hosted monitoring tool like Uptime Robot",
-      "logo": "https://images.opencollective.com/uptime-kuma/29c5113/logo/256.png",
+      "logo": "/logos/uptime-kuma.png",
       "name": "uptime-kuma",
       "platform": "linux",
       "repository": {
@@ -4165,7 +4166,7 @@
       ],
       "description": "Dozzle is a small lightweight application with a web based interface to monitor Docker logs. It doesn’t store any log files. It is for live monitoring of your container logs only.",
       "image": "amir20/dozzle:latest",
-      "logo": "https://dozzle.dev/favicon.ico",
+      "logo": "/logos/dozzle.png",
       "name": "dozzle",
       "platform": "linux",
       "ports": [
@@ -4186,7 +4187,7 @@
         "Social"
       ],
       "description": "Monica is a great open source personal relationship management system to organize the interactions with your loved ones.",
-      "logo": "https://raw.githubusercontent.com/docker-library/docs/b962028212dbd77c9531dbcf8d5a81db79d4a735/monica/logo.svg",
+      "logo": "/logos/monica.png",
       "name": "monica",
       "platform": "linux",
       "repository": {
@@ -4202,7 +4203,7 @@
       ],
       "description": "NetBox is an infrastructure resource modeling (IRM) application designed to empower network automation. Initially conceived by the network engineering team at DigitalOcean, NetBox was developed specifically to address the needs of network and infrastructure engineers.",
       "image": "netboxcommunity/netbox:latest",
-      "logo": "https://github.com/xneo1/portainer_templates/raw/master/Images/netbox_icon.svg",
+      "logo": "/logos/netbox.png",
       "name": "netbox",
       "platform": "linux",
       "ports": [
@@ -4237,7 +4238,7 @@
         "Finance"
       ],
       "description": "Ghostfolio is an open source wealth management software built with web technology.",
-      "logo": "https://avatars.githubusercontent.com/u/82473144?s=200",
+      "logo": "/logos/ghostfolio.png",
       "name": "Ghostfolio",
       "repository": {
         "stackfile": "Template/Stack/ghostfolio.yml",
@@ -4275,7 +4276,7 @@
         "Tools"
       ],
       "description": "wallabag is a web application allowing you to save web pages for later reading. Click, save and read it when you want.",
-      "logo": "https://www.wallabag.org/user/themes/boxify/img/logo-wallabag.svg",
+      "logo": "/logos/wallabag.png",
       "name": "Wallabag",
       "repository": {
         "stackfile": "Template/Stack/wallabag.yml",
@@ -4329,7 +4330,7 @@
         "IoT"
       ],
       "description": "Node-RED provides a browser-based flow editor that makes it easy to wire together flows using the wide range of nodes in the palette.",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/node-red-icon.svg",
+      "logo": "/logos/node-red.png",
       "name": "nodered",
       "platform": "linux",
       "repository": {
@@ -4345,7 +4346,7 @@
       ],
       "description": "Self-hosted website change detection monitoring.",
       "image": "dgtlmoon/changedetection.io",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/changedetection-custom.png",
+      "logo": "/logos/changedetection.png",
       "name": "changedetection",
       "platform": "linux",
       "restart_policy": "always",
@@ -4390,7 +4391,7 @@
       ],
       "description": "An easy to use Status Page for your websites and applications. Statping will automatically fetch the application and render a beautiful status page with tons of features for you to build an even better status page.",
       "image": "statping/statping:latest",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/statping.png",
+      "logo": "/logos/statping.png",
       "name": "statping",
       "platform": "linux",
       "ports": [
@@ -4412,7 +4413,7 @@
       ],
       "description": "Network UPS Tools server",
       "image": "upshift/nut-upsd",
-      "logo": "",
+      "logo": "/docker-compose.png",
       "name": "nuts",
       "platform": "linux",
       "ports": [
@@ -4433,7 +4434,7 @@
         "Browsers"
       ],
       "description": "Firefox Browser, also known as Mozilla Firefox or simply Firefox, is a free and open-source web browser developed by the Mozilla Foundation and its subsidiary, the Mozilla Corporation. Firefox uses the Gecko layout engine to render web pages, which implements current and anticipated web standards.",
-      "logo": "https://raw.githubusercontent.com/xneo1/portainer_templates/master/Images/Firefox.png",
+      "logo": "/logos/firefox.png",
       "name": "firefox",
       "platform": "linux",
       "repository": {
@@ -4448,7 +4449,7 @@
         "Tools"
       ],
       "description": "Your Budgets, Calendars, Meals, Inventory, Tasks, and so much more in one simple app.For everyone in your household.On all of your devices.In the cloud or self-hosted",
-      "logo": "https://homechart.app/images/homechart.min.776793e5e4334866f0799e8a84b8448efb1b06cb2762b2bb20f99068ac36136c.png",
+      "logo": "/docker-compose.png",
       "name": "homechart",
       "platform": "linux",
       "repository": {
@@ -4480,7 +4481,7 @@
         }
       ],
       "image": "linuxserver/webtop:ubuntu-kde",
-      "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/webtop-logo.png",
+      "logo": "/logos/webtop.png",
       "name": "webtop",
       "platform": "linux",
       "ports": [
@@ -4501,7 +4502,7 @@
         "Messenger"
       ],
       "description": "Ferdi is a messaging browser that allows you to combine your favourite messaging services into one application",
-      "logo": "https://raw.githubusercontent.com/getferdi/server/master/logo.png",
+      "logo": "/docker-compose.png",
       "name": "ferdi-server",
       "platform": "linux",
       "repository": {
@@ -4531,7 +4532,7 @@
         "Other"
       ],
       "description": "Snippet Box is a simple self-hosted app for organizing your code snippets. It allows you to easily create, edit, browse and manage your snippets in various languages.",
-      "logo": "",
+      "logo": "/docker-compose.png",
       "name": "snippet-box",
       "platform": "linux",
       "repository": {
@@ -4610,7 +4611,7 @@
         "AI"
       ],
       "description": "PhotoPrism is an AI-powered app for browsing, organizing & sharing your photo collection. It makes use of the latest technologies to tag and find pictures automatically without getting in your way.| Copy as Custom stack and EDIT environment variables.",
-      "logo": "https://photoprism.app/static/img/logo.svg",
+      "logo": "/logos/photoprism.png",
       "name": "photoprism",
       "platform": "linux",
       "repository": {
@@ -4626,7 +4627,7 @@
         "AI"
       ],
       "description": "Immich is a high performance self-hosted photo and video backup solution.",
-      "logo": "https://github.com/immich-app/immich/raw/main/design/immich-logo.svg",
+      "logo": "/logos/immich.png",
       "name": "immich",
       "platform": "linux",
       "repository": {
@@ -4686,7 +4687,7 @@
         "offline"
       ],
       "description": "Internet. Offline.Store any website on your mobile phone or computer, easily.",
-      "logo": "https://www.kiwix.org/wp-content/uploads/kiwix-logo-995x200-1.png",
+      "logo": "/docker-compose.png",
       "name": "kiwix",
       "platform": "linux",
       "repository": {
@@ -4716,7 +4717,7 @@
         "metrics"
       ],
       "description": "This is an exporter that exposes information gathered from Proxmox VE node for use by the Prometheus monitoring system.",
-      "logo": "",
+      "logo": "/docker-compose.png",
       "name": "pve-exporter",
       "platform": "linux",
       "repository": {
@@ -4731,7 +4732,7 @@
         "Tools"
       ],
       "description": "Grocy is an ERP system for your kitchen! Cut down on food waste, and manage your chores with this brilliant utility.",
-      "logo": "https://grocy.info/img/grocy_logo.svg",
+      "logo": "/logos/grocy.png",
       "name": "grocy",
       "platform": "linux",
       "repository": {
@@ -4761,7 +4762,7 @@
         "Tools"
       ],
       "description": "Shiori is a simple bookmarks manager written in the Go language. Intended as a simple clone of Pocket.You can use it as command line application or as web application.",
-      "logo": "https://raw.githubusercontent.com/go-shiori/shiori/master/docs/readme/cover.png",
+      "logo": "/logos/shiori.png",
       "name": "shiori",
       "platform": "linux",
       "repository": {
@@ -4793,7 +4794,7 @@
         "Multimedia"
       ],
       "description": "A social platform to enjoy and share music.Funkwhale is a community-driven project that lets you listen and share music and audio within a decentralized, open network.",
-      "logo": "https://funkwhale.audio/img/with-text-500.4aff7861.png",
+      "logo": "/docker-compose.png",
       "name": "funkwhale",
       "platform": "linux",
       "repository": {
@@ -4823,7 +4824,7 @@
         "Time Tracking"
       ],
       "description": "Traggo is a tag-based time tracking tool. In Traggo there are no tasks, only tagged time spans.",
-      "logo": "https://traggo.net/images/favicon.png",
+      "logo": "/logos/traggo.png",
       "name": "traggo",
       "platform": "linux",
       "repository": {
@@ -4838,7 +4839,7 @@
         "Learning"
       ],
       "description": "Moodle is a learning platform designed to provide educators, administrators and learners with a single robust, secure and integrated system to create personalised learning environments.",
-      "logo": "https://download.moodle.org/theme/moodleorgcleaned/pix/moodle_logo_TM.svg",
+      "logo": "/logos/moodle.png",
       "name": "moodle",
       "platform": "linux",
       "repository": {
@@ -4914,7 +4915,7 @@
         "comics"
       ],
       "description": "Kapowarr is a software to build and manage a comic book library, fitting in the *arr suite of software.",
-      "logo": "",
+      "logo": "/docker-compose.png",
       "name": "kapowarr",
       "platform": "linux",
       "repository": {
@@ -4974,7 +4975,7 @@
         "Marketing"
       ],
       "description": "Mautic provides free and open source marketing automation software available to everyone. ",
-      "logo": "https://www.mautic.org/themes/custom/mauticorg_base/logo.svg",
+      "logo": "/logos/mautic.png",
       "name": "mautic",
       "platform": "linux",
       "repository": {
@@ -5005,7 +5006,7 @@
         "Monitoring"
       ],
       "description": "YourSpotify is a self-hosted application that tracks what you listen and offers you a dashboard to explore statistics about it!",
-      "logo": "",
+      "logo": "/docker-compose.png",
       "name": "your_spotify",
       "platform": "linux",
       "repository": {
@@ -5036,7 +5037,7 @@
         "Database"
       ],
       "description": "InfluxDB is an open source time series database for recording metrics, events, and analytics.",
-      "logo": "https://www.niagaramarketplace.com/media/catalog/product/cache/f7420c7cfd302c73440e50c5a6066c3c/m/a/marketplace_icons_13_.png",
+      "logo": "/logos/influxdb2.png",
       "name": "influxdb2",
       "platform": "linux",
       "repository": {
@@ -5053,7 +5054,7 @@
         "Visualization"
       ],
       "description": "Grafana is the open source analytics & monitoring solution for every database.",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Grafana_logo.png?20170804201233",
+      "logo": "/logos/grafana.png",
       "name": "grafana",
       "platform": "linux",
       "repository": {
@@ -5068,7 +5069,7 @@
         "Files"
       ],
       "description": "A Dropbox-like file manager that let you manage your data anywhere it is located.",
-      "logo": "https://downloads.filestash.app/brand/logo_white.svg",
+      "logo": "/logos/filestash.png",
       "name": "filestash",
       "platform": "linux",
       "repository": {
@@ -5143,7 +5144,7 @@
         "Social"
       ],
       "description": "Mastodon is a free, open-source social network server based on ActivityPub where users can follow friends and discover new ones..",
-      "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mastodon-banner.png",
+      "logo": "/logos/mastodon.png",
       "name": "mastodon",
       "platform": "linux",
       "repository": {
@@ -5158,7 +5159,7 @@
         "Development"
       ],
       "description": "Appwrite is a self-hosted backend-as-a-service platform that provides developers with all the core APIs required to build any application.",
-      "logo": "https://appwrite.io/images/appwrite.svg",
+      "logo": "/logos/appwrite.png",
       "name": "appwrite",
       "platform": "linux",
       "repository": {
@@ -5174,7 +5175,7 @@
         "AI"
       ],
       "description": "Automate your marketing, sales and operations",
-      "logo": "https://cdn.activepieces.com/brand/full-logo-white.svg",
+      "logo": "/logos/activepieces.png",
       "name": "activepieces",
       "platform": "linux",
       "repository": {
@@ -5236,7 +5237,7 @@
         "Productivity"
       ],
       "description": "Project management tool from the future. An open-source software development tool to manage issues, sprints, and product roadmaps with peace of mind.",
-      "logo": "https://plane-marketing.s3.ap-south-1.amazonaws.com/plane-assets/logo/text-logo.svg",
+      "logo": "/logos/invoiceplane.png",
       "name": "plane",
       "platform": "linux",
       "repository": {
@@ -5282,7 +5283,7 @@
         "News"
       ],
       "description": "FeedCord is a dead-simple RSS Reader designed to integrate seamlessly with Discord. With just a few configuration steps, you can have a news feed text channel up and running in your server.",
-      "logo": "",
+      "logo": "/docker-compose.png",
       "name": "feedcord",
       "platform": "linux",
       "repository": {
@@ -5312,7 +5313,7 @@
         "Multimedia"
       ],
       "description": "Tubearchivist is your self hosted YouTube media server",
-      "logo": "https://raw.githubusercontent.com/tubearchivist/tubearchivist/master/assets/tube-archivist-banner.jpg",
+      "logo": "/docker-compose.png",
       "name": "tubearchivist",
       "platform": "linux",
       "repository": {
@@ -5327,7 +5328,7 @@
         "Finance"
       ],
       "description": "Actual is a super fast privacy-focused app for managing your finances. ",
-      "logo": "data:image/png;base64,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",
+      "logo": "/logos/actual.png",
       "name": "actual",
       "platform": "linux",
       "repository": {
@@ -5343,7 +5344,7 @@
         "Productivity"
       ],
       "description": "Baïkal is a lightweight CalDAV+CardDAV server. It offers an extensive web interface with easy management of users, address books and calendars.",
-      "logo": "https://sabre.io/img/logo.png",
+      "logo": "/logos/baikal.png",
       "name": "baikal",
       "platform": "linux",
       "repository": {
@@ -5406,7 +5407,7 @@
         "Knowledge Base"
       ],
       "description": "Documize Community is an open source, modern, self-hosted, enterprise-grade knowledge management solution.",
-      "logo": "",
+      "logo": "/docker-compose.png",
       "name": "documize",
       "platform": "linux",
       "repository": {
@@ -5421,7 +5422,7 @@
         "Dashboard"
       ],
       "description": "Simplify the management of your server with Homarr - a sleek, modern dashboard that puts all of your apps and services at your fingertips.",
-      "logo": "https://homarr.dev/img/logo.svg",
+      "logo": "/logos/homarr.png",
       "name": "homarr",
       "platform": "linux",
       "repository": {
@@ -5481,7 +5482,7 @@
         "Remote Control"
       ],
       "description": "Remotely is a remote control and remote scripting solution, built with .NET 6, Blazor, and SignalR Core.",
-      "logo": "",
+      "logo": "/docker-compose.png",
       "name": "Remotely",
       "platform": "linux",
       "repository": {
@@ -5513,7 +5514,7 @@
         "Drawing"
       ],
       "description": "Virtual whiteboard for sketching hand-drawn like diagrams. Collaborative and end-to-end encrypted.",
-      "logo": "https://github.com/excalidraw/excalidraw/raw/master/public/og-image-sm.png",
+      "logo": "/logos/excalidraw.png",
       "name": "excalidraw",
       "platform": "linux",
       "repository": {
@@ -5528,7 +5529,7 @@
         "Network"
       ],
       "description": "UpSnap is a simple wake on lan app written with SvelteKit, Go, PocketBase and nmap.",
-      "logo": "https://github.com/seriousm4x/UpSnap/raw/master/frontend/static/favicon.png",
+      "logo": "/docker-compose.png",
       "name": "upsnap",
       "platform": "linux",
       "repository": {
@@ -5563,7 +5564,7 @@
         "Tools"
       ],
       "description": "Syncthing replaces proprietary sync and cloud services with something open, trustworthy and decentralized. ",
-      "logo": "https://github.com/syncthing/syncthing/raw/main/assets/logo-text-128.png",
+      "logo": "/logos/syncthing.png",
       "name": "Syncthing",
       "platform": "linux",
       "repository": {
@@ -5581,7 +5582,7 @@
         "No-code"
       ],
       "description": "Budibase allows no-code users to build apps quickly, with more functionality available with a little bit of inline code.",
-      "logo": "https://files.readme.io/593b386-budibase-logo-website.svg",
+      "logo": "/logos/budibase.png",
       "name": "budibase",
       "platform": "linux",
       "repository": {
@@ -5596,7 +5597,7 @@
         "Search"
       ],
       "description": "Meilisearch is a RESTful search API. It aims to be a ready-to-go solution for everyone who wants a fast and relevant search experience for their end-users",
-      "logo": "https://docs.meilisearch.com/logo.svg",
+      "logo": "/logos/meilisearch.png",
       "name": "Meilisearch",
       "platform": "linux",
       "repository": {
@@ -5645,7 +5646,7 @@
         "Low-code"
       ],
       "description": "Appsmith (www.appsmith.com) is the first open-source low-code tool that helps developers build dashboards and admin panels very quickly.",
-      "logo": "https://cdn-images.himalayas.app/vr60veq4neiptamhqm6qxwi3toi3",
+      "logo": "/logos/appsmith.png",
       "name": "appsmith",
       "platform": "linux",
       "repository": {
@@ -5675,7 +5676,7 @@
         "Mail"
       ],
       "description": "Full stack mailserver solution with  TLS support. POP3s, SMTP(s), IMAPs, RSPAMD, Clamav, Roundcube(HTTPS), SPF, DKIM with simple installation and web administration.",
-      "logo": "",
+      "logo": "/logos/poste-io.png",
       "name": "poste.io",
       "platform": "linux",
       "repository": {
@@ -5690,7 +5691,7 @@
         "Network"
       ],
       "description": "IPerf3 Docker Build for Network Performance and Bandwidth Testing",
-      "logo": "",
+      "logo": "/docker-compose.png",
       "name": "iperf",
       "platform": "linux",
       "repository": {
@@ -5705,7 +5706,7 @@
         "Docker"
       ],
       "description": "Lazytainer monitors network traffic to containers. If there is traffic, the container runs, otherwise the container is stopped/paused.",
-      "logo": "",
+      "logo": "/docker-compose.png",
       "name": "lazytainer",
       "platform": "linux",
       "repository": {
@@ -5720,7 +5721,7 @@
         "Dashboard"
       ],
       "description": "Homepage is a new dashboard implementation that creates a super fast static site.",
-      "logo": "https://raw.githubusercontent.com/benphelps/homepage/main/images/preview.png",
+      "logo": "/logos/homepage.png",
       "name": "homepage",
       "platform": "linux",
       "repository": {
@@ -5735,7 +5736,7 @@
         "Finance"
       ],
       "description": "I hate money is a web application made to ease shared budget management. It keeps track of who bought what, when, and for whom; and helps to settle the bills.",
-      "logo": "",
+      "logo": "/docker-compose.png",
       "name": "ihatemoney",
       "platform": "linux",
       "repository": {
@@ -5795,7 +5796,7 @@
         "Dashboard"
       ],
       "description": "Jump is yet another self-hosted startpage for your server designed to be simple, stylish, fast and secure.",
-      "logo": "",
+      "logo": "/docker-compose.png",
       "name": "jump",
       "platform": "linux",
       "repository": {
@@ -5810,7 +5811,7 @@
         "Productivity"
       ],
       "description": "Hasty Paste is a fast and minimal paste bin, written in Python using Quart.",
-      "logo": "",
+      "logo": "/docker-compose.png",
       "name": "hasty-paste",
       "platform": "linux",
       "repository": {
@@ -5840,7 +5841,7 @@
         "Productivity"
       ],
       "description": "Leantime is an open source project management solution to make your ideas reality.",
-      "logo": "https://s3-us-west-2.amazonaws.com/leantime-website/wp-content/uploads/2022/07/24022056/logo-large.png",
+      "logo": "/logos/leantime.png",
       "name": "leantime",
       "platform": "linux",
       "repository": {
@@ -5902,7 +5903,7 @@
         "No-code"
       ],
       "description": "Open source no-code database and Airtable alternative.Create your own online database without technical experience. Our user friendly no-code tool gives you the powers of a developer without leaving your browser.",
-      "logo": "https://].io/_nuxt/img/logo.1421f77.svg",
+      "logo": "/logos/baserow.png",
       "name": "Baserow",
       "platform": "linux",
       "repository": {
@@ -5919,7 +5920,7 @@
         "No-code"
       ],
       "description": "Turns any MySQL, PostgreSQL, SQL Server, SQLite & MariaDB into a smart-spreadsheet.",
-      "logo": "https://github.com/nocodb/nocodb/raw/develop/packages/nc-gui/assets/img/icons/512x512.png",
+      "logo": "/logos/nocodb.png",
       "name": "NocoDB",
       "platform": "linux",
       "repository": {
@@ -5980,7 +5981,7 @@
         "Analytics"
       ],
       "description": "Umami is a simple, easy to use, self-hosted web analytics solution. The goal is to provide you with a friendlier, privacy-focused alternative to Google Analytics and a free, open-sourced alternative to paid solutions",
-      "logo": "https://icons.duckduckgo.com/ip3/umami.is.ico",
+      "logo": "/logos/umami-postgresql.png",
       "name": "umami",
       "platform": "linux",
       "repository": {
@@ -5998,7 +5999,7 @@
         "Analytics"
       ],
       "description": "Google Analytics alternative that protects your data and your customers' privacy",
-      "logo": "https://gallery.ncnet.nl/upload/2020/05/22/20200522171613-9205fa32.png",
+      "logo": "/logos/matomo.png",
       "name": "matomo",
       "platform": "linux",
       "repository": {
@@ -6031,7 +6032,7 @@
         "Blogging"
       ],
       "description": "Create your own platform on the web. Ghost is a powerful app for new-media creators to publish, share, and grow a business around their content. It comes with modern tools to build a website, publish content, send newsletters & offer paid subscriptions to members.",
-      "logo": "https://ghost.org/images/logos/logo-black-1.webp",
+      "logo": "/logos/ghost.png",
       "name": "ghost",
       "platform": "linux",
       "repository": {

@@ -5,10 +5,11 @@ export default defineEventHandler(async (event) => {
   if (!id)
     return
 
-  const parsedId = Number.parseInt(id)
+
+  
   const db = useDbStorage('templates:portainer')
   const templatesFile = await db.getItem('template.json') as ITemplateFile
-  const foundTemplate = templatesFile.templates[parsedId]
+  const foundTemplate = templatesFile.templates.find(template => template.name === id)
   let stackfile = foundTemplate?.repository?.stackfile
   stackfile = stackfile ? stackfile.split('/').slice(1).join(':') : `Stack:${foundTemplate?.name ?? id}.yml`
   // console.log(stackfile);
@@ -19,7 +20,7 @@ export default defineEventHandler(async (event) => {
   if (await db.hasItem(stackfile))
     response = await db.getItem(stackfile)
   else
-    response = convertPortainerTemplatesToDockerCompose([templatesFile.templates[parsedId]])
+    response = convertPortainerTemplatesToDockerCompose([foundTemplate!])
 
   console.log(response)
 

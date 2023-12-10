@@ -1,6 +1,9 @@
-import { Octokit } from 'octokit'
+
 import { Probot, createNodeMiddleware, createProbot } from 'probot'
 import consola from 'consola'
+
+
+
 
 async function findProject(url: string) {
   const db = useDbStorage('projects')
@@ -11,12 +14,12 @@ async function findProject(url: string) {
     if (item) {
       if (item.application.repoUrl.includes(url)) {
         const logsPath = `${process.cwd()}/data/logs/${item.id}/`
-        const ProcessProject = {
+        const processProject = {
           ...item,
           key,
-          logsPath
+          logsPath,
         }
-        await queue.addProject(ProcessProject)
+        await queue.addProject(processProject)
       }
     }
   }
@@ -29,7 +32,10 @@ async function findProject(url: string) {
 export function probot(app: Probot) {
   app.log.info('Yay, the app was loaded!')
   app.on('push', async (context) => {
+   
     // consola.info('onAny')
+    console.log(context)
+
     app.log.info(context.payload)
     app.log.info(context.payload.repository.html_url)
     const url = context.payload.repository.html_url

@@ -1,26 +1,10 @@
 <script setup lang="ts">
-const { data: templates } = await useFetch('/api/providers/portainer/templates')
+import type { ITemplate } from '../../../types/portainer'
 
+const { data: templates } = await useLazyFetch<ITemplate[]>('/api/providers/portainer/templates')
 console.log(templates)
-
 function toggleDescription(template: any) {
   template.showFullDescription = !template.showFullDescription
-}
-async function _getTemplate(index: number) {
-  const { data: found } = await useFetch(`/api/providers/portainer/templates/${index}`)
-  console.log(found.value)
-}
-const { shift_a } = useMagicKeys()
-whenever(shift_a, () => {
-  const router = useRouter()
-  router.push('/applications')
-  console.log('Shift+A has been pressed')
-})
-
-const getUrl = (path: string) => `/logos/${path}`
-
-function handleActiveTemplate(template: any) {
-
 }
 </script>
 
@@ -30,6 +14,8 @@ function handleActiveTemplate(template: any) {
       <NuxtLink :to="`/providers/portainer/${template.name}`">
         <div class="flex    items-center justify-center space-x-3">
           <img
+            fallback="/docker-compose.png"
+            @error="() => (template.logo = '/docker-compose.png')"
             :src="template.logo"
             height="5vh"
             class="w-16 "
@@ -40,6 +26,7 @@ function handleActiveTemplate(template: any) {
           <span class="group-hover:translate-x-4 transition-transform duration-150 ease-linear">
             <Icon name="material-symbols:arrow-right-alt-rounded" size="25" />
           </span>
+          <!-- </nuxtimg> -->
         </div>
         <UDivider class="mt-2" />
         <div class="p-2">
