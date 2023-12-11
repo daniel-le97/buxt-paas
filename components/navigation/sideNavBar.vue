@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const SideNavBar = ref<HTMLElement | null>(null)
+const SideNavBar = ref < HTMLElement | null > (null)
 const isCollapsed = ref(false)
 
 function handleCollapse() {

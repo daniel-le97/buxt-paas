@@ -2,7 +2,7 @@ version: '3'
 
 services:
   realtime:
-    container_name: 'le-ploy-realtime'
+    container_name: le-ploy-realtime
     # depends_on:
     #   - proxy
     restart: always
@@ -53,8 +53,8 @@ services:
   #   volumes:
   #     - ./data:/data
   #     - /var/run/docker.sock:/var/run/docker.sock
-    # networks:
-      # - le-ploy
+  # networks:
+  # - le-ploy
 
 # networks:
 #   le-ploy:

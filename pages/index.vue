@@ -29,22 +29,22 @@ onMounted(() => {
   console.log('mounted')
   const location = window.location.origin
   const value = {
-  name: 'le-ploy-source-1',
-  description: 'test',
-  hook_attributes: {
-    url: 'https://smee.io/2CheYVHetZe4ROm',
-  },
-  public: true,
-  url: location, // Assuming loc is defined
-  redirect_url: location, // Assuming loc is defined
-  default_events: ['deployment', 'pull_request', 'push'],
-  default_permissions: {
-    contents: 'read',
-    deployments: 'write',
-    metadata: 'read',
-    pull_requests: 'read',
-  },
-}
+    name: 'le-ploy-source-1',
+    description: 'test',
+    hook_attributes: {
+      url: 'https://smee.io/2CheYVHetZe4ROm',
+    },
+    public: true,
+    url: location, // Assuming loc is defined
+    redirect_url: location, // Assuming loc is defined
+    default_events: ['deployment', 'pull_request', 'push'],
+    default_permissions: {
+      contents: 'read',
+      deployments: 'write',
+      metadata: 'read',
+      pull_requests: 'read',
+    },
+  }
 
   const stringified = JSON.stringify(value)
   input.value = stringified

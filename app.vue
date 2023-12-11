@@ -10,7 +10,7 @@ onMounted(() => {
     if (parsed.event.includes('build'))
       useBuildSSE().value += parsed.data
 
-    console.log({raw:event.data, parsed})
+    console.log({ raw: event.data, parsed })
   })
 
   eventSource.addEventListener('error', (error) => {

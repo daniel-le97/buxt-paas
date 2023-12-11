@@ -5,15 +5,15 @@ services:
     image: 'traefik:v2.10'
     container_name: traefik
     command:
-      - "--api.insecure=true"  # Enable the Traefik API (insecure for testing purposes)
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"  # Do not expose containers by default
-      - "--entrypoints.web.address=:80"  # Define the web entrypoint
-      - "--entrypoints.websecure.address=:443"  # Define the websecure entrypoint
+      - --api.insecure=true # Enable the Traefik API (insecure for testing purposes)
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false # Do not expose containers by default
+      - '--entrypoints.web.address=:80' # Define the web entrypoint
+      - '--entrypoints.websecure.address=:443' # Define the websecure entrypoint
     ports:
-      - "80:80"
-      - "443:443"
-      - "8080:8080"  # Traefik dashboard
+      - '80:80'
+      - '443:443'
+      - '8080:8080' # Traefik dashboard
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
@@ -24,7 +24,7 @@ services:
     container_name: le-ploy-registry
     restart: always
     ports:
-    - "5050:5000"
+      - '5050:5000'
     environment:
       REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
     volumes:
@@ -39,7 +39,7 @@ services:
       - traefik.http.services.socketio.loadbalancer.server.scheme=http
 
   realtime:
-    container_name: 'le-ploy-realtime'
+    container_name: le-ploy-realtime
     depends_on:
       - proxy
     restart: always

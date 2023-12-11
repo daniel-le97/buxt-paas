@@ -6,13 +6,11 @@ All data is kept on the filesystem mounted to /data within the container
 
 this project uses traefik for reverse proxying
 
-
 # warning
 
 currently under development
 
-check out [todos](TODO.md) 
-
+check out [todos](TODO.md)
 
 ## Setup
 

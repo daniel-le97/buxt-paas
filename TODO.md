@@ -2,16 +2,11 @@
 
 may need to change auth
 
-
 # Data directory
 
 this directory houses all of our needed files and data, need to figure out how to properly mount it as a volume in a container
 
-
-
 # Phase 1
-
-
 
 ## Task Checklist
 
@@ -26,6 +21,5 @@ this directory houses all of our needed files and data, need to figure out how t
 - [ ] building a project properly configured docker volumes
   - [] volumes/filesystem data should be sub directories of the main /data mount
   - [ ] volumes can be seen with r/w priviledges through a file editor(monaco)
-
 
 # Phase 2
