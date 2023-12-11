@@ -8,7 +8,7 @@ export default defineNitroPlugin(async (nitroApp) => {
 
   const smee = new SmeeClient({
     source: 'https://smee.io/2CheYVHetZe4ROm',
-    target: 'http://localhost:3000/api/webhooks',
+    target: 'http://localhost:3000/api/git/1',
     logger: consola,
   })
 

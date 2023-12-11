@@ -1,4 +1,4 @@
-import * as yaml from 'js-yaml'
+import yaml from 'yaml'
 
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
@@ -35,5 +35,5 @@ export default defineEventHandler(async (event) => {
 
   // console.log(caproverTemplate.caproverOneClickApp?.variables)
 
-  return yaml.dump(newTemplate)
+  return yaml.stringify(newTemplate)
 })

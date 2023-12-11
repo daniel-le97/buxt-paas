@@ -1,4 +1,4 @@
-import yaml from 'js-yaml'
+import yaml from 'yaml'
 
 export function convertPortainerTemplatesToDockerCompose(templates: PortainerTemplate[]): string {
   const dockerComposeConfig: DockerComposeConfig = {
@@ -36,5 +36,5 @@ export function convertPortainerTemplatesToDockerCompose(templates: PortainerTem
     Object.assign(dockerComposeConfig.services, service)
   })
 
-  return yaml.dump(dockerComposeConfig)
+  return yaml.stringify(dockerComposeConfig)
 }

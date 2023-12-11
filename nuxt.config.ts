@@ -23,9 +23,9 @@ export default defineNuxtConfig({
   //   './auth',
   // ],
 
-  modules: ['@hebilicious/authjs-nuxt', '@nuxt/ui', '@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxt/image', 'nuxt-monaco-editor'],
+  modules: ['@hebilicious/authjs-nuxt', '@nuxt/ui', '@nuxtjs/tailwindcss', '@vueuse/nuxt', 'nuxt-monaco-editor'],
 
-  ignore: ['/temp', '/data'],
+  ignore: ['/temp', '/data', '/stack'],
 
   // security: {
   //   headers: {

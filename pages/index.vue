@@ -1,69 +1,65 @@
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+const input = ref('')
 
-async function redirectToGitHub() {
-  const { data, pending, error, refresh } = await useFetch('/api/git/add')
-  // try {
-  //   // GitHub App Manifest
-  //   const appManifest = {
-  //     name: 'le-ploy-source-1',
-  //     description: 'test',
-  //     homepage_url: window.location.origin, // Assuming loc is defined
-  //     redirect_url: window.location.origin, // Assuming loc is defined
-  //     default_events: ['deployment', 'pull_request', 'push'],
-  //     default_permissions: {
-  //       contents: 'read',
-  //       deployments: 'write',
-  //       metadata: 'read',
-  //       pull_requests: 'read',
-  //     },
-  //   }
+async function create() {
+  const location = window.location.origin
+  // input.value.homepage_url = location
+  // input.value.redirect_url = location
+  const stringified = JSON.stringify(input.value)
+  console.log('clicked', { stringified })
+  const { data, pending, error, refresh } = await useFetch('https://github.com/settings/apps/new', {
+    method: 'POST',
+    mode: 'navigate',
+    params: {
+      manifest: JSON.stringify(input.value),
+      state: 'create',
+    },
+    redirect: 'follow',
 
-  //   // Base URL for GitHub App registration
-  //   const registrationUrl = 'https://github.com/settings/apps/new'
-
-  //   // State parameter for additional security (optional)
-  //   const stateParameter = 'your_state_parameter'
-
-  //   // Construct the data payload
-  //   const payload = new URLSearchParams()
-  //   payload.append('manifest', JSON.stringify(appManifest))
-  //   payload.append('state', stateParameter)
-
-  //   // Make a POST request to GitHub App registration URL
-  //   const response = await fetch(registrationUrl, {
-  //     mode:'no-cors',
-  //     method: 'POST',
-  //     body: payload,
-  //     headers: {
-  //       'Content-Type': 'application/x-www-form-urlencoded',
-  //     },
-  //   })
-
-  //   console.log(response);
-
-  //   // Check if the request was successful
-  //   if (response.ok) {
-  //     // Redirect the user to the GitHub registration page
-  //     window.location.href = response.url
-  //   }
-  //   else {
-  //     console.error('Failed to initiate GitHub App registration.')
-  //   }
-  // }
-  // catch (error) {
-  //   console.error('Error during GitHub App registration:', error)
-  // }
+  })
+  console.log(data, pending, error, refresh)
+  // await navigateTo('https://nuxt.com', {
+  //   external: true,
+  // })
 }
+
+const location = computed(() => window.location.origin)
+
+onMounted(() => {
+  console.log('mounted')
+  const location = window.location.origin
+  const value = {
+  name: 'le-ploy-source-1',
+  description: 'test',
+  hook_attributes: {
+    url: 'https://smee.io/2CheYVHetZe4ROm',
+  },
+  public: true,
+  url: location, // Assuming loc is defined
+  redirect_url: location, // Assuming loc is defined
+  default_events: ['deployment', 'pull_request', 'push'],
+  default_permissions: {
+    contents: 'read',
+    deployments: 'write',
+    metadata: 'read',
+    pull_requests: 'read',
+  },
+}
+
+  const stringified = JSON.stringify(value)
+  input.value = stringified
+  // console.log('clicked', { stringified })
+})
+const code = 'http://localhost:3000/?code=727aa4b859b15cc7ccba90de2168544ccdf8c8cb&state=abc123'
 </script>
 
 <template>
-  <div>
-    <!-- Your Vue.js component content -->
-
-    <!-- Trigger to register the GitHub App -->
-    <button @click="redirectToGitHub">
-      Register GitHub App
-    </button>
+  <div v-if="location">
+    <ClientOnly>
+      <form action="https://github.com/settings/apps/new?state=abc123" method="post">
+        Register a GitHub App Manifest: <input id="manifest" type="text" :value="input" name="manifest"><br>
+        <input type="submit" value="Submit">
+      </form>
+    </ClientOnly>
   </div>
 </template>

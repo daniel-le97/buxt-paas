@@ -25,3 +25,4 @@ logs
 !.env.example
 
 /temp/
+/stack/

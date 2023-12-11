@@ -39,15 +39,23 @@
 //   })
 // }
 
-// const probotApp = new Probot({
-//   appId: process.env.APP_ID,
-//   privateKey: process.env.PRIVATE_KEY,
-//   secret: process.env.WEBHOOK_SECRET,
-//   // webhookPath: "/api/webhooks",
-// })
+export default defineNitroPlugin((nitroApp) => {
+//   nitroApp.hooks.hook('request', (event) => {
+//     const path = event.path
+//     console.log(path);
+    
+//     const probotApp = new Probot({
+//       appId: process.env.APP_ID,
+//       privateKey: process.env.PRIVATE_KEY,
+//       secret: process.env.WEBHOOK_SECRET,
+//       // webhookPath: "/api/webhooks",
+//     })
 
-// const middleware = fromNodeMiddleware(createNodeMiddleware(probot, { webhooksPath: '/api/webhooks', probot: probotApp }))
+//     const middleware = fromNodeMiddleware(createNodeMiddleware(probot, { webhooksPath: '/api/webhooks', probot: probotApp }))
+//     // @ts-expect-error testing
+//     // console.log(event)
 
-export default defineEventHandler(async (event) => {
-  // middleware(event)
+//     return middleware(event)
+    
+//   })
 })
