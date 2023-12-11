@@ -68,6 +68,7 @@ export default defineNuxtConfig({
     componentIslands: true,
   },
   nitro: {
+    
     // preset: 'bun',
     imports: {
       dirs: ['./types'],
@@ -86,6 +87,7 @@ export default defineNuxtConfig({
       openAPI: true,
 
     },
+    
   },
 
 })

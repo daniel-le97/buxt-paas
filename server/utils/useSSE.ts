@@ -1,14 +1,14 @@
 import type { H3Event } from 'h3'
 import { createHooks } from 'hookable'
 
-export interface ServerSentEvent {
+interface ServerSentEvent {
   [key: string]: <T, R>(data: T) => R | void
 }
 
-export const sseHooks = createHooks()
+const sseHooks = createHooks()
 const listeners = new Map()
 
-export async function useSSE(event: H3Event, hookName: string, custom = false) {
+async function useSSE(event: H3Event, hookName: string, custom = false) {
   const userid = (await requireAuthSession(event)).user?.id
 
   setHeader(event, 'content-type', 'text/event-stream')
@@ -37,6 +37,7 @@ export async function useSSE(event: H3Event, hookName: string, custom = false) {
   }
 
 
+  
   listeners.set(userid, true)
 
   const send = (callback: (id: number) => any) => {

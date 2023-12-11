@@ -1,68 +1,69 @@
-<script setup lang="ts">
-import { reactive, ref, watchEffect } from 'vue'
-import YAML from 'yaml'
-import type { DockerComposeConfig } from '../types/portainer'
+<script setup>
+import { ref } from 'vue'
 
-const yaml1 = ref(`version: '3.7'
-services:
-  wireguard:
-    image: linuxserver/wireguard
-    container_name: wireguard
-    cap_add:
-      - NET_ADMIN
-      - SYS_MODULE
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Denver
-      - SERVERURL=http://localhost.com # optional
-      - SERVERPORT=51820 # optional
-      - PEERS=1 # optional
-      - PEERDNS=auto # optional
-      - INTERNAL_SUBNET=10.13.13.0 # optional
-      - ALLOWEDIPS=0.0.0.0/0 # optional
-    volumes:
-      - /usr/share/appdata/wireguard/config:/config
-      - /usr/src:/usr/src # location of kernel headers
-      - /lib/modules:/lib/modules
-    ports:
-      - 51820:51820/udp
-    sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1
-    restart: unless-stopped
-`)
+async function redirectToGitHub() {
+  const { data, pending, error, refresh } = await useFetch('/api/git/add')
+  // try {
+  //   // GitHub App Manifest
+  //   const appManifest = {
+  //     name: 'le-ploy-source-1',
+  //     description: 'test',
+  //     homepage_url: window.location.origin, // Assuming loc is defined
+  //     redirect_url: window.location.origin, // Assuming loc is defined
+  //     default_events: ['deployment', 'pull_request', 'push'],
+  //     default_permissions: {
+  //       contents: 'read',
+  //       deployments: 'write',
+  //       metadata: 'read',
+  //       pull_requests: 'read',
+  //     },
+  //   }
 
-const yaml2 = reactive<DockerComposeConfig>(YAML.parse(yaml1.value))
-const reactiveYaml = ref(yaml1.value)
+  //   // Base URL for GitHub App registration
+  //   const registrationUrl = 'https://github.com/settings/apps/new'
 
-watchEffect(() => {
-  yaml2.services = YAML.parse(reactiveYaml.value).services
-})
+  //   // State parameter for additional security (optional)
+  //   const stateParameter = 'your_state_parameter'
 
-watchEffect(() => {
-  reactiveYaml.value = YAML.stringify(yaml2)
-})
+  //   // Construct the data payload
+  //   const payload = new URLSearchParams()
+  //   payload.append('manifest', JSON.stringify(appManifest))
+  //   payload.append('state', stateParameter)
 
-function updateEnvironmentVariable(serviceIndex: number | string, envIndex: number, newValue: EventTarget | null) {
-  // @ts-expect-error it works
-  yaml2.services[serviceIndex].environment[envIndex] = newValue.value
+  //   // Make a POST request to GitHub App registration URL
+  //   const response = await fetch(registrationUrl, {
+  //     mode:'no-cors',
+  //     method: 'POST',
+  //     body: payload,
+  //     headers: {
+  //       'Content-Type': 'application/x-www-form-urlencoded',
+  //     },
+  //   })
+
+  //   console.log(response);
+
+  //   // Check if the request was successful
+  //   if (response.ok) {
+  //     // Redirect the user to the GitHub registration page
+  //     window.location.href = response.url
+  //   }
+  //   else {
+  //     console.error('Failed to initiate GitHub App registration.')
+  //   }
+  // }
+  // catch (error) {
+  //   console.error('Error during GitHub App registration:', error)
+  // }
 }
 </script>
 
 <template>
-  <div class="w-1/2">
-    <textarea v-model="reactiveYaml" class="w-full" />
-  </div>
-  <div class="w-1/2">
-    <div v-for="(service, serviceIndex) in yaml2.services" :key="serviceIndex" class="w-full">
-      Service: {{ serviceIndex }}
-      Image: <input v-model="service.image" type="text">
-      <div>
-        <div>Variables:</div>
-        <div v-for="(env, envIndex) in service.environment" :key="envIndex">
-          <input :value="env" class="flex space-x-2 m-2" @input=" $event => updateEnvironmentVariable(serviceIndex, envIndex, $event.target)">
-        </div>
-      </div>
-    </div>
+  <div>
+    <!-- Your Vue.js component content -->
+
+    <!-- Trigger to register the GitHub App -->
+    <button @click="redirectToGitHub">
+      Register GitHub App
+    </button>
   </div>
 </template>

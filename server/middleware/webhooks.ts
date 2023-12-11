@@ -37,6 +37,7 @@ export function probot(app: Probot) {
     console.log(context)
 
     app.log.info(context.payload)
+    context.octokit.rest.apps
     app.log.info(context.payload.repository.html_url)
     const url = context.payload.repository.html_url
     await findProject(url)
