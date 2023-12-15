@@ -1,10 +1,7 @@
-import { pusher, useSocketi } from '../utils/useSocketi'
+// import { Surreal } from 'surrealdb.node'
+// import { pusher, useSocketi } from '../utils/useSocketi'
 
-export default defineNitroPlugin(async(nitro) => {
+export default defineNitroPlugin(async () => {
+// import as ES module or common JS
 
-  
-  // await pusher.setup(nitro)
-
-  // const trigger = await useSocketi().trigger('server', 'connected', 'connected')
-  // console.log(trigger)
 })

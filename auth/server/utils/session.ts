@@ -1,7 +1,7 @@
 import type { H3Event, SessionConfig } from 'h3'
 import crypto from 'uncrypto'
 
-const sessionConfig: SessionConfig = useRuntimeConfig().auth || {}
+const sessionConfig = (useRuntimeConfig().auth || {}) as SessionConfig 
 
 export interface AuthSession {
   id: string

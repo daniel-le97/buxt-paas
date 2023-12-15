@@ -2,7 +2,7 @@
 const input = ref('')
 
 async function create() {
-  const location = window.location.origin
+  const location = window?.location.origin
   // input.value.homepage_url = location
   // input.value.redirect_url = location
   const stringified = JSON.stringify(input.value)
@@ -23,11 +23,11 @@ async function create() {
   // })
 }
 
-const location = computed(() => window.location.origin)
+// const location = computed(() => window?.location?.origin)
 
 onMounted(() => {
   console.log('mounted')
-  const location = window.location.origin
+  const location = window?.location.origin || 'http://localhost:3000'
   const value = {
     name: 'le-ploy-source-1',
     description: 'test',
@@ -54,7 +54,7 @@ const code = 'http://localhost:3000/?code=727aa4b859b15cc7ccba90de2168544ccdf8c8
 </script>
 
 <template>
-  <div v-if="location">
+  <div>
     <ClientOnly>
       <form action="https://github.com/settings/apps/new?state=abc123" method="post">
         Register a GitHub App Manifest: <input id="manifest" type="text" :value="input" name="manifest"><br>

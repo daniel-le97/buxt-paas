@@ -26,7 +26,7 @@ async function findProject(url: string) {
 // For more information, see https://probot.github.io/docs/development/
 function probot(app: Probot) {
   app.log.info('Yay, the app was loaded!')
-  app.on('push', async (context) => {
+  app.on('push', async (context: { payload: { repository: { html_url: any; }; }; }) => {
     // consola.info('onAny')
     // console.log(context)
 
@@ -52,6 +52,6 @@ export default defineEventHandler(async (event) => {
     // webhookPath: "/api/webhooks",
   })
 
-  const middleware = fromNodeMiddleware(createNodeMiddleware(probot, { webhooksPath: `/api/git/${id}`, probot: probotApp }))
+  const middleware = fromNodeMiddleware(createNodeMiddleware(probot, { webhooksPath: `/api/git/webhooks/${id}`, probot: probotApp }))
   return middleware(event)
 })
